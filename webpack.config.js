@@ -9,6 +9,8 @@ var webpack = require('webpack'),
 
 const ASSET_PATH = process.env.ASSET_PATH || '/';
 
+const 
+
 var alias = {
   'react-dom': '@hot-loader/react-dom',
 };
@@ -163,7 +165,7 @@ var options = {
       ],
     }),
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'src', 'pages', 'Newtab', 'index.html'),
+
       filename: 'newtab.html',
       chunks: ['newtab'],
       cache: false,
