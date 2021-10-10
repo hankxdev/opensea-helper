@@ -14,12 +14,12 @@
     {
       "matches": ["<all_urls>"],
       "js": ["contentScript.bundle.js"],
-      "css": ["content.styles.css"]
+      "css": ["content.css"]
     }
   ],
   "web_accessible_resources": [
     {
-      "resources": ["content.styles.css", "icon-128.png", "icon-34.png"],
+      "resources": ["content.css", "icon-128.png", "icon-34.png"],
       "matches": []
     }
   ]
