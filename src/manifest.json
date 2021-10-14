@@ -19,7 +19,7 @@
   ],
   "web_accessible_resources": [
     {
-      "resources": ["content.css", "icon-128.png", "icon-34.png"],
+      "resources": ["content.css", "content.bundle.js", "icon-128.png", "icon-34.png"],
       "matches": []
     }
   ]
