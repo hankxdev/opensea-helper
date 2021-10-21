@@ -1,26 +1,41 @@
 {
-  "manifest_version": 3,
-  "name": "OpenSea NFT extension",
-  "options_page": "options.html",
-  "background": { "service_worker": "background.bundle.js" },
   "action": {
     "default_popup": "popup.html",
     "default_icon": "icon-34.png"
   },
-  "icons": {
-    "128": "icon-128.png"
+  "background": {
+    "service_worker": "background.bundle.js"
   },
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["contentScript.bundle.js"],
-      "css": ["content.css"]
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "inject.bundle.js"
+      ],
+      "css": [
+        "content.css"
+      ]
     }
   ],
+  "icons": {
+    "128": "icon-128.png"
+  },
+  "manifest_version": 3,
+  "name": "OpenSea NFT extension",
+  "options_page": "options.html",
   "web_accessible_resources": [
     {
-      "resources": ["content.css", "content.bundle.js", "icon-128.png", "icon-34.png"],
-      "matches": []
+      "resources": [
+        "inject.bundle.js",
+        "contentScript.bundle.js",
+        "icon-128.png",
+        "icon-34.png"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
     }
   ]
 }

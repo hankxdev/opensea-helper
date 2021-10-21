@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import { OpenSeaPort, Network } from 'opensea-js';
-import * as Web3 from 'web3';
+import detectEthereumProvider from '@metamask/detect-provider';
+
 
 const buyNowButton = `
 <button class="btn btn-primary momane-buy-now-button">
@@ -46,16 +47,18 @@ const observer = new MutationObserver(callback);
 
 observer.observe(targetNode, config);
 
+// const provider = await detectEthereumProvider()
+
 $('body').on('click', '.momane-buy-now-button', function (e) {
   e.preventDefault();
   const link = $(this).parent().find('a').attr('href');
   const assetAddress = link.match(/0x\w+/)[0];
   const assetId = link.match(/\/(\d+)/g)[1].replace('/', '');
   if (!seaport) {
-    const provider = new Web3.providers.HttpProvider(
-      'https://mainnet.infura.io'
-    );
-    seaport = new OpenSeaPort(provider, {
+    // const provider = new Web3.providers.HttpProvider(
+    //   'https://mainnet.infura.io'
+    // );
+    seaport = new OpenSeaPort(window.web3.currentProvider, {
       networkName: Network.Main,
     });
   }
@@ -63,9 +66,10 @@ $('body').on('click', '.momane-buy-now-button', function (e) {
     .getAsset({ tokenAddress: assetAddress, tokenId: assetId })
     .then(async (asset) => {
       const order = asset.sellOrders[0];
+
       await seaport.fulfillOrder({
         order,
-        accountAddress: this.account,
+        accountAddress: window.ethereum.selectedAddress
       });
     });
 });
