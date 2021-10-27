@@ -26,8 +26,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci
-    - run: npm run build
+    - run: yarn
+    - run: yarn build
     - name: Release & Publish
       uses: zattoo/publish@1.0.0
       with:
