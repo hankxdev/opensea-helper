@@ -32,4 +32,3 @@ jobs:
       uses: zattoo/publish@1.0.0
       with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          sources: 'build/*'
