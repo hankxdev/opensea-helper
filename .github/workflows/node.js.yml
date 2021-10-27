@@ -31,5 +31,5 @@ jobs:
     - name: Release & Publish
       uses: zattoo/publish@1.0.0
       with:
-          github_token: ${{GITHUB_TOKEN}}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           sources: 'build/*'
