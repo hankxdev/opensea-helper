@@ -13,6 +13,8 @@
     "prettier": "prettier --write '**/*.{js,jsx,css,html}'"
   },
   "dependencies": {
+    "@chakra-ui/icon": "^1.1.13",
+    "@chakra-ui/icons": "^1.0.17",
     "@chakra-ui/react": "^1.6.10",
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
