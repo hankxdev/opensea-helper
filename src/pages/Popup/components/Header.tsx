@@ -11,7 +11,7 @@ const Header = ({ showSidebarButton = true, onShowSidebar }: Props) => {
   const [userName, setUsername] = React.useState('Hank');
 
   return (
-    <Flex bg='tomato' p={1} justifyContent='center'>
+    <Flex bg={'#6a60bc'}p={1} justifyContent='center' >
       <Box flex='1'>
         {showSidebarButton && (
           <IconButton

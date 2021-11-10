@@ -1,75 +1,77 @@
-import $ from 'jquery';
-import { OpenSeaPort, Network } from 'opensea-js';
-import detectEthereumProvider from '@metamask/detect-provider';
+import $ from 'jquery'
+import { OpenSeaPort, Network } from 'opensea-js'
+import detectEthereumProvider from '@metamask/detect-provider'
 
 
-const buyNowButton = `
-<button class="btn btn-primary momane-buy-now-button">
+const buyNowButton = $(`
+<button class='btn btn-primary momane-buy-now-button'>
       Buy it now
 </button>
-`;
+`)
 
-let seaport = null;
+let seaport = null
 
 const config = {
   childList: true,
   subtree: true,
-};
+}
 
-const targetNode = document.body;
+const targetNode = document.body
 
 const callback = (mutationsList, observer) => {
   for (let mutation of mutationsList) {
     if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
-      const target = mutation.target;
+      const target = mutation.target
       if (target && target.querySelector('.Image--image')) {
-        let container = $(target).parents('article');
+        let container = $(target).parents('article')
         if (container.length > 0) {
           if (container.find('.momane-buy-now-button').length === 0) {
-            container.append(buyNowButton);
+            buyNowButton.attr("data-astId", )
+            buyNowButton.attr("data-astAddr", )
+            container.append(buyNowButton)
           }
         } else {
-          let containers = $(target).find('article');
+          let containers = $(target).find('article')
           if (containers.length > 0) {
-            containers.each(function () {
+            containers.each(function() {
               if ($(this).find('.momane-buy-now-button').length === 0) {
-                $(this).append(buyNowButton);
+                $(this).append(buyNowButton)
               }
-            });
+            })
           }
         }
       }
     }
   }
-};
+}
 
-const observer = new MutationObserver(callback);
+const observer = new MutationObserver(callback)
 
-observer.observe(targetNode, config);
+observer.observe(targetNode, config)
 
 // const provider = await detectEthereumProvider()
 
-$('body').on('click', '.momane-buy-now-button', function (e) {
-  e.preventDefault();
-  const link = $(this).parent().find('a').attr('href');
-  const assetAddress = link.match(/0x\w+/)[0];
-  const assetId = link.match(/\/(\d+)/g)[1].replace('/', '');
+$('body').on('click', '.momane-buy-now-button', function(e) {
+  e.preventDefault()
+  const link = $(this).parent().find('a').attr('href')
+  const assetAddress = link.match(/0x\w+/)[0]
+  const assetId = link.match(/\/(\d+)/g)[1].replace('/', '')
   if (!seaport) {
     // const provider = new Web3.providers.HttpProvider(
     //   'https://mainnet.infura.io'
     // );
     seaport = new OpenSeaPort(window.web3.currentProvider, {
       networkName: Network.Main,
-    });
+    })
   }
   seaport.api
     .getAsset({ tokenAddress: assetAddress, tokenId: assetId })
     .then(async (asset) => {
-      const order = asset.sellOrders[0];
+      const order = asset.sellOrders[0]
 
       await seaport.fulfillOrder({
         order,
-        accountAddress: window.ethereum.selectedAddress
-      });
-    });
-});
+        accountAddress: window.ethereum.selectedAddress,
+      })
+    })
+})

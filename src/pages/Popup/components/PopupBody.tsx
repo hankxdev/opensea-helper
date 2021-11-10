@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Box, Flex, Button, VStack } from '@chakra-ui/react';
 
 
-const Content = () => {
+const PopupBody = () => {
   return (
     <Flex p={2} flexDir='column' justifyContent='space-between'>
       <VStack>
@@ -19,4 +19,4 @@ const Content = () => {
 };
 
 
-export default Content;
+export default PopupBody;
