@@ -5,14 +5,8 @@ import { ExternalLinkIcon, HamburgerIcon, SettingsIcon } from '@chakra-ui/icons'
 
 const Footer = () => {
   return (
-    <Flex
-      as="footer"
-      fontSize="24px"
-      color="#6a60bc"
-      align="center"
-      justify="center"
-      w="100%"
-    >
+    <Flex className="footer">
+    
       <HamburgerIcon m={2} />
       <SettingsIcon m={2} />
       <ExternalLinkIcon m={2} />

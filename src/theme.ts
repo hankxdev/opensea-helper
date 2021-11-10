@@ -4,7 +4,7 @@ export const theme = {
       'html, body': {
         color: 'gray.50',
         lineHeight: 'tall',
-        backgroundColor: '#212329',
+        bg: 'linear-gradient(0deg, rgba(25,26,29,1) 0%, rgba(36,36,39,1) 100%)',
       },
       a: {
         color: 'teal.500',

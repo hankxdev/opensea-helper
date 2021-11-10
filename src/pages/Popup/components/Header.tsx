@@ -1,5 +1,7 @@
 import * as React from 'react'
 
+import '../Popup.scss'
+
 import { Box, Center, Flex, IconButton, Text } from '@chakra-ui/react'
 
 import { HamburgerIcon } from '@chakra-ui/icons'
@@ -10,12 +12,12 @@ interface Props {
 }
 
 const Header = ({ showSidebarButton = true, onShowSidebar }: Props) => {
-  const [appName, setAppName] = React.useState('NIFTY HUNTER')
+  const [appName, setAppName] = React.useState('NFT HNTR')
   const [ethPrice, setEthPrice] = React.useState(4700)
   const [gasFee, setGasFee] = React.useState(210)
 
   return (
-    <Flex bg={'#6a60bc'} p={2} justifyContent="center">
+    <Flex className="headerbar">
       {/* <Box flex="1">
         {showSidebarButton && (
           <IconButton

@@ -1,13 +1,13 @@
 import * as React from 'react'
-
 import { Box, Button, Flex, Stat, StatNumber, VStack } from '@chakra-ui/react'
+import '../Popup.scss'
 
 const PopupBody = () => {
   const [monitoringTokens, setMonitoringTokens] = React.useState([
-    'HUMANOIDS',
+    'THE HUMANOIDS',
     'LAZY LIONS',
     'BORED APE YACHT CLUB',
-    'GUTTER CATA GANG',
+    'GUTTER CAT GANG',
   ])
 
   return (
@@ -21,6 +21,7 @@ const PopupBody = () => {
           fontWeight="semibold"
           fontStyle="italic"
           color="#6a60bc"
+          marginBottom="20px"
         >
           ADD NEW
         </Box>
@@ -28,8 +29,8 @@ const PopupBody = () => {
 
       <VStack>
         {monitoringTokens.map((token, index) => (
-          <Box w="100%" key={index} h="40px" bg="#6a60bc">
-            <Box fontSize="18px">{token}</Box>
+          <Box className="collection">
+            <Box className="collectiontitle">{token}</Box>
           </Box>
         ))}
       </VStack>
