@@ -1,36 +1,43 @@
-import * as React from 'react';
-import { Box, Center, IconButton, Text, Flex } from '@chakra-ui/react';
-import { HamburgerIcon } from '@chakra-ui/icons';
+import * as React from 'react'
+
+import { Box, Center, Flex, IconButton, Text } from '@chakra-ui/react'
+
+import { HamburgerIcon } from '@chakra-ui/icons'
 
 interface Props {
   onShowSidebar: Function
-  showSidebarButton?: boolean,
+  showSidebarButton?: boolean
 }
 
 const Header = ({ showSidebarButton = true, onShowSidebar }: Props) => {
-  const [userName, setUsername] = React.useState('Hank');
+  const [appName, setAppName] = React.useState('NIFTY HUNTER')
+  const [ethPrice, setEthPrice] = React.useState(4700)
+  const [gasFee, setGasFee] = React.useState(210)
 
   return (
-    <Flex bg={'#6a60bc'}p={1} justifyContent='center' >
-      <Box flex='1'>
+    <Flex bg={'#6a60bc'} p={2} justifyContent="center">
+      {/* <Box flex="1">
         {showSidebarButton && (
           <IconButton
             aria-label={'IconButton'}
             icon={<HamburgerIcon w={4} h={4} />}
-            colorScheme='blackAlpha'
-            variant='outline'
+            colorScheme="blackAlpha"
+            variant="outline"
             onClick={() => {
-              onShowSidebar();
+              onShowSidebar()
             }}
           />
         )}
-      </Box>
-      <Center flex='1' h='40px'>
-        <Text fontSize='xl'>Hello {userName}</Text>
+      </Box> */}
+      <Center flex="2">
+        <Text fontSize="xl">{appName}</Text>
       </Center>
-      <Box flex='1' />
+      <Flex opacity="0.8" paddingRight={2} textAlign="right" flexDir="column" fontStyle="italic">
+        <Box>ETH: ${ethPrice}</Box>
+        <Box>GAS: ${gasFee}</Box>
+      </Flex>
     </Flex>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header
