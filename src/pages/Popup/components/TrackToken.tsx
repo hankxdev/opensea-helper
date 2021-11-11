@@ -1,8 +1,10 @@
-import * as React from 'react'
-import { Box, Button, Flex, Stat, StatNumber, VStack } from '@chakra-ui/react'
 import '../Popup.scss'
 
-const PopupBody = () => {
+import * as React from 'react'
+
+import { Box, Button, Flex, Stat, StatNumber, VStack } from '@chakra-ui/react'
+
+const TrackToken = () => {
   const [monitoringTokens, setMonitoringTokens] = React.useState([
     'THE HUMANOIDS',
     'LAZY LIONS',
@@ -38,4 +40,4 @@ const PopupBody = () => {
   )
 }
 
-export default PopupBody
+export default TrackToken

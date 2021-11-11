@@ -1,0 +1,21 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 80px);
+  button {
+    background: linear-gradient(
+      145deg,
+      rgba(96, 86, 175, 1) 0%,
+      rgba(126, 116, 208, 1) 100%
+    );
+    &:hover {
+      background: linear-gradient(
+        145deg,
+        rgb(26, 20, 65) 0%,
+        rgb(14, 12, 26) 100%
+      );
+    }
+  }
+}
