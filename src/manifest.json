@@ -4,7 +4,8 @@
     "default_icon": "icon-34.png"
   },
   "background": {
-    "service_worker": "background.bundle.js"
+    "service_worker": "background.bundle.js",
+    "type": "module"
   },
   "content_scripts": [
     {
@@ -22,7 +23,12 @@
   "icons": {
     "128": "icon-128.png"
   },
-  "permissions": ["identity"],
+  "permissions": [
+    "identity", 
+    "alarms",
+     "tabs", 
+     "storage",
+     "*://*.opensea.io/*"],
   "manifest_version": 3,
   "name": "OpenSea NFT extension",
   "options_page": "options.html",
