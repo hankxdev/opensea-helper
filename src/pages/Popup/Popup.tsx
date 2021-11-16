@@ -11,7 +11,7 @@ import TrackToken from './components/TrackToken'
 
 const Popup = () => {
   const [isSidebarOpen, setSidebarOpen] = React.useState(false)
-  const [isLogin, setLogin] = React.useState(false)
+  const [isLogin, setLogin] = React.useState(true)
 
   const toggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen)
