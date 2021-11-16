@@ -23,22 +23,25 @@ const TrackToken = () => {
         setLoadingMsg('no tracking token found')
       }
       if (data) {
-        setMonitoringTokens(data)
+        setMonitoringTokens(data[ACTION_NAME.TRACKING_TOKEN_LIST])
       }
     })
   }
 
   React.useEffect(() => {
+    console.log('TrackToken useEffect')
     getMonitoringTokens()
-  }, [monitoringTokens])
-
-  const showAddTrackingTokenForm = () => {}
+  }, [isAddingTracking])
 
   return (
     <Flex p={6} flexDir="column" justifyContent="space-between">
       <Box>
         {isAddingTracking ? (
-          <AddTrackingTokenForm />
+          <AddTrackingTokenForm
+            onCancel={() => {
+              setIsAddingTracking(false)
+            }}
+          />
         ) : (
           <>
             <Flex justifyContent="space-between">
@@ -58,10 +61,10 @@ const TrackToken = () => {
                 ADD NEW
               </Box>
             </Flex>
-            {monitoringTokens.length > 0 ? (
+            {monitoringTokens && monitoringTokens.length > 0 ? (
               <VStack>
                 {monitoringTokens.map((token, index) => (
-                  <Box className="collection">
+                  <Box className="collection" key={index}>
                     <Box className="collectiontitle">{token}</Box>
                   </Box>
                 ))}

@@ -26,7 +26,12 @@ interface ITrackingCollection {
   url: string
 }
 
-const AddTrackingTokenForm = () => {
+
+interface IProps {
+  onCancel: Function
+}
+
+const AddTrackingTokenForm = ({ onCancel}: IProps) => {
   const toast = useToast()
   const [collection, setCollection] = React.useState<ITrackingCollection>({
     name: '',
@@ -101,8 +106,7 @@ const AddTrackingTokenForm = () => {
         <FormLabel>Price Lower Than:</FormLabel>
         <NumberInput
           defaultValue={0.1}
-          precision={2}
-          step={0.2}
+          step={0.01}
           value={collection.price}
           onChange={(value) => {
             console.log(value)
@@ -122,7 +126,7 @@ const AddTrackingTokenForm = () => {
       <Button mt={4} colorScheme="teal" onClick={saveCollection}>
         Submit
       </Button>
-      <Button mt={4} colorScheme="red">
+      <Button mt={4} colorScheme="red" onClick={()=>{onCancel()}}>
         Cancel
       </Button>
     </Flex>

@@ -15,7 +15,7 @@ export const saveData = async (key: string, value: any) => {
 export const getData = async (key: string): Promise<any> => {
   return new Promise((resolve, reject) => {
     s.get(key, (result) => {
-      if (result.length === 0) {
+      if (!result || result.length === 0) {
         reject(null)
       }
       resolve(result[key])
