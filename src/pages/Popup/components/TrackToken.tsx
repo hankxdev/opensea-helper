@@ -8,13 +8,14 @@ import { getData, saveData } from '../../../storage'
 import { ACTION_NAME } from '../../../consts'
 import AddTrackingTokenForm from './AddTrackingTokenForm'
 import { ITrackingToken } from '../intefaces'
+import TokenCard from './TokenCard'
 
 const TrackToken = () => {
-  const [monitoringTokens, setMonitoringTokens] = React.useState([])
+  const [monitoringTokens, setMonitoringTokens] = React.useState<Array<ITrackingToken>>([])
   const [isAddingTracking, setIsAddingTracking] = React.useState(false)
 
   const [loadingMsg, setLoadingMsg] = React.useState(
-    'loading your tracking tokens'
+    'loading your tracking tokens',
   )
 
   const getMonitoringTokens = async () => {
@@ -23,7 +24,7 @@ const TrackToken = () => {
         setLoadingMsg('no tracking token found')
       }
       if (data) {
-        setMonitoringTokens(data[ACTION_NAME.TRACKING_TOKEN_LIST])
+        setMonitoringTokens(data)
       }
     })
   }
@@ -34,7 +35,7 @@ const TrackToken = () => {
   }, [isAddingTracking])
 
   return (
-    <Flex p={6} flexDir="column" justifyContent="space-between">
+    <Flex p={6} flexDir='column' justifyContent='space-between'>
       <Box>
         {isAddingTracking ? (
           <AddTrackingTokenForm
@@ -44,16 +45,16 @@ const TrackToken = () => {
           />
         ) : (
           <>
-            <Flex justifyContent="space-between">
-              <Box as="h2" fontSize="lg" fontWeight="semibold">
+            <Flex justifyContent='space-between'>
+              <Box as='h2' fontSize='lg' fontWeight='semibold'>
                 MONITORING
               </Box>
               <Box
-                lineHeight="30px"
-                fontWeight="semibold"
-                fontStyle="italic"
-                color="#6a60bc"
-                marginBottom="20px"
+                lineHeight='30px'
+                fontWeight='semibold'
+                fontStyle='italic'
+                color='#6a60bc'
+                marginBottom='20px'
                 onClick={() => {
                   setIsAddingTracking(true)
                 }}
@@ -64,10 +65,9 @@ const TrackToken = () => {
             {monitoringTokens && monitoringTokens.length > 0 ? (
               <VStack>
                 {monitoringTokens.map((token, index) => (
-                  <Box className="collection" key={index}>
-                    <Box className="collectiontitle">{token}</Box>
-                  </Box>
-                ))}
+                  <TokenCard {...token} key={index} />
+                ))
+                }
               </VStack>
             ) : (
               <Box>
