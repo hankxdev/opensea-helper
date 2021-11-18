@@ -3,7 +3,7 @@ export interface ITrackingToken {
   name: string,
   tracking : boolean,
   url: string,
-  floorPrice: number
+  price: number
 }
 
 

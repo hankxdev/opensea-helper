@@ -8,17 +8,12 @@ import {
   FormHelperText,
   FormLabel,
   Input,
-  NumberDecrementStepper,
-  NumberIncrementStepper,
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
   Text,
   useToast,
 } from '@chakra-ui/react'
+import { getData, saveData } from '../../../storage'
 
 import { ACTION_NAME } from '../../../consts'
-import { saveData } from '../../../storage'
 
 interface ITrackingCollection {
   name: string
@@ -26,12 +21,11 @@ interface ITrackingCollection {
   url: string
 }
 
-
 interface IProps {
   onCancel: Function
 }
 
-const AddTrackingTokenForm = ({ onCancel}: IProps) => {
+const AddTrackingTokenForm = ({ onCancel }: IProps) => {
   const toast = useToast()
   const [collection, setCollection] = React.useState<ITrackingCollection>({
     name: '',
@@ -55,17 +49,21 @@ const AddTrackingTokenForm = ({ onCancel}: IProps) => {
       return
     }
 
-    saveData(ACTION_NAME.TRACKING_TOKEN_LIST, collection).then(() => {
-      toast({
-        title: `${collection.name} has been added`,
-        status: 'success',
-        position: 'top',
-        isClosable: true,
-      })
-      setCollection({
-        name: '',
-        price: 0,
-        url: '',
+    getData(ACTION_NAME.TRACKING_TOKEN_LIST).then((result) => {
+      let collections = result ? result : []
+      collections.push(collection)
+      saveData(ACTION_NAME.TRACKING_TOKEN_LIST, collections).then(() => {
+        toast({
+          title: `${collection.name} has been added`,
+          status: 'success',
+          position: 'top',
+          isClosable: true,
+        })
+        setCollection({
+          name: '',
+          price: 0,
+          url: '',
+        })
       })
     })
   }
@@ -104,29 +102,27 @@ const AddTrackingTokenForm = ({ onCancel}: IProps) => {
       </FormControl>
       <FormControl id="collectionPrice">
         <FormLabel>Price Lower Than:</FormLabel>
-        <NumberInput
-          defaultValue={0.1}
-          step={0.01}
+        <Input
           value={collection.price}
-          onChange={(value) => {
-            console.log(value)
+          type="number"
+          onChange={(e) => {
             setCollection({
               ...collection,
-              price: Number(value),
+              price: Number(e.target.value),
             })
           }}
-        >
-          <NumberInputField />
-          <NumberInputStepper>
-            <NumberIncrementStepper />
-            <NumberDecrementStepper />
-          </NumberInputStepper>
-        </NumberInput>
+        />
       </FormControl>
       <Button mt={4} colorScheme="teal" onClick={saveCollection}>
         Submit
       </Button>
-      <Button mt={4} colorScheme="red" onClick={()=>{onCancel()}}>
+      <Button
+        mt={4}
+        colorScheme="red"
+        onClick={() => {
+          onCancel()
+        }}
+      >
         Cancel
       </Button>
     </Flex>
