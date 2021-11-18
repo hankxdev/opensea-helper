@@ -3,11 +3,12 @@ export const crm = {
   s: chrome.storage.sync,
   r: chrome.runtime,
   t: chrome.tabs,
+  a: chrome.alarms,
 }
 
 
 export const openseaAPI = {
-  baseURL: 'https://api.opensea.io/api/v1/',
+  baseURL: 'https://api.opensea.io/api/v1',
   token: '',
   headers: {
     'Content-Type': 'application/json',

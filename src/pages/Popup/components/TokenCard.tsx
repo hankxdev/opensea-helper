@@ -1,14 +1,14 @@
 import * as React from 'react'
 
-import { Flex, Box } from '@chakra-ui/react'
+import { Box, Flex } from '@chakra-ui/react'
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons'
-import { ITrackingToken } from '../intefaces'
 import { getData, saveData } from '../../../storage'
-import { ACTION_NAME } from '../../../consts'
 
+import { ACTION_NAME } from '../../../consts'
+import { ITrackingToken } from '../intefaces'
 
 const TokenCard = (token: ITrackingToken) => {
-  const { name, floorPrice, url, tracking } = token
+  const { name, price, url, tracking } = token
 
 
   const deleteToken = () => {

@@ -20,7 +20,7 @@ const TrackToken = () => {
 
   const getMonitoringTokens = async () => {
     getData(ACTION_NAME.TRACKING_TOKEN_LIST).then((data) => {
-      if (!data) {
+      if (data.length < 1) {
         setLoadingMsg('no tracking token found')
       }
       if (data) {
@@ -30,7 +30,6 @@ const TrackToken = () => {
   }
 
   React.useEffect(() => {
-    console.log('TrackToken useEffect')
     getMonitoringTokens()
   }, [isAddingTracking])
 
