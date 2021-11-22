@@ -48,7 +48,7 @@ const Header = ({ showSidebarButton = true, onShowSidebar }: Props) => {
         fontStyle="italic"
       >
         <Box>ETH: ${ethPrice}</Box>
-        <Box>GAS: ${gasFee}</Box>
+        <Box>GAS: ${gasFee.toFixed(2)}</Box>
       </Flex>
     </Flex>
   )
