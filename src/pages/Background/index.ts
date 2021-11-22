@@ -76,7 +76,6 @@ async function getCollectionInfo(token: ITrackingToken) {
       crm.t.create({ url: token.url })
       return
     }
-
   } catch (e) {
     console.log(e)
   } finally {
