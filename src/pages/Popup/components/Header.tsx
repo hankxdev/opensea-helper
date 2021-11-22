@@ -1,8 +1,9 @@
-import * as React from 'react'
-
 import '../Popup.scss'
 
+import * as React from 'react'
+
 import { Box, Center, Flex, IconButton, Text } from '@chakra-ui/react'
+import { getEthPrice, getGasPrice } from '../services'
 
 import { HamburgerIcon } from '@chakra-ui/icons'
 
@@ -13,8 +14,13 @@ interface Props {
 
 const Header = ({ showSidebarButton = true, onShowSidebar }: Props) => {
   const [appName, setAppName] = React.useState('NFT HNTR')
-  const [ethPrice, setEthPrice] = React.useState(4700)
-  const [gasFee, setGasFee] = React.useState(210)
+  const [ethPrice, setEthPrice] = React.useState(0)
+  const [gasFee, setGasFee] = React.useState(0)
+
+  React.useEffect(() => {
+    getEthPrice().then(setEthPrice)
+    getGasPrice().then(setGasFee)
+  }, [])
 
   return (
     <Flex className="headerbar">
@@ -34,7 +40,13 @@ const Header = ({ showSidebarButton = true, onShowSidebar }: Props) => {
       <Center flex="2">
         <Text fontSize="xl">{appName}</Text>
       </Center>
-      <Flex opacity="0.8" paddingRight={2} textAlign="right" flexDir="column" fontStyle="italic">
+      <Flex
+        opacity="0.8"
+        paddingRight={2}
+        textAlign="right"
+        flexDir="column"
+        fontStyle="italic"
+      >
         <Box>ETH: ${ethPrice}</Box>
         <Box>GAS: ${gasFee}</Box>
       </Flex>

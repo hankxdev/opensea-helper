@@ -8,3 +8,9 @@ export interface ITrackingToken {
 
 
 
+export interface  IGasFee {
+  instant: number,
+  fast: number,
+  standard: number,
+  low: number,
+}
