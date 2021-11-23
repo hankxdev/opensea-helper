@@ -85,3 +85,73 @@ body {
   cursor:pointer;
   opacity:1;
 }
+
+.new {
+  font-size: 10px;
+    cursor: pointer;
+    opacity: 0.8;
+    background: linear-gradient(145deg, #6056af 0%, #7e74d0 100%);
+    border-radius: 2px;
+    padding: 5px;
+    height: 100%;
+    transition: all 0.25s ease;
+}
+
+.new:hover {
+  font-size: 10px;
+  cursor: pointer;
+  opacity: 1.0
+}
+
+.pageheader {
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom:20px
+}
+
+.titleheader {
+  margin-bottom:20px;
+}
+
+.fieldtitle {
+  font-size:12px!important;
+}
+
+.fieldinput {
+  margin-bottom:5px;
+}
+
+.submitbutton {
+  font-size: 10px!important;
+  text-transform: uppercase;
+  cursor: pointer;
+  opacity: 0.8;
+  background: linear-gradient(145deg, #6056af 0%, #7e74d0 100%)!important;
+  border-radius: 2px;
+  padding: 5px;
+  height: 100%;
+  transition: all 0.25s ease;
+  margin-top:10px
+}
+
+.submitbutton:hover {
+  opacity: 1;
+}
+
+.cancelbutton {
+  font-size: 10px!important;
+  text-transform: uppercase;
+  cursor: pointer;
+  opacity: 0.8;
+  background: #FF4136!important;
+  border-radius: 2px;
+  padding: 5px;
+  height: 100%;
+  transition: all 0.25s ease;
+  margin-top:10px
+}
+
+.cancelbutton:hover {
+  opacity: 1;
+}

@@ -45,15 +45,10 @@ const TrackToken = () => {
         ) : (
           <>
             <Flex justifyContent='space-between'>
-              <Box as='h2' fontSize='lg' fontWeight='semibold'>
+              <Box className="pageheader">
                 MONITORING
               </Box>
-              <Box
-                lineHeight='30px'
-                fontWeight='semibold'
-                fontStyle='italic'
-                color='#6a60bc'
-                marginBottom='20px'
+              <Box className="new"
                 onClick={() => {
                   setIsAddingTracking(true)
                 }}
@@ -61,6 +56,7 @@ const TrackToken = () => {
                 ADD NEW
               </Box>
             </Flex>
+            
             {monitoringTokens && monitoringTokens.length > 0 ? (
               <VStack>
                 {monitoringTokens.map((token, index) => (
