@@ -70,13 +70,14 @@ const AddTrackingTokenForm = ({ onCancel }: IProps) => {
 
   return (
     <Flex flexDir="column">
-      <Text fontSize="3xl" paddingBottom={3}>
+      <Text className="pageheader">
         {' '}
         Add COLLECTION{' '}
       </Text>
       <FormControl id="collectionName">
-        <FormLabel>Collection Name:</FormLabel>
+        <FormLabel className="fieldtitle">Collection Name:</FormLabel>
         <Input
+        className="fieldinput"
           type="text"
           value={collection.name}
           onChange={(e) => {
@@ -88,8 +89,9 @@ const AddTrackingTokenForm = ({ onCancel }: IProps) => {
         />
       </FormControl>
       <FormControl id="collection URL">
-        <FormLabel>Opensea URL:</FormLabel>
+        <FormLabel className="fieldtitle">Opensea URL:</FormLabel>
         <Input
+        className="fieldinput"
           type="url"
           value={collection.url}
           onChange={(e) => {
@@ -101,8 +103,9 @@ const AddTrackingTokenForm = ({ onCancel }: IProps) => {
         />
       </FormControl>
       <FormControl id="collectionPrice">
-        <FormLabel>Price Lower Than:</FormLabel>
+        <FormLabel className="fieldtitle">Price Lower Than:</FormLabel>
         <Input
+        className="fieldinput"
           value={collection.price}
           type="number"
           onChange={(e) => {
@@ -113,12 +116,11 @@ const AddTrackingTokenForm = ({ onCancel }: IProps) => {
           }}
         />
       </FormControl>
-      <Button mt={4} colorScheme="teal" onClick={saveCollection}>
+      <Button className="submitbutton" onClick={saveCollection}>
         Submit
       </Button>
       <Button
-        mt={4}
-        colorScheme="red"
+       className="cancelbutton"
         onClick={() => {
           onCancel()
         }}
