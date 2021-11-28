@@ -1,22 +1,10 @@
+import { Network, OpenSeaPort } from 'opensea-js'
+
 import $ from 'jquery'
-import { OpenSeaPort, Network } from 'opensea-js'
 import detectEthereumProvider from '@metamask/detect-provider'
-
-
-const buyNowButton = $(`
-<button class='btn btn-primary momane-buy-now-button'>
-      Buy it now
-</button>
-`)
 
 let seaport = null
 
-const config = {
-  childList: true,
-  subtree: true,
-}
-
-const targetNode = document.body
 
 const callback = (mutationsList, observer) => {
   for (let mutation of mutationsList) {
@@ -26,14 +14,14 @@ const callback = (mutationsList, observer) => {
         let container = $(target).parents('article')
         if (container.length > 0) {
           if (container.find('.momane-buy-now-button').length === 0) {
-            buyNowButton.attr("data-astId", )
-            buyNowButton.attr("data-astAddr", )
+            buyNowButton.attr("data-astId",)
+            buyNowButton.attr("data-astAddr",)
             container.append(buyNowButton)
           }
         } else {
           let containers = $(target).find('article')
           if (containers.length > 0) {
-            containers.each(function() {
+            containers.each(function () {
               if ($(this).find('.momane-buy-now-button').length === 0) {
                 $(this).append(buyNowButton)
               }
@@ -45,13 +33,24 @@ const callback = (mutationsList, observer) => {
   }
 }
 
-const observer = new MutationObserver(callback)
 
-observer.observe(targetNode, config)
+
+setInterval(() => {
+  const tokenEls = $("article")
+  tokenEls.each((_, el) => {
+    if ($(el).find('.momane-buy-now-button').length === 0) {
+      $(el).append(`<button class='btn btn-primary momane-buy-now-button'>
+                    Buy it now
+                  </button>`
+      )
+    }
+  })
+}, 300)
+
 
 // const provider = await detectEthereumProvider()
 
-$('body').on('click', '.momane-buy-now-button', function(e) {
+$('body').on('click', '.momane-buy-now-button', function (e) {
   e.preventDefault()
   const link = $(this).parent().find('a').attr('href')
   const assetAddress = link.match(/0x\w+/)[0]
@@ -68,10 +67,15 @@ $('body').on('click', '.momane-buy-now-button', function(e) {
     .getAsset({ tokenAddress: assetAddress, tokenId: assetId })
     .then(async (asset) => {
       const order = asset.sellOrders[0]
-
-      await seaport.fulfillOrder({
-        order,
-        accountAddress: window.ethereum.selectedAddress,
-      })
+      try {
+        await seaport.fulfillOrder({
+          order,
+          accountAddress: window.ethereum.selectedAddress,
+        })
+      } catch (e) {
+        alert(e)
+      }
+    }).catch(e => {
+      alert(e)
     })
 })

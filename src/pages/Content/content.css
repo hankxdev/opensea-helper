@@ -1,16 +1,41 @@
 .momane-buy-now-button {
-  display: inline-flex;
-  flex-direction: row;
-  -webkit-box-align: center;
-  align-items: center;
-  border-radius: 5px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
 
-  -webkit-box-pack: center;
-  justify-content: center;
+/* CSS */
+.momane-buy-now-button {
+  background: linear-gradient(to bottom right, #6056af , #7e74d0);
+  border: 0;
+  border-radius: 12px;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system, system-ui, 'Segoe UI', Roboto, Helvetica, Arial,
+    sans-serif;
   font-size: 16px;
-  font-weight: 600;
-  padding: 12 px 20 px;
-  background-color: rgb(32, 129, 226);
-  border: 1 px solid rgb(32, 129, 226);
-  color: rgb(255, 255, 255);
+  font-weight: 500;
+  line-height: 2.5;
+  outline: transparent;
+  padding: 0 1rem;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow 0.2s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+}
+
+.momane-buy-now-button:not([disabled]):focus {
+  box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.5),
+    -0.125rem -0.125rem 1rem   rgba(96, 86, 175, 1) 0%,
+    0.125rem 0.125rem 1rem rgba(126, 116, 208, 1) 100%;
+}
+
+.momane-buy-now-button:not([disabled]):hover {
+  box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.5),
+    -0.125rem -0.125rem 1rem   rgba(96, 86, 175, 1) 0%,
+    0.125rem 0.125rem 1rem rgba(126, 116, 208, 1) 100%;
 }
