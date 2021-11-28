@@ -5,36 +5,6 @@ import detectEthereumProvider from '@metamask/detect-provider'
 
 let seaport = null
 
-
-const callback = (mutationsList, observer) => {
-  for (let mutation of mutationsList) {
-    if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
-      const target = mutation.target
-      if (target && target.querySelector('.Image--image')) {
-        let container = $(target).parents('article')
-        if (container.length > 0) {
-          if (container.find('.momane-buy-now-button').length === 0) {
-            buyNowButton.attr("data-astId",)
-            buyNowButton.attr("data-astAddr",)
-            container.append(buyNowButton)
-          }
-        } else {
-          let containers = $(target).find('article')
-          if (containers.length > 0) {
-            containers.each(function () {
-              if ($(this).find('.momane-buy-now-button').length === 0) {
-                $(this).append(buyNowButton)
-              }
-            })
-          }
-        }
-      }
-    }
-  }
-}
-
-
-
 setInterval(() => {
   const tokenEls = $("article")
   tokenEls.each((_, el) => {
