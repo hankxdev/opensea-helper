@@ -26,6 +26,7 @@
   -webkit-user-select: none;
   touch-action: manipulation;
   white-space: nowrap;
+  width: 108px;
 }
 
 .momane-buy-now-button:not([disabled]):focus {

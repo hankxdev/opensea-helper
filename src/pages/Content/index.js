@@ -22,6 +22,9 @@ setInterval(() => {
 
 $('body').on('click', '.momane-buy-now-button', function (e) {
   e.preventDefault()
+  let that = $(this);
+  that.text('...')
+  that.addClass('disabled')
   const link = $(this).parent().find('a').attr('href')
   const assetAddress = link.match(/0x\w+/)[0]
   const assetId = link.match(/\/(\d+)/g)[1].replace('/', '')
@@ -44,8 +47,14 @@ $('body').on('click', '.momane-buy-now-button', function (e) {
         })
       } catch (e) {
         alert(e)
+      } finally {
+        that.text('Buy it now')
+        that.removeClass('disabled')
       }
     }).catch(e => {
       alert(e)
+    }).finally(() => {
+      that.text('Buy it now')
+      that.removeClass('disabled')
     })
 })
