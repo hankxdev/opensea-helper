@@ -7,7 +7,7 @@ import Footer from './components/Footer'
 import Header from './components/Header'
 import LoginSection from './components/LoginSection'
 import SideBar from './components/SideBar'
-import TrackToken from './components/TrackToken'
+import TrackCollection from './components/TrackCollection'
 
 const Popup = () => {
   const [isSidebarOpen, setSidebarOpen] = React.useState(false)
@@ -25,7 +25,7 @@ const Popup = () => {
         </Box>
         {isLogin ? (
           <>
-            <TrackToken />
+            <TrackCollection />
             <Box
               position="absolute"
               bottom="0"

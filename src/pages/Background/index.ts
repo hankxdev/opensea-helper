@@ -1,6 +1,6 @@
 import { ACTION_NAME, crm } from '../../consts'
 
-import { ITrackingToken } from '../Popup/intefaces';
+import { ITrackingCollection } from '../Popup/intefaces';
 import axios from 'axios';
 import { getData } from '../../storage'
 import { loopWithDelay } from './../../utils';
@@ -11,7 +11,7 @@ const tracking = true // todo make it as a setting
 
 const alarm = crm.a
 
-let trackingTokens: ITrackingToken[] = []
+let trackingTokens: ITrackingCollection[] = []
 
 
 alarm.clearAll(() => {
@@ -32,7 +32,7 @@ alarm.clearAll(() => {
 
     console.log('tracking is on')
 
-    loopWithDelay((token: ITrackingToken) => {
+    loopWithDelay((token: ITrackingCollection) => {
       return new Promise((resolve) => {
         alarm.create(token.name, {
           when: Date.now() + 5 * 1000
@@ -55,7 +55,7 @@ alarm.onAlarm.addListener(alarm => {
   getCollectionInfo(token);
 })
 
-async function getCollectionInfo(token: ITrackingToken) {
+async function getCollectionInfo(token: ITrackingCollection) {
   let needRedo = true
   try {
     const result = await fetch(`${openseaAPI.baseURL}/collection/${token.name}`, {

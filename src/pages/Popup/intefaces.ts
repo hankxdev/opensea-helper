@@ -1,4 +1,4 @@
-export interface ITrackingToken {
+export interface ITrackingCollection {
   address: string,
   name: string,
   tracking : boolean,

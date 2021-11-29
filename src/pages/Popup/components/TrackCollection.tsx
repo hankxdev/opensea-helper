@@ -6,16 +6,25 @@ import { Box, Button, Flex, Stat, StatNumber, VStack } from '@chakra-ui/react'
 import { getData, saveData } from '../../../storage'
 
 import { ACTION_NAME } from '../../../consts'
-import AddTrackingTokenForm from './AddTrackingTokenForm'
-import { ITrackingToken } from '../intefaces'
-import TokenCard from './TokenCard'
+import AddTrackingCollectionForm from './AddTrackingTokenForm'
+import CollectionCard from './CollectionCard'
+import { ITrackingCollection } from '../intefaces'
 
-const TrackToken = () => {
-  const [monitoringTokens, setMonitoringTokens] = React.useState<Array<ITrackingToken>>([])
+const TrackCollection = () => {
+  const [monitoringTokens, setMonitoringTokens] = React.useState<
+    Array<ITrackingCollection>
+  >([])
   const [isAddingTracking, setIsAddingTracking] = React.useState(false)
+  const [currentToken, setCurrentToken] = React.useState<ITrackingCollection>({
+    address: '',
+    name: '',
+    tracking: false,
+    url: '',
+    price: 0,
+  })
 
   const [loadingMsg, setLoadingMsg] = React.useState(
-    'loading your tracking tokens',
+    'loading your tracking tokens'
   )
 
   const getMonitoringTokens = async () => {
@@ -29,26 +38,31 @@ const TrackToken = () => {
     })
   }
 
+  const gotoEditToken = (token: ITrackingCollection) => {
+    setCurrentToken(token)
+    setIsAddingTracking(true)
+  }
+
   React.useEffect(() => {
     getMonitoringTokens()
-  }, [isAddingTracking])
+  }, [isAddingTracking, monitoringTokens])
 
   return (
-    <Flex p={6} flexDir='column' justifyContent='space-between'>
+    <Flex p={6} flexDir="column" justifyContent="space-between">
       <Box>
         {isAddingTracking ? (
-          <AddTrackingTokenForm
+          <AddTrackingCollectionForm
+            token={currentToken}
             onCancel={() => {
               setIsAddingTracking(false)
             }}
           />
         ) : (
           <>
-            <Flex justifyContent='space-between'>
-              <Box className="pageheader">
-                MONITORING
-              </Box>
-              <Box className="new"
+            <Flex justifyContent="space-between">
+              <Box className="pageheader">MONITORING</Box>
+              <Box
+                className="new"
                 onClick={() => {
                   setIsAddingTracking(true)
                 }}
@@ -56,13 +70,16 @@ const TrackToken = () => {
                 ADD NEW
               </Box>
             </Flex>
-            
+
             {monitoringTokens && monitoringTokens.length > 0 ? (
               <VStack>
                 {monitoringTokens.map((token, index) => (
-                  <TokenCard {...token} key={index} />
-                ))
-                }
+                  <CollectionCard
+                    token={token}
+                    editToken={gotoEditToken}
+                    key={index}
+                  />
+                ))}
               </VStack>
             ) : (
               <Box>
@@ -76,4 +93,4 @@ const TrackToken = () => {
   )
 }
 
-export default TrackToken
+export default TrackCollection

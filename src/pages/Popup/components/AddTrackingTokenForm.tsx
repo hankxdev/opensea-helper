@@ -14,24 +14,17 @@ import {
 import { getData, saveData } from '../../../storage'
 
 import { ACTION_NAME } from '../../../consts'
-
-interface ITrackingCollection {
-  name: string
-  price: number
-  url: string
-}
+import { ArrowBackIcon } from '@chakra-ui/icons'
+import { ITrackingCollection } from '../intefaces'
 
 interface IProps {
+  token: ITrackingCollection
   onCancel: Function
 }
 
-const AddTrackingTokenForm = ({ onCancel }: IProps) => {
+const AddTrackingCollectionForm = ({ token, onCancel }: IProps) => {
   const toast = useToast()
-  const [collection, setCollection] = React.useState<ITrackingCollection>({
-    name: '',
-    price: 0,
-    url: '',
-  })
+  const [collection, setCollection] = React.useState<ITrackingCollection>(token)
 
   const saveCollection = () => {
     if (
@@ -51,7 +44,14 @@ const AddTrackingTokenForm = ({ onCancel }: IProps) => {
 
     getData(ACTION_NAME.TRACKING_TOKEN_LIST).then((result) => {
       let collections = result ? result : []
-      collections.push(collection)
+      const collectionIndex = collections.findIndex(
+        (item: ITrackingCollection) => item.url === collection.url
+      )
+      if (collectionIndex !== -1) {
+        collections[collectionIndex] = collection
+      } else {
+        collections.push(collection)
+      }
       saveData(ACTION_NAME.TRACKING_TOKEN_LIST, collections).then(() => {
         toast({
           title: `${collection.name} has been added`,
@@ -63,6 +63,8 @@ const AddTrackingTokenForm = ({ onCancel }: IProps) => {
           name: '',
           price: 0,
           url: '',
+          address: '',
+          tracking: false,
         })
       })
     })
@@ -70,14 +72,15 @@ const AddTrackingTokenForm = ({ onCancel }: IProps) => {
 
   return (
     <Flex flexDir="column">
-      <Text className="pageheader">
-        {' '}
-        Add COLLECTION{' '}
-      </Text>
+      <Flex justifyContent="space-between">
+        <Text className="pageheader"> Add COLLECTION </Text>
+        <ArrowBackIcon fontSize="1.2rem" onClick={() => onCancel()} />
+      </Flex>
+
       <FormControl id="collectionName">
         <FormLabel className="fieldtitle">Collection Name:</FormLabel>
         <Input
-        className="fieldinput"
+          className="fieldinput"
           type="text"
           value={collection.name}
           onChange={(e) => {
@@ -91,7 +94,7 @@ const AddTrackingTokenForm = ({ onCancel }: IProps) => {
       <FormControl id="collection URL">
         <FormLabel className="fieldtitle">Opensea URL:</FormLabel>
         <Input
-        className="fieldinput"
+          className="fieldinput"
           type="url"
           value={collection.url}
           onChange={(e) => {
@@ -105,7 +108,7 @@ const AddTrackingTokenForm = ({ onCancel }: IProps) => {
       <FormControl id="collectionPrice">
         <FormLabel className="fieldtitle">Price Lower Than:</FormLabel>
         <Input
-        className="fieldinput"
+          className="fieldinput"
           value={collection.price}
           type="number"
           onChange={(e) => {
@@ -120,7 +123,7 @@ const AddTrackingTokenForm = ({ onCancel }: IProps) => {
         Submit
       </Button>
       <Button
-       className="cancelbutton"
+        className="cancelbutton"
         onClick={() => {
           onCancel()
         }}
@@ -131,4 +134,4 @@ const AddTrackingTokenForm = ({ onCancel }: IProps) => {
   )
 }
 
-export default AddTrackingTokenForm
+export default AddTrackingCollectionForm

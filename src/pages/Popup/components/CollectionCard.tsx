@@ -5,22 +5,23 @@ import { DeleteIcon, EditIcon } from '@chakra-ui/icons'
 import { getData, saveData } from '../../../storage'
 
 import { ACTION_NAME } from '../../../consts'
-import { ITrackingToken } from '../intefaces'
+import { ITrackingCollection } from '../intefaces'
 
-const TokenCard = (token: ITrackingToken) => {
+type TokenCardProps = {
+  token: ITrackingCollection
+  editToken: (token: ITrackingCollection) => void
+}
+
+const CollectionCard = ({ token, editToken }: TokenCardProps) => {
   const { name, price, url, tracking } = token
 
   const deleteToken = () => {
     getData(ACTION_NAME.TRACKING_TOKEN_LIST).then((result) => {
-      const updaedList = result.filter((t: ITrackingToken) => {
+      const updaedList = result.filter((t: ITrackingCollection) => {
         return t.name !== name
       })
       saveData(ACTION_NAME.TRACKING_TOKEN_LIST, updaedList).then(() => {})
     })
-  }
-
-  const editToken = (token: ITrackingToken) => {
-    console.log(token)
   }
 
   return (
@@ -51,4 +52,4 @@ const TokenCard = (token: ITrackingToken) => {
   )
 }
 
-export default TokenCard
+export default CollectionCard
