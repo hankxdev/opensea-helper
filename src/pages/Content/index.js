@@ -15,7 +15,7 @@ setInterval(() => {
       )
     }
   })
-}, 300)
+}, 200)
 
 
 // const provider = await detectEthereumProvider()
