@@ -1,26 +1,15 @@
 import * as React from 'react'
 
-import {
-  Box,
-  Button,
-  Checkbox,
-  Flex,
-  FormControl,
-  FormErrorMessage,
-  FormHelperText,
-  FormLabel,
-  Text,
-  useToast,
-} from '@chakra-ui/react'
+import { Box, Button, Checkbox, Flex, Text, useToast } from '@chakra-ui/react'
 import { getData, saveData } from '../../../storage'
 
-interface IBasicOptions {
-  changeUI: boolean
-  autoBuy: boolean
-  showNotify: boolean
+import { IBasicOptions } from '../../intefaces'
+
+interface IProps {
+  onBackToMain: () => void
 }
 
-const BasicOptions = () => {
+const BasicOptions = ({ onBackToMain }: IProps) => {
   const [options, setOptions] = React.useState<IBasicOptions>({
     changeUI: true,
     autoBuy: false,
@@ -33,6 +22,8 @@ const BasicOptions = () => {
     getData('options').then((data) => {
       if (data) {
         setOptions(data)
+      } else {
+        saveData('options', options)
       }
     })
   }
@@ -42,72 +33,65 @@ const BasicOptions = () => {
   }, [])
 
   return (
-    <Box>
-      <Text fontSize="lg" fontWeight="bold" mb={4}>
-        Basic Options
-      </Text>
-      <Flex flexDir="column" justify="space-between">
-        <FormControl>
-          <FormLabel htmlFor="changeUI">Change UI</FormLabel>
-          <Checkbox
-            id="changeUI"
-            type="checkbox"
-            checked={options.changeUI}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              setOptions({ ...options, changeUI: e.target.checked })
-            }}
-          />
-          <FormHelperText>
-            Change UI to match the theme of the website
-          </FormHelperText>
-        </FormControl>
-        <FormControl>
-          <FormLabel htmlFor="autoBuy">Auto Buy</FormLabel>
-          <Checkbox
-            id="autoBuy"
-            type="checkbox"
-            checked={options.autoBuy}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              setOptions({ ...options, autoBuy: e.target.checked })
-            }}
-          />
-          <FormHelperText>
-            Automatically buy tokens when you have enough ETH
-          </FormHelperText>
-        </FormControl>
-      </Flex>
-      <Flex justify="space-between">
-        <FormControl>
-          <FormLabel htmlFor="showNotify">Show Notify</FormLabel>
-          <Checkbox
-            id="showNotify"
-            type="checkbox"
-            checked={options.showNotify}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              setOptions({ ...options, showNotify: e.target.checked })
-            }}
-          />
-          <FormHelperText>
-            Show a notification when you have enough ETH to buy tokens
-          </FormHelperText>
-        </FormControl>
-      </Flex>
-      <Button
-        mt={4}
-        className="submitbutton"
-        onClick={() => {
-          saveData('options', options)
-          toast({
-            title: 'Options saved',
-            description: 'Your options have been saved',
-            status: 'success',
-            duration: 5000,
-            isClosable: true,
-          })
+    <Box p={2}>
+      <Text className="pageheader"> Add COLLECTION </Text>
+      <Checkbox
+        size="lg"
+        colorScheme={options.changeUI ? 'green' : 'red'}
+        onChange={() => {
+          setOptions({ ...options, changeUI: !options.changeUI })
         }}
+        isChecked={options.changeUI}
       >
-        Save
-      </Button>
+        Change Opensea UI
+      </Checkbox>
+      <Checkbox
+        size="lg"
+        colorScheme={options.autoBuy ? 'green' : 'red'}
+        onChange={() => {
+          setOptions({ ...options, autoBuy: !options.autoBuy })
+        }}
+        isChecked={options.autoBuy}
+      >
+        Auto Hit Buy Button
+      </Checkbox>
+      <Checkbox
+        size="lg"
+        colorScheme={options.showNotify ? 'green' : 'red'}
+        onChange={() => {
+          setOptions({ ...options, showNotify: !options.showNotify })
+        }}
+        isChecked={options.showNotify}
+      >
+        Show Notifications
+      </Checkbox>
+      <Flex flexDir="column">
+        <Button
+          mt={4}
+          className="submitbutton"
+          onClick={() => {
+            saveData('options', options)
+            toast({
+              title: 'Options saved',
+              description: 'Your options have been saved',
+              status: 'success',
+              duration: 5000,
+              isClosable: true,
+            })
+            onBackToMain()
+          }}
+        >
+          Save
+        </Button>
+        <Button
+          className="cancelbutton"
+          onClick={() => {
+            onBackToMain()
+          }}
+        >
+          Cancel
+        </Button>
+      </Flex>
     </Box>
   )
 }

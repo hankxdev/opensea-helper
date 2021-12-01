@@ -27,7 +27,9 @@ const Popup = () => {
         </Box>
         {isLogin ? (
           <>
-            {showOptions ? <BasicOptions /> : <TrackCollection />}
+            {showOptions ? <BasicOptions onBackToMain={()=>{
+              setShowOptions(false)
+            }}/> : <TrackCollection />}
             <Footer
               onShowOptions={() => setShowOptions(!showOptions)}
               onShowMenu = {() => setShowMenu(!showMenu)}

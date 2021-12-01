@@ -8,7 +8,7 @@ import { getData, saveData } from '../../../storage'
 import { ACTION_NAME } from '../../../consts'
 import AddTrackingCollectionForm from './AddTrackingTokenForm'
 import CollectionCard from './CollectionCard'
-import { ITrackingCollection } from '../intefaces'
+import { ITrackingCollection } from '../../intefaces'
 
 const TrackCollection = () => {
   const [monitoringTokens, setMonitoringTokens] = React.useState<
