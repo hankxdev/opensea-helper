@@ -1,6 +1,22 @@
-const contentScript = chrome.runtime.getURL('contentScript.bundle.js')
+const defaultOptions = {
+  changeUI: true,
+  autoBuy: false,
+  showNotifty: true,
+}
 
-const script = document.createElement('script')
-script.src = contentScript
+chrome.storage.sync.get("options", i => {
+  const options = i.options ? i.options : defaultOptions;
+  const contentScript = chrome.runtime.getURL('contentScript.bundle.js')
 
-document.head.appendChild(script);
+  const script = document.createElement('script')
+  script.src = contentScript
+
+  document.head.appendChild(script);
+
+  script.onload = () => {
+    window.postMessage({
+      type: 'ext_options',
+      options
+    }, '*')
+  }
+})

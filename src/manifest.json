@@ -10,26 +10,21 @@
   "host_permissions": ["*://*.opensea.io/*"],
   "content_scripts": [
     {
-      "matches": [
-        "https://opensea.io/*"
-      ],
-      "js": [
-        "inject.bundle.js"
-      ],
-      "css": [
-        "content.css"
-      ]
+      "matches": ["https://opensea.io/*"],
+      "js": ["inject.bundle.js"],
+      "css": ["content.css"]
     }
   ],
   "icons": {
     "128": "icon-256.png"
   },
   "permissions": [
-    "identity", 
+    "identity",
     "alarms",
-     "tabs", 
-     "storage",
-     "*://*.opensea.io/*"],
+    "tabs",
+    "storage",
+    "*://*.opensea.io/*"
+  ],
   "manifest_version": 3,
   "name": "Nifty Owl",
   "options_page": "options.html",
@@ -40,9 +35,10 @@
         "contentScript.bundle.js",
         "icon-256.png"
       ],
-      "matches": [
-        "<all_urls>"
-      ]
+      "matches": ["<all_urls>"]
     }
-  ]
+  ],
+  "externally_connectable": {
+    "matches": ["*://*.opensea.com/*"]
+  }
 }
