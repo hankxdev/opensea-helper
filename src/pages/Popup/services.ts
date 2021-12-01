@@ -1,5 +1,5 @@
 import { GasPriceOracle } from 'gas-price-oracle'
-import { IGasFee } from './intefaces'
+import { IGasFee } from '../intefaces'
 
 const defaultGasPriceOption = {
   chainId: 1,

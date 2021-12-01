@@ -1,16 +1,23 @@
 export interface ITrackingCollection {
   address: string,
   name: string,
-  tracking : boolean,
+  tracking: boolean,
   url: string,
   price: number
 }
 
 
 
-export interface  IGasFee {
+export interface IGasFee {
   instant: number,
   fast: number,
   standard: number,
   low: number,
+}
+
+
+export interface IBasicOptions {
+  changeUI: boolean
+  autoBuy: boolean
+  showNotify: boolean
 }

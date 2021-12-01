@@ -31,7 +31,6 @@ var compiler = webpack(config);
 
 var server = new WebpackDevServer({
   https: false,
-  hot: true,
   port: env.PORT,
   devMiddleware: {
     publicPath: `http://localhost:${env.PORT}`,

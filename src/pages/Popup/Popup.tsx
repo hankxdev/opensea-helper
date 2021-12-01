@@ -2,6 +2,7 @@ import './Popup.scss'
 
 import * as React from 'react'
 
+import BasicOptions from './components/BasicOptions'
 import { Box } from '@chakra-ui/react'
 import Footer from './components/Footer'
 import Header from './components/Header'
@@ -12,7 +13,8 @@ import TrackCollection from './components/TrackCollection'
 const Popup = () => {
   const [isSidebarOpen, setSidebarOpen] = React.useState(false)
   const [isLogin, setLogin] = React.useState(true)
-
+  const [showOptions, setShowOptions] = React.useState(false)
+  const [showMenu, setShowMenu] = React.useState(false)
   const toggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen)
   }
@@ -25,16 +27,13 @@ const Popup = () => {
         </Box>
         {isLogin ? (
           <>
-            <TrackCollection />
-            <Box
-              position="absolute"
-              bottom="0"
-              w="100%"
-              p={2}
-              boxShadow="0px 4px 20px 2px #0a0a0a;"
-            >
-              <Footer />
-            </Box>
+            {showOptions ? <BasicOptions onBackToMain={()=>{
+              setShowOptions(false)
+            }}/> : <TrackCollection />}
+            <Footer
+              onShowOptions={() => setShowOptions(!showOptions)}
+              onShowMenu = {() => setShowMenu(!showMenu)}
+             />
           </>
         ) : (
           <LoginSection />

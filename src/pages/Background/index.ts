@@ -1,6 +1,6 @@
 import { ACTION_NAME, crm } from '../../consts'
 
-import { ITrackingCollection } from '../Popup/intefaces';
+import { ITrackingCollection } from '../intefaces';
 import axios from 'axios';
 import { getData } from '../../storage'
 import { loopWithDelay } from './../../utils';

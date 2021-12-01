@@ -13,7 +13,7 @@ interface Props {
 }
 
 const Header = ({ showSidebarButton = true, onShowSidebar }: Props) => {
-  const [appName, setAppName] = React.useState('NFT HNTR')
+  const [appName, setAppName] = React.useState('Nifty Owl')
   const [ethPrice, setEthPrice] = React.useState(0)
   const [gasFee, setGasFee] = React.useState(0)
 
