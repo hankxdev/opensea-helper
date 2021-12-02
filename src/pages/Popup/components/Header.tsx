@@ -1,17 +1,12 @@
 import '../Popup.scss'
-
 import * as React from 'react'
-
 import { Box, Center, Flex, IconButton, Text } from '@chakra-ui/react'
 import { getEthPrice, getGasPrice } from '../services'
-
 import { HamburgerIcon } from '@chakra-ui/icons'
-
 interface Props {
   onShowSidebar: Function
   showSidebarButton?: boolean
 }
-
 const Header = ({ showSidebarButton = true, onShowSidebar }: Props) => {
   const [appName, setAppName] = React.useState('Nifty Owl')
   const [ethPrice, setEthPrice] = React.useState(0)
@@ -38,12 +33,12 @@ const Header = ({ showSidebarButton = true, onShowSidebar }: Props) => {
         )}
       </Box> */}
       <Center flex="2">
-        <Text fontSize="xl">{appName}</Text>
+        <Text className="appname">{appName}</Text>
       </Center>
       <Flex
+      className="ethgas"
         opacity="0.8"
         paddingRight={2}
-        textAlign="right"
         flexDir="column"
         fontStyle="italic"
       >
