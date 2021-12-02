@@ -1,5 +1,5 @@
 import * as React from 'react'
-
+import '../Popup.scss'
 import { Box, Flex } from '@chakra-ui/react'
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons'
 import { getData, saveData } from '../../../storage'
@@ -40,6 +40,7 @@ const CollectionCard = ({ token, editToken }: TokenCardProps) => {
           </Box>
           <Box>
             <DeleteIcon
+            className="deleteicon"
               cursor="pointer"
               onClick={() => {
                 deleteToken()

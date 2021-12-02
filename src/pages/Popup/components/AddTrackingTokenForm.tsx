@@ -74,7 +74,7 @@ const AddTrackingCollectionForm = ({ token, onCancel }: IProps) => {
     <Flex flexDir="column">
       <Flex justifyContent="space-between">
         <Text className="pageheader"> Add COLLECTION </Text>
-        <ArrowBackIcon fontSize="1.2rem" onClick={() => onCancel()} />
+        <ArrowBackIcon className="back" fontSize="1.2rem" onClick={() => onCancel()} />
       </Flex>
 
       <FormControl id="collectionName">

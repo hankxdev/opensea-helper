@@ -1,10 +1,7 @@
 import '../Popup.scss'
-
 import * as React from 'react'
-
 import { Box, Button, Flex, Stat, StatNumber, VStack } from '@chakra-ui/react'
 import { getData, saveData } from '../../../storage'
-
 import { ACTION_NAME } from '../../../consts'
 import AddTrackingCollectionForm from './AddTrackingTokenForm'
 import CollectionCard from './CollectionCard'
@@ -48,7 +45,7 @@ const TrackCollection = () => {
   }, [isAddingTracking, monitoringTokens])
 
   return (
-    <Flex p={6} flexDir="column" justifyContent="space-between">
+    <Flex p={4} flexDir="column" justifyContent="space-between">
       <Box>
         {isAddingTracking ? (
           <AddTrackingCollectionForm
