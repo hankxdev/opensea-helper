@@ -82,6 +82,7 @@ const AddTrackingCollectionForm = ({ token, onCancel }: IProps) => {
         <Input
           className="fieldinput"
           type="text"
+          fontSize="12px"
           value={collection.name}
           onChange={(e) => {
             setCollection({
@@ -95,6 +96,7 @@ const AddTrackingCollectionForm = ({ token, onCancel }: IProps) => {
         <FormLabel className="fieldtitle">Opensea URL:</FormLabel>
         <Input
           className="fieldinput"
+          fontSize="12px"
           type="url"
           value={collection.url}
           onChange={(e) => {
@@ -109,6 +111,7 @@ const AddTrackingCollectionForm = ({ token, onCancel }: IProps) => {
         <FormLabel className="fieldtitle">Price Lower Than:</FormLabel>
         <Input
           className="fieldinput"
+          fontSize="12px"
           value={collection.price}
           type="number"
           onChange={(e) => {
