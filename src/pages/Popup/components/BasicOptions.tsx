@@ -1,8 +1,7 @@
 import * as React from 'react'
-
+import '../Popup.scss'
 import { Box, Button, Checkbox, Flex, Text, useToast } from '@chakra-ui/react'
 import { getData, saveData } from '../../../storage'
-
 import { IBasicOptions } from '../../intefaces'
 
 interface IProps {
@@ -33,10 +32,10 @@ const BasicOptions = ({ onBackToMain }: IProps) => {
   }, [])
 
   return (
-    <Box p={2}>
-      <Text className="pageheader"> Add COLLECTION </Text>
+    <Box p={4}>
+      <Text className="pageheader"> Options </Text>
       <Checkbox
-        size="lg"
+        className="optionslist"
         colorScheme={options.changeUI ? 'green' : 'red'}
         onChange={() => {
           setOptions({ ...options, changeUI: !options.changeUI })
@@ -46,7 +45,7 @@ const BasicOptions = ({ onBackToMain }: IProps) => {
         Change Opensea UI
       </Checkbox>
       <Checkbox
-        size="lg"
+      className="optionslist"
         colorScheme={options.autoBuy ? 'green' : 'red'}
         onChange={() => {
           setOptions({ ...options, autoBuy: !options.autoBuy })
@@ -56,7 +55,7 @@ const BasicOptions = ({ onBackToMain }: IProps) => {
         Auto Hit Buy Button
       </Checkbox>
       <Checkbox
-        size="lg"
+      className="optionslist"
         colorScheme={options.showNotify ? 'green' : 'red'}
         onChange={() => {
           setOptions({ ...options, showNotify: !options.showNotify })

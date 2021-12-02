@@ -74,7 +74,7 @@ const AddTrackingCollectionForm = ({ token, onCancel }: IProps) => {
     <Flex flexDir="column">
       <Flex justifyContent="space-between">
         <Text className="pageheader"> Add COLLECTION </Text>
-        <ArrowBackIcon fontSize="1.2rem" onClick={() => onCancel()} />
+        <ArrowBackIcon className="back" fontSize="1.2rem" onClick={() => onCancel()} />
       </Flex>
 
       <FormControl id="collectionName">
@@ -82,6 +82,7 @@ const AddTrackingCollectionForm = ({ token, onCancel }: IProps) => {
         <Input
           className="fieldinput"
           type="text"
+          fontSize="12px"
           value={collection.name}
           onChange={(e) => {
             setCollection({
@@ -95,6 +96,7 @@ const AddTrackingCollectionForm = ({ token, onCancel }: IProps) => {
         <FormLabel className="fieldtitle">Opensea URL:</FormLabel>
         <Input
           className="fieldinput"
+          fontSize="12px"
           type="url"
           value={collection.url}
           onChange={(e) => {
@@ -109,6 +111,7 @@ const AddTrackingCollectionForm = ({ token, onCancel }: IProps) => {
         <FormLabel className="fieldtitle">Price Lower Than:</FormLabel>
         <Input
           className="fieldinput"
+          fontSize="12px"
           value={collection.price}
           type="number"
           onChange={(e) => {
