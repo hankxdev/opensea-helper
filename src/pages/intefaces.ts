@@ -3,7 +3,9 @@ export interface ITrackingCollection {
   name: string,
   tracking: boolean,
   url: string,
-  price: number
+  price: number,
+  banner: string,
+  currentPrice: number
 }
 
 

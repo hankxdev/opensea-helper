@@ -1,10 +1,10 @@
 import { ACTION_NAME, crm } from '../../consts'
 
 import { ITrackingCollection } from '../intefaces';
-import axios from 'axios';
+import { getCollectionData } from '../Popup/services';
 import { getData } from '../../storage'
 import { loopWithDelay } from './../../utils';
-import { openseaAPI } from '../../consts';
+import { saveData } from './../../storage';
 
 const tracking = true // todo make it as a setting
 
@@ -13,11 +13,8 @@ const alarm = crm.a
 
 let trackingTokens: ITrackingCollection[] = []
 
-
 alarm.clearAll(() => {
   console.log('alarm cleared')
-
-
   getData(ACTION_NAME.TRACKING_TOKEN_LIST).then((data) => {
     if (data.length < 1) {
       console.log('no tracking token')
@@ -58,18 +55,17 @@ alarm.onAlarm.addListener(alarm => {
 async function getCollectionInfo(token: ITrackingCollection) {
   let needRedo = true
   try {
-    const result = await fetch(`${openseaAPI.baseURL}/collection/${token.name}`, {
-      method: 'GET',
-      headers: openseaAPI.headers,
-      mode: 'cors',
-    })
-    const data = await result.json()
-    if (!data) {
-      console.log('no data, you might need to check the api')
-      return
-    }
+    const data = await getCollectionData(token)
+    const banner = data.collection.banner_image_url
     const price = data.collection.stats.floor_price
     console.log(`${token.name} price is ${price}`)
+
+    getData(ACTION_NAME.TRACKING_TOKEN_LIST).then((data) => {
+      const index = data.findIndex((t: ITrackingCollection) => t.name === token.name)
+      data[index].currentPrice = price
+      data[index].banner = banner
+      saveData(ACTION_NAME.TRACKING_TOKEN_LIST, data)
+    })
     if (token.price >= price) {
       needRedo = false
       console.log('price is lower, notifying...')

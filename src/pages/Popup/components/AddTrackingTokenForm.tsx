@@ -16,6 +16,7 @@ import { getData, saveData } from '../../../storage'
 import { ACTION_NAME } from '../../../consts'
 import { ArrowBackIcon } from '@chakra-ui/icons'
 import { ITrackingCollection } from '../../intefaces'
+import { getCollectionData } from '../services'
 
 interface IProps {
   token: ITrackingCollection
@@ -42,8 +43,11 @@ const AddTrackingCollectionForm = ({ token, onCancel }: IProps) => {
       return
     }
 
-    getData(ACTION_NAME.TRACKING_TOKEN_LIST).then((result) => {
+    getData(ACTION_NAME.TRACKING_TOKEN_LIST).then(async (result:Array<ITrackingCollection>) => {
       let collections = result ? result : []
+      const extraData = await getCollectionData(collection)
+      collection.banner = extraData.collection.banner_image_url
+      collection.currentPrice = extraData.collection.stats.floor_price
       const collectionIndex = collections.findIndex(
         (item: ITrackingCollection) => item.url === collection.url
       )
@@ -65,6 +69,8 @@ const AddTrackingCollectionForm = ({ token, onCancel }: IProps) => {
           url: '',
           address: '',
           tracking: false,
+          banner: '',
+          currentPrice: 0,
         })
       })
     })
@@ -74,7 +80,11 @@ const AddTrackingCollectionForm = ({ token, onCancel }: IProps) => {
     <Flex flexDir="column">
       <Flex justifyContent="space-between">
         <Text className="pageheader"> Add COLLECTION </Text>
-        <ArrowBackIcon className="back" fontSize="1.2rem" onClick={() => onCancel()} />
+        <ArrowBackIcon
+          className="back"
+          fontSize="1.2rem"
+          onClick={() => onCancel()}
+        />
       </Flex>
 
       <FormControl id="collectionName">
