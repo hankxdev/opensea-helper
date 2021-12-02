@@ -1,7 +1,10 @@
 import '../Popup.scss'
+
 import * as React from 'react'
+
 import { Box, Button, Flex, Stat, StatNumber, VStack } from '@chakra-ui/react'
 import { getData, saveData } from '../../../storage'
+
 import { ACTION_NAME } from '../../../consts'
 import AddTrackingCollectionForm from './AddTrackingTokenForm'
 import CollectionCard from './CollectionCard'
@@ -18,6 +21,8 @@ const TrackCollection = () => {
     tracking: false,
     url: '',
     price: 0,
+    banner: '',
+    currentPrice: 0,
   })
 
   const [loadingMsg, setLoadingMsg] = React.useState(
@@ -72,7 +77,7 @@ const TrackCollection = () => {
               <VStack>
                 {monitoringTokens.map((token, index) => (
                   <CollectionCard
-                    token={token}
+                    collection={token}
                     editToken={gotoEditToken}
                     key={index}
                   />

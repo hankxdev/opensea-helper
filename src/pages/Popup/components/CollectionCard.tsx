@@ -1,6 +1,8 @@
-import * as React from 'react'
 import '../Popup.scss'
-import { Box, Flex } from '@chakra-ui/react'
+
+import * as React from 'react'
+
+import { Box, Flex, Image } from '@chakra-ui/react'
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons'
 import { getData, saveData } from '../../../storage'
 
@@ -8,12 +10,13 @@ import { ACTION_NAME } from '../../../consts'
 import { ITrackingCollection } from '../../intefaces'
 
 type TokenCardProps = {
-  token: ITrackingCollection
-  editToken: (token: ITrackingCollection) => void
+  collection: ITrackingCollection
+  editToken: (collection: ITrackingCollection) => void
 }
 
-const CollectionCard = ({ token, editToken }: TokenCardProps) => {
-  const { name, price, url, tracking } = token
+const CollectionCard = ({ collection, editToken }: TokenCardProps) => {
+  const { name, price, url, tracking, banner, currentPrice } = collection
+  const sampleImage = 'https://avatars.githubusercontent.com/u/4986062?v=4'
 
   const deleteToken = () => {
     getData(ACTION_NAME.TRACKING_TOKEN_LIST).then((result) => {
@@ -25,22 +28,25 @@ const CollectionCard = ({ token, editToken }: TokenCardProps) => {
   }
 
   return (
-    <Box className="collection">
+    <Box position="relative" className="collection">
+      <Image src={banner || sampleImage} 
+      position="absolute" top="0" left="0" width="100%" height="100%" opacity="0.2"/>
       <Flex justifyContent="space-between">
         <Box className="collectiontitle">{name}</Box>
+        <Box color="red">{currentPrice}</Box>
         <Flex justifyContent="space-between">
           <Box>
             <EditIcon
               mr={2}
               cursor="pointer"
               onClick={() => {
-                editToken(token)
+                editToken(collection)
               }}
             />
           </Box>
           <Box>
             <DeleteIcon
-            className="deleteicon"
+              className="deleteicon"
               cursor="pointer"
               onClick={() => {
                 deleteToken()
