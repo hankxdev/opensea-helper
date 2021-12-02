@@ -29,8 +29,7 @@ const CollectionCard = ({ collection, editToken }: TokenCardProps) => {
 
   return (
     <Box position="relative" className="collection">
-      <Image src={banner || sampleImage} 
-      position="absolute" top="0" left="0" width="100%" height="100%" opacity="0.2"/>
+      <Image src={banner || sampleImage} className="collectionbackground"/>
       <Flex justifyContent="space-between">
         <Box className="collectiontitle">{name}</Box>
         <Box color="red">{currentPrice}</Box>
