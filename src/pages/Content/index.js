@@ -5,24 +5,42 @@ import detectEthereumProvider from '@metamask/detect-provider'
 
 let seaport = null
 
-setInterval(() => {
-  const tokenEls = $("article")
-  tokenEls.each((_, el) => {
-    if ($(el).find('.momane-buy-now-button').length === 0) {
-      $(el).append(`<button class='btn btn-primary momane-buy-now-button'>
+let option = {
+  changeUI: true,
+  autoBuy: false,
+  showNotify: true
+}
+
+
+window.addEventListener('message', e => {
+  if (e.data.type === 'ext_options') {
+    const { options } = e.data
+    option = options
+    const { changeUI } = option
+    changeOpenseaUI(changeUI)
+  }
+})
+
+function changeOpenseaUI(changeUI) {
+  if (!changeUI) {
+    return 0
+  }
+  const changeUIInterval = setInterval(() => {
+    const tokenEls = $("article")
+    tokenEls.each((_, el) => {
+      if ($(el).find('.momane-buy-now-button').length === 0) {
+        $(el).append(`<button class='btn btn-primary momane-buy-now-button'>
                     Buy it now
                   </button>`
-      )
-    }
-  })
-}, 200)
+        )
+      }
+    })
+  }, 200)
+  return changeUIInterval
+}
 
 
-// const provider = await detectEthereumProvider()
-
-$('body').on('click', '.momane-buy-now-button', function (e) {
-  e.preventDefault()
-  let that = $(this);
+function initBuyProcess(that) {
   that.text('...')
   that.addClass('disabled')
   const link = $(this).parent().find('a').attr('href')
@@ -57,4 +75,13 @@ $('body').on('click', '.momane-buy-now-button', function (e) {
       that.text('Buy it now')
       that.removeClass('disabled')
     })
+}
+
+
+// const provider = await detectEthereumProvider()
+
+$('body').on('click', '.momane-buy-now-button', function (e) {
+  e.preventDefault()
+  let that = $(this)
+  initBuyProcess(that)
 })
