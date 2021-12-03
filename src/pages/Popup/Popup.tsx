@@ -22,7 +22,7 @@ const Popup = () => {
     <>
       <SideBar onClose={toggleSidebar} isOpen={isSidebarOpen} />
       <Box minH={540} p={0} className="App">
-        <Box boxShadow="0px 1px 8px 3px #0a0a0a;">
+        <Box>
           <Header onShowSidebar={toggleSidebar} showSidebarButton={true} />
         </Box>
         {isLogin ? (
