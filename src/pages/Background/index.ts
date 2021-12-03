@@ -1,3 +1,5 @@
+import * as cheerio from 'cheerio'
+
 import { ACTION_NAME, crm } from '../../consts'
 
 import { ITrackingCollection } from '../intefaces';
@@ -69,7 +71,7 @@ async function getCollectionInfo(token: ITrackingCollection) {
     if (token.price >= price) {
       needRedo = false
       console.log('price is lower, notifying...')
-      crm.t.create({ url: token.url })
+      scanCollectionPage(buildCollectionURL(token.name))
       return
     }
   } catch (e) {
@@ -87,3 +89,21 @@ async function getCollectionInfo(token: ITrackingCollection) {
   }
 }
 
+const buildCollectionURL = (tokenName: string): string => {
+  return `https://opensea.io/collection/${tokenName}??search[sortAscending]=true&search[sortBy]=PRICE`
+
+}
+
+const buildAssetURL = (assetID: string) => {
+  return `https://opensea.io/assets/${assetID}`
+}
+async function scanCollectionPage(url: string) {
+  const data = await fetch(url)
+  const html = await data.text()
+  const onlyBody = html.split('<body>')[1].split('</body>')[0]
+  const $ = cheerio.load(onlyBody)
+  const firstToken = $('article').first().find('a').first().attr('href') || ''
+  // opent this token in opensea
+  // TODO make it as a setting
+  chrome.tabs.create({ url: buildAssetURL(firstToken) })
+}
