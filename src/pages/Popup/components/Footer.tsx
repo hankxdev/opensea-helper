@@ -15,7 +15,7 @@ const Footer = ({ onShowMenu, onShowOptions }: Props) => {
       bottom="0"
       w="100%"
       p={2}
-      boxShadow="0px 4px 20px 2px #0a0a0a;"
+      boxShadow="0px 4px 4px 2px #0a0a0a;"
     >
       <Flex className="footer">
         <HamburgerIcon m={2} onClick={onShowMenu} />
