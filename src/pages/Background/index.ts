@@ -95,7 +95,7 @@ const buildCollectionURL = (tokenName: string): string => {
 }
 
 const buildAssetURL = (assetID: string) => {
-  return `https://opensea.io/assets/${assetID}`
+  return `https://opensea.io${assetID}`
 }
 async function scanCollectionPage(url: string) {
   const data = await fetch(url)
