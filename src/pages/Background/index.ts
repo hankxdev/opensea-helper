@@ -90,7 +90,7 @@ async function getCollectionInfo(token: ITrackingCollection) {
 }
 
 const buildCollectionURL = (tokenName: string): string => {
-  return `https://opensea.io/collection/${tokenName}??search[sortAscending]=true&search[sortBy]=PRICE`
+  return `https://opensea.io/collection/${tokenName}??search[sortAscending]=true&search[sortBy]=PRICE&search[toggles][0]=BUY_NOW`
 
 }
 
