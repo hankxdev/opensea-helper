@@ -1,7 +1,10 @@
-import * as React from 'react'
 import '../Popup.scss'
+
+import * as React from 'react'
+
 import { Box, Button, Checkbox, Flex, Text, useToast } from '@chakra-ui/react'
 import { getData, saveData } from '../../../storage'
+
 import { IBasicOptions } from '../../intefaces'
 
 interface IProps {
@@ -76,6 +79,7 @@ const BasicOptions = ({ onBackToMain }: IProps) => {
               status: 'success',
               duration: 5000,
               isClosable: true,
+              position: 'top',
             })
             onBackToMain()
           }}

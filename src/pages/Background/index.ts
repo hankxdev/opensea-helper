@@ -55,32 +55,28 @@ alarm.onAlarm.addListener(alarm => {
 })
 
 async function getCollectionInfo(token: ITrackingCollection) {
-  let needRedo = true
   try {
     const data = await getCollectionData(token)
     const banner = data.collection.banner_image_url
     const price = data.collection.stats.floor_price
     console.log(`${token.name} price is ${price}`)
 
+    if (token.price >= price && token.tracking) {
+      token.tracking = false
+      console.log('price is lower, notifying...')
+      scanCollectionPage(buildCollectionURL(token.name))
+    }
+
     getData(ACTION_NAME.TRACKING_TOKEN_LIST).then((data) => {
       const index = data.findIndex((t: ITrackingCollection) => t.name === token.name)
       data[index].currentPrice = price
       data[index].banner = banner
+      data[index].tracking = token.tracking
       saveData(ACTION_NAME.TRACKING_TOKEN_LIST, data)
     })
-    if (token.price >= price) {
-      needRedo = false
-      console.log('price is lower, notifying...')
-      scanCollectionPage(buildCollectionURL(token.name))
-      return
-    }
   } catch (e) {
     console.log(e)
   } finally {
-    if (!needRedo) {
-      console.log('no need to redo')
-      return
-    }
     alarm.clear(token.name).then(() => {
       alarm.create(token.name, {
         when: Date.now() + 5 * 1000

@@ -2,7 +2,7 @@ import '../Popup.scss'
 
 import * as React from 'react'
 
-import { Box, Flex, Image } from '@chakra-ui/react'
+import { Box, Flex, Image, Text } from '@chakra-ui/react'
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons'
 import { getData, saveData } from '../../../storage'
 
@@ -31,8 +31,12 @@ const CollectionCard = ({ collection, editToken }: TokenCardProps) => {
     <Box position="relative" className="collection">
       <Image src={banner || sampleImage} className="collectionbackground"/>
       <Flex justifyContent="space-between" position="relative">
-        <Box className="collectiontitle">{name}</Box>
-        <Box className="collectionfloor">Floor {currentPrice}</Box>
+        <Box className="collectiontitle" w="40%">{name}</Box>
+        <Box w="40%" textAlign="center">
+          <span  className="collectionfloor">
+          Floor {currentPrice}
+          </span>
+        </Box>
         <Flex justifyContent="space-between">
           <Box>
             <EditIcon

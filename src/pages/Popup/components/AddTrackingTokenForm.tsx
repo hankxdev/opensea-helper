@@ -8,8 +8,9 @@ import {
   FormHelperText,
   FormLabel,
   Input,
+  Spinner,
   Text,
-  useToast,
+  useToast
 } from '@chakra-ui/react'
 import { getData, saveData } from '../../../storage'
 
@@ -26,6 +27,7 @@ interface IProps {
 const AddTrackingCollectionForm = ({ token, onCancel }: IProps) => {
   const toast = useToast()
   const [collection, setCollection] = React.useState<ITrackingCollection>(token)
+  const [isSaving, setIsSaving] = React.useState(false)
 
   const saveCollection = () => {
     if (
@@ -42,12 +44,14 @@ const AddTrackingCollectionForm = ({ token, onCancel }: IProps) => {
       })
       return
     }
+    setIsSaving(true)
 
     getData(ACTION_NAME.TRACKING_TOKEN_LIST).then(async (result:Array<ITrackingCollection>) => {
       let collections = result ? result : []
       const extraData = await getCollectionData(collection)
       collection.banner = extraData.collection.banner_image_url
       collection.currentPrice = extraData.collection.stats.floor_price
+      collection.tracking = true
       const collectionIndex = collections.findIndex(
         (item: ITrackingCollection) => item.url === collection.url
       )
@@ -63,15 +67,7 @@ const AddTrackingCollectionForm = ({ token, onCancel }: IProps) => {
           position: 'top',
           isClosable: true,
         })
-        setCollection({
-          name: '',
-          price: 0,
-          url: '',
-          address: '',
-          tracking: false,
-          banner: '',
-          currentPrice: 0,
-        })
+        setIsSaving(false)
       })
     })
   }
@@ -133,7 +129,7 @@ const AddTrackingCollectionForm = ({ token, onCancel }: IProps) => {
         />
       </FormControl>
       <Button className="submitbutton" onClick={saveCollection}>
-        Submit
+        {isSaving? <Spinner color='red.500' /> : 'Save'}
       </Button>
       <Button
         className="cancelbutton"
