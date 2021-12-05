@@ -6,6 +6,10 @@ const defaultOptions = {
 
 chrome.storage.sync.get("options", i => {
   const options = i.options ? i.options : defaultOptions;
+  injectBuyNowButtonScript(options);
+})
+
+const injectBuyNowButtonScript = options => {
   const contentScript = chrome.runtime.getURL('contentScript.bundle.js')
 
   const script = document.createElement('script')
@@ -19,4 +23,4 @@ chrome.storage.sync.get("options", i => {
       options
     }, '*')
   }
-})
+}

@@ -2,6 +2,7 @@ import * as cheerio from 'cheerio'
 
 import { ACTION_NAME, crm } from '../../consts'
 
+import { CMD_NAME } from './../../consts';
 import { ITrackingCollection } from '../intefaces';
 import { getCollectionData } from '../Popup/services';
 import { getData } from '../../storage'
@@ -93,7 +94,7 @@ const buildCollectionURL = (tokenName: string): string => {
 const buildAssetURL = (assetID: string) => {
   return `https://opensea.io${assetID}`
 }
-async function scanCollectionPage(url: string) {
+const scanCollectionPage = async (url: string) => {
   const data = await fetch(url)
   const html = await data.text()
   const onlyBody = html.split('<body>')[1].split('</body>')[0]
@@ -103,3 +104,20 @@ async function scanCollectionPage(url: string) {
   // TODO make it as a setting
   chrome.tabs.create({ url: buildAssetURL(firstToken) })
 }
+
+
+const getRarityURL = (tokenId: string, collectionName: string): string => {
+  return `https://apexgo-api.herokuapp.com/v1/getToken?token_id=${tokenId}&collection_name=${collectionName}`;
+}
+
+crm.r.onMessage.addListener((req, sender, sendResponse) => {
+  switch (req.cmd) {
+    case CMD_NAME.GET_TOKEN_RARITY:
+      const { tokenId, collectionName } = req.data
+      fetch(getRarityURL(tokenId, collectionName)).then(res => res.json()).then(res => {
+        sendResponse(res)
+      })
+      break;
+  }
+
+})

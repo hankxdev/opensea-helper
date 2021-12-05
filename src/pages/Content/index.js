@@ -28,15 +28,43 @@ function changeOpenseaUI(changeUI) {
   const changeUIInterval = setInterval(() => {
     const tokenEls = $("article")
     tokenEls.each((_, el) => {
-      if ($(el).find('.momane-buy-now-button').length === 0) {
-        $(el).append(`<button class='btn btn-primary momane-buy-now-button'>
-                    Buy it now
-                  </button>`
-        )
-      }
+      injectBuyNowButton(el)
+      requestRarityData(el)
     })
   }, 200)
   return changeUIInterval
+}
+
+
+function requestRarityData(el) {
+  const tokenId = $(el).attr('data-token-id')
+  //first time scan this token
+  if (!tokenId) {
+    return
+  }
+  const tokenId = $(el).find('a').attr("href").split('/').reverse()[0];
+  const collectionName = document.querySelector('a[href^="/collection"]')?.href.split('/').reverse()[0].match(/[\w-]+/)[0]
+  $(el).attr('data-token-id', tokenId)
+}
+
+
+function injectBuyNowButton(el) {
+  if ($(el).find('.momane-buy-now-button').length === 0) {
+    $(el).append(`<button class='btn btn-primary momane-buy-now-button'>
+                Buy it now
+              </button>`
+    )
+  }
+}
+
+
+
+function injectRarity(tokenId, rarityData) {
+  const rarity = rarityData.rarity
+  const rarityEl = $(`<span class="rarity-badge">${rarity}</span>`)
+  const rarityContainer = $(`<div class="rarity-container"></div>`)
+  rarityContainer.append(rarityEl)
+  $(`article[data-token-id="${tokenId}"]`).append(rarityContainer)
 }
 
 
