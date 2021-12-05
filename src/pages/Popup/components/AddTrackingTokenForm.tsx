@@ -10,7 +10,7 @@ import {
   Input,
   Spinner,
   Text,
-  useToast
+  useToast,
 } from '@chakra-ui/react'
 import { getData, saveData } from '../../../storage'
 
@@ -29,6 +29,38 @@ const AddTrackingCollectionForm = ({ token, onCancel }: IProps) => {
   const [collection, setCollection] = React.useState<ITrackingCollection>(token)
   const [isSaving, setIsSaving] = React.useState(false)
 
+  React.useEffect(() => {
+    setCollection({
+      ...collection,
+      name: getCollectionNameFromURL(collection.url),
+    })
+  }, [collection.url])
+
+  const getCollectionNameFromURL = (url: string): string => {
+    if (!url) {
+      return ''
+    }
+
+    return collection.url.split('/')[4]
+  }
+
+  const handleCancel = () => {
+    resetCollection()
+    onCancel()
+  }
+
+  const resetCollection = () => {
+    setCollection({
+      address: '',
+      name: '',
+      tracking: true,
+      url: '',
+      price: 0,
+      banner: '',
+      currentPrice: 0,
+    })
+  }
+
   const saveCollection = () => {
     if (
       collection.name === '' ||
@@ -46,30 +78,33 @@ const AddTrackingCollectionForm = ({ token, onCancel }: IProps) => {
     }
     setIsSaving(true)
 
-    getData(ACTION_NAME.TRACKING_TOKEN_LIST).then(async (result:Array<ITrackingCollection>) => {
-      let collections = result ? result : []
-      const extraData = await getCollectionData(collection)
-      collection.banner = extraData.collection.banner_image_url
-      collection.currentPrice = extraData.collection.stats.floor_price
-      collection.tracking = true
-      const collectionIndex = collections.findIndex(
-        (item: ITrackingCollection) => item.url === collection.url
-      )
-      if (collectionIndex !== -1) {
-        collections[collectionIndex] = collection
-      } else {
-        collections.push(collection)
-      }
-      saveData(ACTION_NAME.TRACKING_TOKEN_LIST, collections).then(() => {
-        toast({
-          title: `${collection.name} has been added`,
-          status: 'success',
-          position: 'top',
-          isClosable: true,
+    getData(ACTION_NAME.TRACKING_TOKEN_LIST).then(
+      async (result: Array<ITrackingCollection>) => {
+        let collections = result ? result : []
+        const extraData = await getCollectionData(collection)
+        collection.banner = extraData.collection.banner_image_url
+        collection.currentPrice = extraData.collection.stats.floor_price
+        collection.tracking = true
+        const collectionIndex = collections.findIndex(
+          (item: ITrackingCollection) => item.url === collection.url
+        )
+        if (collectionIndex !== -1) {
+          collections[collectionIndex] = collection
+        } else {
+          collections.push(collection)
+        }
+        saveData(ACTION_NAME.TRACKING_TOKEN_LIST, collections).then(() => {
+          toast({
+            title: `${collection.name} has been added`,
+            status: 'success',
+            position: 'top',
+            isClosable: true,
+          })
+          setIsSaving(false)
+          resetCollection()
         })
-        setIsSaving(false)
-      })
-    })
+      }
+    )
   }
 
   return (
@@ -82,22 +117,16 @@ const AddTrackingCollectionForm = ({ token, onCancel }: IProps) => {
           onClick={() => onCancel()}
         />
       </Flex>
-
-      <FormControl id="collectionName">
-        <FormLabel className="fieldtitle">Collection Name:</FormLabel>
-        <Input
-          className="fieldinput"
-          type="text"
-          fontSize="12px"
-          value={collection.name}
-          onChange={(e) => {
-            setCollection({
-              ...collection,
-              name: e.target.value.trim(),
-            })
-          }}
-        />
-      </FormControl>
+      {collection.name ? (
+        <FormControl id="collectionName">
+          <FormLabel className="fieldtitle">Collection Name:</FormLabel>
+          <Text fontSize="2em" className="collectionName">
+            {collection.name}
+          </Text>
+        </FormControl>
+      ) : (
+        ''
+      )}
       <FormControl id="collection URL">
         <FormLabel className="fieldtitle">Opensea URL:</FormLabel>
         <Input
@@ -129,14 +158,9 @@ const AddTrackingCollectionForm = ({ token, onCancel }: IProps) => {
         />
       </FormControl>
       <Button className="submitbutton" onClick={saveCollection}>
-        {isSaving? <Spinner color='red.500' /> : 'Save'}
+        {isSaving ? <Spinner color="red.500" /> : 'Save'}
       </Button>
-      <Button
-        className="cancelbutton"
-        onClick={() => {
-          onCancel()
-        }}
-      >
+      <Button className="cancelbutton" onClick={handleCancel}>
         Cancel
       </Button>
     </Flex>
