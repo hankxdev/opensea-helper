@@ -2,12 +2,12 @@ import * as cheerio from 'cheerio'
 
 import { ACTION_NAME, crm } from '../../consts'
 
-import { CMD_NAME } from './../../consts';
+import { CMD_NAME } from '../../consts';
 import { ITrackingCollection } from '../intefaces';
 import { getCollectionData } from '../Popup/services';
 import { getData } from '../../storage'
-import { loopWithDelay } from './../../utils';
-import { saveData } from './../../storage';
+import { loopWithDelay } from '../../utils';
+import { saveData } from '../../storage';
 
 const tracking = true // todo make it as a setting
 
@@ -114,10 +114,24 @@ crm.r.onMessage.addListener((req, sender, sendResponse) => {
   switch (req.cmd) {
     case CMD_NAME.GET_TOKEN_RARITY:
       const { tokenId, collectionName } = req.data
-      fetch(getRarityURL(tokenId, collectionName)).then(res => res.json()).then(res => {
-        sendResponse(res)
+
+      const myHeaders = new Headers();
+      myHeaders.append("Authorization", `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlfQ.9zwFEsTv43zB7vv-4nJ_KShuUb0EzzH5pfZrqN154rw`);
+
+      const requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
+      };
+      
+      // @ts-ignore
+      fetch(getRarityURL(tokenId, collectionName), requestOptions).then(res => res.json()).then(res => {
+        // @ts-ignore
+        chrome.tabs.sendMessage(sender.tab.id, {
+          cmd: CMD_NAME.SET_TOKEN_RARITY,
+          data: res}
+          )
       })
       break;
   }
-
 })
