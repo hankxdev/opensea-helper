@@ -119,7 +119,6 @@ const AddTrackingCollectionForm = ({ token, onCancel }: IProps) => {
       </Flex>
       {collection.name ? (
         <FormControl id="collectionName">
-          <FormLabel className="fieldtitle">Collection Name:</FormLabel>
           <Text fontSize="2em" className="collectionName">
             {collection.name}
           </Text>
