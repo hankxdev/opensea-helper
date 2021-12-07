@@ -1,0 +1,35 @@
+{
+  "token_id": "444",
+  "website": "https://www.larvalabs.com/cryptopunks/details/444",
+  "name": "CryptoPunk #444",
+  "resource_link": "https://lh3.googleusercontent.com/WpIg88Xi0iu1O8hiDUL_yoQpk4VL_PbaaSZftv_DGNE195Mojw2QswDyoqXrhd8YFegmzM_kSNi4hIN5KY9J3xcLYA",
+  "ranking": 8081,
+  "score": 58.07,
+  "rarity_score": 58.07,
+  "rarity_traits": [
+      {
+          "trait_type": "Accessory",
+          "value": "Shadow Beard",
+          "score": 19.01,
+          "count": 526
+      },
+      {
+          "trait_type": "Accessory",
+          "value": "Earring",
+          "score": 4.07,
+          "count": 2459
+      },
+      {
+          "trait_type": "Accessory",
+          "value": "Do-Rag",
+          "score": 33.33,
+          "count": 300
+      },
+      {
+          "trait_type": "Type",
+          "value": "Male",
+          "score": 1.66,
+          "count": 6039
+      }
+  ]
+}
