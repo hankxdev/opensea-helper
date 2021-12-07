@@ -15,6 +15,6 @@
     "noEmit": false,
     "jsx": "react"
   },
-  "include": ["src"],
+  "include": ["src", "src/pages/Content/uichange.ts"],
   "exclude": ["build", "node_modules"]
 }

@@ -2,11 +2,12 @@ import * as cheerio from 'cheerio'
 
 import { ACTION_NAME, crm } from '../../consts'
 
+import { CMD_NAME } from '../../consts';
 import { ITrackingCollection } from '../intefaces';
 import { getCollectionData } from '../Popup/services';
 import { getData } from '../../storage'
-import { loopWithDelay } from './../../utils';
-import { saveData } from './../../storage';
+import { loopWithDelay } from '../../utils';
+import { saveData } from '../../storage';
 
 const tracking = true // todo make it as a setting
 
@@ -93,7 +94,7 @@ const buildCollectionURL = (tokenName: string): string => {
 const buildAssetURL = (assetID: string) => {
   return `https://opensea.io${assetID}`
 }
-async function scanCollectionPage(url: string) {
+const scanCollectionPage = async (url: string) => {
   const data = await fetch(url)
   const html = await data.text()
   const onlyBody = html.split('<body>')[1].split('</body>')[0]
@@ -103,3 +104,34 @@ async function scanCollectionPage(url: string) {
   // TODO make it as a setting
   chrome.tabs.create({ url: buildAssetURL(firstToken) })
 }
+
+
+const getRarityURL = (tokenId: string, collectionName: string): string => {
+  return `https://apexgo-api.herokuapp.com/v1/getToken?token_id=${tokenId}&collection_name=${collectionName}`;
+}
+
+crm.r.onMessage.addListener((req, sender, sendResponse) => {
+  switch (req.cmd) {
+    case CMD_NAME.GET_TOKEN_RARITY:
+      const { tokenId, collectionName } = req.data
+
+      const myHeaders = new Headers();
+      myHeaders.append("Authorization", `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlfQ.9zwFEsTv43zB7vv-4nJ_KShuUb0EzzH5pfZrqN154rw`);
+
+      const requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
+      };
+      
+      // @ts-ignore
+      fetch(getRarityURL(tokenId, collectionName), requestOptions).then(res => res.json()).then(res => {
+        // @ts-ignore
+        chrome.tabs.sendMessage(sender.tab.id, {
+          cmd: CMD_NAME.SET_TOKEN_RARITY,
+          data: res}
+          )
+      })
+      break;
+  }
+})
