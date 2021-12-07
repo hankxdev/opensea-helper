@@ -60,15 +60,6 @@ footer {
   display:flex!important;
 }
 
-
-.momane-rarity-container{
-  position: absolute;
-  top:0 ;
-  right:0;
-  background-color: #6056af;
-  padding: 5px;
-}
-
 /*
 .CollectionHeader--banner-container {
     border-bottom: 1px solid rgb(21, 27, 34);

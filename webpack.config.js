@@ -17,7 +17,7 @@ const alias = {
 
 // load the secrets
 var secretsPath = path.join(__dirname, 'secrets.' + env.NODE_ENV + '.js');
-const templateHtml = path.join(__dirname, 'src', 'pages', 'template.html');
+const templateHtml =  path.join(__dirname, 'src', 'pages', 'template.html');
 
 var fileExtensions = [
   'jpg',
@@ -41,10 +41,9 @@ var options = {
   entry: {
     options: path.join(__dirname, 'src', 'pages', 'Options', 'index.tsx'),
     popup: path.join(__dirname, 'src', 'pages', 'Popup', 'index.tsx'),
-    background: path.join(__dirname, 'src', 'pages', 'Background', 'background.ts'),
-    contentScript: path.join(__dirname, 'src', 'pages', 'Content', 'content.js'),
-    inject: path.join(__dirname, 'src', 'pages', 'Content', 'inject.js'),
-    rarity: path.join(__dirname, 'src', 'pages', 'Content', 'Rarity', 'rarity.ts'),
+    background: path.join(__dirname, 'src', 'pages', 'Background', 'index.ts'),
+    contentScript: path.join(__dirname, 'src', 'pages', 'Content', 'index.js'),
+    inject:path.join(__dirname, 'src', 'pages', 'inject.js')
   },
   chromeExtensionBoilerplate: {
     notHotReload: ['contentScript', 'devtools'],
