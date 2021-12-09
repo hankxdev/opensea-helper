@@ -8,6 +8,7 @@ import { getData, saveData } from '../../../storage'
 
 import { ACTION_NAME } from '../../../consts'
 import { ITrackingCollection } from '../../intefaces'
+import ShowChartIcon from '../../../assets/img/show-chart.svg'
 
 type TokenCardProps = {
   collection: ITrackingCollection
@@ -28,14 +29,19 @@ const CollectionCard = ({ collection, editToken }: TokenCardProps) => {
   }
 
   return (
-    <Box position="relative" className="collection">
-      <Image src={banner || sampleImage} className="collectionbackground"/>
-      <Flex justifyContent="space-between" position="relative">
-        <Box className="collectiontitle" w="40%">{name}</Box>
+    <Box position="relative" className="collection" >
+      <Image src={banner || sampleImage} className="collectionbackground" />
+      <Flex justifyContent="space-between" position="relative" alignItems="center">
+        <Box className="collectiontitle" w="40%" onClick={()=>{
+          chrome.tabs.create({ url: `https://opensea.io/collection/${name}` })
+        }}>
+          {name}
+        </Box>
+        <Image cursor="pointer" src={ShowChartIcon} w="18px" h="18px" className="collectionchart" onClick={()=>{
+          chrome.tabs.create({ url: `https://opensea.io/collection/${name}?tab=activity` })
+        }}/>
         <Box w="40%" textAlign="center">
-          <span  className="collectionfloor">
-          Floor {currentPrice}
-          </span>
+          <span className="collectionfloor">Floor {currentPrice}</span>
         </Box>
         <Flex justifyContent="space-between">
           <Box>
