@@ -11,6 +11,9 @@ let option = {
   showNotify: true
 }
 
+let lastURL = window.location.href
+let lastTokens = []
+
 
 window.addEventListener('message', e => {
   if (e.data.type === 'ext_options') {
@@ -19,9 +22,9 @@ window.addEventListener('message', e => {
     const { changeUI } = option
     changeOpenseaUI(changeUI)
   } else if (e.data.type === 'setRarityData') {
-    const {  rarityData } = e.data
+    const { rarityData } = e.data
     console.log(e.data.rarityData)
-   
+
     injectRarity(rarityData.token_id, rarityData.ranking, rarityData.score)
   }
 })
@@ -31,13 +34,40 @@ function changeOpenseaUI(changeUI) {
     return 0
   }
   const changeUIInterval = setInterval(() => {
-    const tokenEls = $("article")
-    tokenEls.each((_, el) => {
-      injectBuyNowButton(el)
-      requestRarityData(el)
-    })
+    const url = window.location.href
+    if (url !== lastURL) {
+      lastURL = url
+      lastTokens = []
+    }
+    //activity page
+    if (url.includes('tab=activity')) {
+      const tokenEls = $('div[role="listitem"]')
+      tokenEls.each((_, el) => {
+        injectBuyNowButtonOnActivityPage(el)
+        requestRarityData(el)
+      })
+    } else {
+      const tokenEls = $("article")
+      tokenEls.each((_, el) => {
+        injectBuyNowButton(el)
+        requestRarityData(el)
+      })
+    }
+
   }, 200)
   return changeUIInterval
+}
+
+
+function injectBuyNowButtonOnActivityPage(el) {
+  if ($(el).find('.owl-buy-now-button-small').length === 0) {
+    $(el).find("div[class^='AssetCellreact']")
+      .parent()
+      .after(`<button class='btn btn-primary owl-buy-now-button-small'>
+                Buy now
+              </button>`
+      )
+  }
 }
 
 
@@ -51,16 +81,33 @@ function requestRarityData(el) {
   if (tokenId) {
     return
   }
-  tokenId = $(el).find('a').attr("href").split('/').reverse()[0];
-  const collectionName = document.querySelector('a[href^="/collection"]')?.href.split('/').reverse()[0].match(/[\w-]+/)[0]
+
+  tokenId = $(el).find('a').attr("href")?.split('/').reverse()[0];
+
+  if (!tokenId) {
+    return
+  }
+  const rarityEl = $(`div.owl-rarity-container[data-rarity-id="${tokenId}"]`)
+
+  if (rarityEl.length > 0) {
+    if ($('article').length < 1) {
+      // activity page
+      $(`div[role="listitem"][data-token-id="${tokenId}"]`).find("div[class^='AssetCellreact']").parent().after(rarityEl)
+    }
+  }
   $(el).attr('data-token-id', tokenId)
+  const collectionName = document.querySelector('a[href^="/collection"]')?.href.split('/').reverse()[0].match(/[\w-]+/)[0]
+  if (lastTokens.includes(tokenId)) {
+    return
+  }
+  lastTokens.push(tokenId)
   sendMessagetoPage('ext_content', { cmd: 'getRarityData', tokenId, collectionName })
 }
 
 
 function injectBuyNowButton(el) {
-  if ($(el).find('.momane-buy-now-button').length === 0) {
-    $(el).append(`<button class='btn btn-primary momane-buy-now-button'>
+  if ($(el).find('.owl-buy-now-button').length === 0) {
+    $(el).append(`<button class='btn btn-primary owl-buy-now-button'>
                 Buy it now
               </button>`
     )
@@ -68,16 +115,26 @@ function injectBuyNowButton(el) {
 }
 
 
-
 function injectRarity(tokenId, ranking, score) {
-  const rarityEl = $(`<span class="momane-rarity-badge">Ranking: ${ranking}</span>`)
-  const rarityContainer = $(`<div class="momane-rarity-container"></div>`)
+  const rarityEl = $(`<span class="owl-rarity-badge">Ranking: ${ranking}</span>`)
+  const rarityContainer = $(`<div class="owl-rarity-container" data-rarity-id=${tokenId}></div>`)
   rarityContainer.append(rarityEl)
-  $(`article[data-token-id="${tokenId}"]`).append(rarityContainer)
+  if ($('article').length < 1) {
+    // activity page
+    rarityEl.text(`#${ranking}`)
+    rarityContainer.addClass('owl-rarity-container-activity')
+    const tokenListItem = $(`div[role="listitem"][data-token-id="${tokenId}"]`)
+    if (tokenListItem.find('.owl-rarity-container').length === 0) {
+      tokenListItem.find("div[class^='AssetCellreact']").parent().after(rarityContainer)
+    }
+  } else {
+    $(`article[data-token-id="${tokenId}"]`).append(rarityContainer)
+  }
 }
 
 
-function initBuyProcess(that) {
+function initBuyProcess(el) {
+  const that = $(el)
   that.text('...')
   that.addClass('disabled')
   const link = that.parent().find('a').attr('href')
@@ -117,7 +174,7 @@ function initBuyProcess(that) {
 
 // const provider = await detectEthereumProvider()
 
-$('body').on('click', '.momane-buy-now-button', function (e) {
+$('body').on('click', '.owl-buy-now-button, .owl-buy-now-button-small', function (e) {
   e.preventDefault()
   let that = $(this)
   initBuyProcess(that)
