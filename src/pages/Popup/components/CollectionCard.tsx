@@ -37,7 +37,7 @@ const CollectionCard = ({ collection, editToken }: TokenCardProps) => {
         }}>
           {name}
         </Box>
-        <Image cursor="pointer" src={ShowChartIcon} w="18px" h="18px" className="collectionchart" onClick={()=>{
+        <Image cursor="pointer" src={ShowChartIcon} w="14px" h="14px" className="collectionchart" onClick={()=>{
           chrome.tabs.create({ url: `https://opensea.io/collection/${name}?tab=activity` })
         }}/>
         <Box w="40%" textAlign="center">

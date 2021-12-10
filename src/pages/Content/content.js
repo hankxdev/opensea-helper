@@ -116,7 +116,7 @@ function injectBuyNowButton(el) {
 
 
 function injectRarity(tokenId, ranking, score) {
-  const rarityEl = $(`<span class="owl-rarity-badge">Ranking: ${ranking}</span>`)
+  const rarityEl = $(`<span class="owl-rarity-badge">Rarity # ${ranking}</span>`)
   const rarityContainer = $(`<div class="owl-rarity-container" data-rarity-id=${tokenId}></div>`)
   rarityContainer.append(rarityEl)
   if ($('article').length < 1) {

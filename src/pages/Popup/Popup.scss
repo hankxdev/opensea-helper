@@ -39,6 +39,12 @@ body {
   text-transform: uppercase;
   text-shadow: 1px 1px 1px #222;
   font-weight: 700;
+  cursor:pointer;
+}
+
+.collectiontitle:hover {
+letter-spacing: 1px;
+transition: all 0.25s ease;
 }
 
 .collectionName {
