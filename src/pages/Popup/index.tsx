@@ -1,11 +1,10 @@
 import * as React from 'react';
-import { render } from 'react-dom';
-import { ChakraProvider } from '@chakra-ui/react';
-import {extendTheme} from '@chakra-ui/react';
+
+import { ChakraProvider, extendTheme } from '@chakra-ui/react';
+
 import Popup from './Popup';
+import { render } from 'react-dom';
 import { theme } from '../../theme';
-
-
 
 const customizedTheme = extendTheme(theme)
 export default function App() {

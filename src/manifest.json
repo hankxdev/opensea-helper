@@ -23,7 +23,7 @@
     "alarms",
     "tabs",
     "storage",
-    "https://*.opensea.io/*",
+    "https://opensea.io/*",
     "https://apexgo-api.herokuapp.com/*"
   ],
   "manifest_version": 3,

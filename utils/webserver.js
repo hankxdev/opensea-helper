@@ -15,7 +15,7 @@ var excludeEntriesToHotReload = options.notHotReload || [];
 for (var entryName in config.entry) {
   if (excludeEntriesToHotReload.indexOf(entryName) === -1) {
     config.entry[entryName] = [
-      'webpack-dev-server/client?http://localhost:' + env.PORT,
+      'webpack-dev-server/client?http://127.0.0.1:9090/',
       'webpack/hot/dev-server',
     ].concat(config.entry[entryName]);
   }
@@ -31,9 +31,10 @@ var compiler = webpack(config);
 
 var server = new WebpackDevServer({
   https: false,
-  port: env.PORT,
+  host: '127.0.0.1',
+  port: 3000,
   devMiddleware: {
-    publicPath: `http://localhost:${env.PORT}`,
+    publicPath: `http://127.0.0.1:${env.PORT}`,
     writeToDisk: true,
   },
   static: {
@@ -42,7 +43,6 @@ var server = new WebpackDevServer({
   headers: {
     'Access-Control-Allow-Origin': '*',
   },
-  // disableHostCheck: true,
 }, compiler);
 
 if (process.env.NODE_ENV === 'development' && module.hot) {

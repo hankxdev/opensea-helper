@@ -1,12 +1,17 @@
-import React from 'react';
-import { render } from 'react-dom';
+import * as React from 'react'
 
-import Options from './Options';
-import './index.css';
+import { ChakraProvider, extendTheme } from '@chakra-ui/react'
 
-render(
-  <Options title={'settings'} />,
-  window.document.querySelector('#app-container')
-);
+import Options from './Options'
+import { render } from 'react-dom'
+import { theme } from '../../theme'
 
+export default function App() {
+  return (
+    <ChakraProvider>
+      <Options title="Options" />
+    </ChakraProvider>
+  )
+}
 
+render(<App />, window.document.querySelector('#app'))

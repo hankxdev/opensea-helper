@@ -1,12 +1,28 @@
-import React from 'react';
-import './Options.css';
+import './Options.scss'
+
+import * as React from 'react'
+
+import { Box, Button, Center, Flex, Spinner } from '@chakra-ui/react'
 
 interface Props {
-  title: string;
+  title: string
+}
+
+interface NonceResponse {
+  nonce: string
+}
+interface VerifyResponse {
+  token: string
 }
 
 const Options: React.FC<Props> = ({ title }: Props) => {
-  return <div className="OptionsContainer">{title.toUpperCase()} PAGE</div>;
-};
+  const LoginWithMetaMask = async () => {}
 
-export default Options;
+  return (
+    <Center p="10em" h="10vh%"color="white">
+      <Button bg="black" onClick={LoginWithMetaMask}> Login With MetaMask </Button>
+    </Center>
+  )
+}
+
+export default Options
