@@ -10,7 +10,7 @@ body {
 .appname {
   font-size: 12px;
   text-transform: uppercase;
-  margin-left: 60px;
+  margin-left:60px;
 }
 
 .ethgas {
@@ -39,14 +39,14 @@ body {
   text-transform: uppercase;
   text-shadow: 1px 1px 1px #222;
   font-weight: 700;
-  cursor: pointer;
+  cursor:pointer;
   overflow: hidden;
-  display: inherit;
+    display: inherit;
 }
 
 .collectiontitle:hover {
-  letter-spacing: 1px;
-  transition: all 0.25s ease;
+letter-spacing: 1px;
+transition: all 0.25s ease;
 }
 
 .collectionName {
@@ -56,9 +56,9 @@ body {
 }
 
 .collectionfloor {
-  font-size: 8px;
+  font-size: 9px;
   text-transform: uppercase;
-  color: #68c78b;
+  color: #64d998;
   padding: 4px;
   background: linear-gradient(
     to right,
