@@ -66,19 +66,29 @@
   width: 80px;
   height: 30px;
   color: #fff;
-  font-size: 12px;
+  font-size: 10px;
   text-transform: uppercase;
   opacity:0.8;
+  border-radius:5px;
+}
+
+.owl-buy-now-button-small:hover{
+  transition: all 0.5s ease;
+  opacity:1.0;
 }
 
 
+
 .owl-rarity-container-activity{
-  background-color:#eaa186 !important;
+  background-color:#FF4136 !important;
   height: 30px !important;
   position: static !important;
-  font-size: 12px !important;
+  font-size: 10px !important;
   margin-right: 2px;
+  border-radius:5px!important;
   color:white;
+  line-height:20px !important;
+  font-weight:500!important;
 }
 
 footer {
@@ -101,6 +111,9 @@ footer {
   right:0;
   background-color: #6056af;
   padding: 5px;
+  border-radius: 0px 0px 0px 5px!important;
+  text-transform:uppercase;
+  font-size:10px;
 }
 
 /*

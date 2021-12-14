@@ -33,11 +33,11 @@ const CollectionCard = ({ collection, editToken }: TokenCardProps) => {
       <Image src={banner || sampleImage} className="collectionbackground" />
       <Flex justifyContent="space-between" position="relative" alignItems="center">
         <Box className="collectiontitle" w="40%" onClick={()=>{
-          chrome.tabs.create({ url: `https://opensea.io/collection/${name}` })
+          chrome.tabs.create({ url: `https://opensea.io/collection/${name}?search[sortAscending]=true&search[sortBy]=PRICE&search[toggles][0]=BUY_NOW` })
         }}>
           {name}
         </Box>
-        <Image cursor="pointer" src={ShowChartIcon} w="18px" h="18px" className="collectionchart" onClick={()=>{
+        <Image cursor="pointer" src={ShowChartIcon} w="14px" h="14px" className="collectionchart" onClick={()=>{
           chrome.tabs.create({ url: `https://opensea.io/collection/${name}?tab=activity` })
         }}/>
         <Box w="40%" textAlign="center">
