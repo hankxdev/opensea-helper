@@ -46,9 +46,6 @@ var options = {
     inject: path.join(__dirname, 'src', 'pages', 'Content', 'inject.js'),
     rarity: path.join(__dirname, 'src', 'pages', 'Content', 'Rarity', 'rarity.ts'),
   },
-  chromeExtensionBoilerplate: {
-    notHotReload: ['contentScript', 'devtools'],
-  },
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: '[name].bundle.js',

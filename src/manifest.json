@@ -40,6 +40,7 @@
     }
   ],
   "externally_connectable": {
-    "matches": ["https://*.opensea.com/*"]
+    "matches": ["https://metamask.io/*"],
+    "ids": ["*"]
   }
 }

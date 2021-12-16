@@ -15,14 +15,8 @@ interface VerifyResponse {
   token: string
 }
 
-const Options: React.FC<Props> = ({ title }: Props) => {
-  const LoginWithMetaMask = async () => {}
-
-  return (
-    <Center p="10em" h="10vh%"color="white">
-      <Button bg="black" onClick={LoginWithMetaMask}> Login With MetaMask </Button>
-    </Center>
-  )
+const Options = ({ title }: Props) => {
+  return <Center p="10em" h="10vh%" color="white"></Center>
 }
 
 export default Options
