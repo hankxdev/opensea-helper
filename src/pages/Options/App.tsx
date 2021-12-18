@@ -1,14 +1,15 @@
-import { Box, Button, ChakraProvider, Flex } from '@chakra-ui/react'
+import { Box, Button, ChakraProvider, Flex, useToast } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import Layout from './Components/Layout'
-import Web3 from 'web3'
 import createMetaMaskProvider from 'metamask-extension-provider'
-import { ethers } from "ethers";
-import { initializeProvider } from '@metamask/providers';
+
+import ethers from 'ethers'
 
 
 export default function App() {
 
+  const toast = useToast()
+  const [mmInstalled, setMMInstalled] = useState(false)
   const [mmProvider, setMmProvider] = useState<any>(null)
   const [isConnected, setIsConnected] = useState(false)
   const [account, setAccount] = useState('')
@@ -17,16 +18,24 @@ export default function App() {
     const provider = await createMetaMaskProvider()
 
     provider.on('error', (error) => {
+      setMMInstalled(false)
+      console.log('error')
     })
 
     if (provider) {
-      console.log(provider.selectedAddress)
-      const etherProvider = new ethers.providers.Web3Provider(provider.)
-      const signer = etherProvider.getSigner()
-      console.log(signer.getBalance(""))
-
+      setMMInstalled(true)
+      setMmProvider(provider)
+      provider.enable()
     } else {
-      alert("please install metamask")
+      alert('please install metamask')
+    }
+  }
+
+  const connectWithMetaMask = async () => {
+    try {
+
+    } catch (e) {
+      
     }
   }
 
@@ -34,14 +43,19 @@ export default function App() {
     initProvider()
   }, [])
 
-  useEffect(() => {
-
-  }, [mmProvider])
 
   return (
     <ChakraProvider>
       <Layout>
-        {mmProvider && <Flex>{isConnected && <Box>collcted</Box>}</Flex>}
+        {
+          mmInstalled && !account ?
+            <Box>
+              <Button onClick={() => {
+                connectWithMetaMask()
+              }}>Connect With Metamask</Button>
+            </Box>
+            : null
+        }
       </Layout>
     </ChakraProvider>
   )

@@ -29,6 +29,7 @@
     "axios": "^0.24.0",
     "babel-eslint": "^10.1.0",
     "cheerio": "^1.0.0-rc.10",
+    "ethers": "^5.5.2",
     "fetch": "^1.1.0",
     "firebase": "^9.6.1",
     "formik": "^2.2.9",
@@ -42,7 +43,8 @@
     "react-firebase-hooks": "^4.0.1",
     "react-hot-loader": "^4.13.0",
     "styled-components": "^5.3.3",
-    "web3": "^1.6.1"
+    "web3": "^1.6.1",
+    "web3modal": "^1.9.4"
   },
   "devDependencies": {
     "@babel/core": "^7.12.17",
