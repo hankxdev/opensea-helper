@@ -7,7 +7,11 @@
     "service_worker": "background.bundle.js",
     "type": "module"
   },
-  "host_permissions": ["*://*.opensea.io/*"],
+  "host_permissions": [
+    "*://*.opensea.io/*",
+    "https://apexgo-api.herokuapp.com/*",
+    "https://us-central1-nifty-owl.cloudfunctions.net/*"
+  ],
   "content_scripts": [
     {
       "matches": ["https://opensea.io/*"],
@@ -18,14 +22,7 @@
   "icons": {
     "128": "icon-256.png"
   },
-  "permissions": [
-    "identity",
-    "alarms",
-    "tabs",
-    "storage",
-    "https://opensea.io/*",
-    "https://apexgo-api.herokuapp.com/*"
-  ],
+  "permissions": ["identity", "alarms", "tabs", "storage"],
   "manifest_version": 3,
   "name": "Nifty Owl",
   "options_page": "options.html",
