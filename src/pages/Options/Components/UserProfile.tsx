@@ -11,6 +11,8 @@ import {
 import React, { useEffect, useState } from 'react'
 import axios, { Method } from 'axios'
 
+import { checkToken } from '../../../utils'
+
 interface IProps {
   account: string
   network: string
@@ -45,6 +47,7 @@ const UserProfile = ({ account, network, provider }: IProps) => {
       duration: 3000,
       isClosable: true,
     })
+    setIsVerifying(false)
   }
 
   const toHex = (stringToConvert: string) => {
@@ -58,14 +61,7 @@ const UserProfile = ({ account, network, provider }: IProps) => {
     setIsVerifying(true)
     let errorMsg = ''
     if (account === '') {
-      errorMsg = 'not connected'
-      toast({
-        title: errorMsg,
-        status: 'error',
-        duration: 3000,
-        isClosable: true,
-      })
-      setIsVerifying(false)
+      showError('Please connect to MetaMask')
       return
     }
     let nonceResponse
@@ -90,12 +86,10 @@ const UserProfile = ({ account, network, provider }: IProps) => {
     } catch (e) {
       console.log(e)
       showError('error getting nonce')
-      setIsVerifying(false)
       return
     }
     if (!nonce) {
       showError('error getting nonce')
-      setIsVerifying(false)
       return
     }
 
@@ -106,7 +100,6 @@ const UserProfile = ({ account, network, provider }: IProps) => {
 
     if (!signature) {
       showError('Looks like you are not able to sign messages')
-      setIsVerifying(false)
       return
     }
 
@@ -116,24 +109,28 @@ const UserProfile = ({ account, network, provider }: IProps) => {
         signature,
         nonce: nonce,
       })
+      const { token } = verifyResponse.data
+      if (!checkToken(account, token)) {
+        showError('Could not verify you')
+        setIsVerifying(false)
+        return
+      }
 
-      setToken(verifyResponse.data.token)
+      setToken(token)
       setVerified(true)
       setIsVerifying(false)
       chrome.storage.sync.set({
         user: {
           address: account,
           network,
-          token: verifyResponse.data.token,
+          token,
         },
       })
     } catch (e) {
       console.log(e)
       showError('error verifying message')
-      setIsVerifying(false)
     }
   }
-
   return (
     <Flex flexDir="column" maxW="335px" alignItems="center">
       <Box fontSize="1rem" w="100%">
