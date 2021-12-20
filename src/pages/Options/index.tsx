@@ -1,12 +1,15 @@
-import React from 'react';
-import { render } from 'react-dom';
+// index.tsx
 
-import Options from './Options';
-import './index.css';
+import App from './App'
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { ChakraProvider, extendTheme } from '@chakra-ui/react'
 
-render(
-  <Options title={'settings'} />,
-  window.document.querySelector('#app-container')
-);
-
-
+ReactDOM.render(
+  <React.StrictMode>
+    <ChakraProvider>
+      <App />
+    </ChakraProvider>
+  </React.StrictMode>,
+  document.getElementById('app'),
+)

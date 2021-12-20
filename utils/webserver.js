@@ -15,7 +15,7 @@ var excludeEntriesToHotReload = options.notHotReload || [];
 for (var entryName in config.entry) {
   if (excludeEntriesToHotReload.indexOf(entryName) === -1) {
     config.entry[entryName] = [
-      'webpack-dev-server/client?http://localhost:' + env.PORT,
+      'webpack-dev-server/client?http://localhost:9090/',
       'webpack/hot/dev-server',
     ].concat(config.entry[entryName]);
   }
@@ -29,21 +29,27 @@ delete config.chromeExtensionBoilerplate;
 
 var compiler = webpack(config);
 
-var server = new WebpackDevServer({
-  https: false,
-  port: env.PORT,
-  devMiddleware: {
-    publicPath: `http://localhost:${env.PORT}`,
-    writeToDisk: true,
+var server = new WebpackDevServer(
+  {
+    https: false,
+    hot: false,
+    client: false,
+    host: 'localhost',
+    port: env.PORT,
+    static: {
+      directory: path.join(__dirname, '../build'),
+    },
+    devMiddleware: {
+      publicPath: `http://localhost:${env.PORT}/`,
+      writeToDisk: true,
+    },
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
+    allowedHosts: 'all',
   },
-  static: {
-    directory: path.join(__dirname, '../build'),
-  },
-  headers: {
-    'Access-Control-Allow-Origin': '*',
-  },
-  // disableHostCheck: true,
-}, compiler);
+  compiler
+);
 
 if (process.env.NODE_ENV === 'development' && module.hot) {
   module.hot.accept();

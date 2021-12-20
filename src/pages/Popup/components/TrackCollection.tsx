@@ -31,7 +31,7 @@ const TrackCollection = () => {
 
   const getMonitoringTokens = async () => {
     getData(ACTION_NAME.TRACKING_TOKEN_LIST).then((data) => {
-      if (data.length < 1) {
+      if (!data || data.length < 1) {
         setLoadingMsg('no tracking token found')
       }
       if (data) {

@@ -1,12 +1,22 @@
-import React from 'react';
-import './Options.css';
+import './Options.scss'
+
+import * as React from 'react'
+
+import { Box, Button, Center, Flex, Spinner } from '@chakra-ui/react'
 
 interface Props {
-  title: string;
+  title: string
 }
 
-const Options: React.FC<Props> = ({ title }: Props) => {
-  return <div className="OptionsContainer">{title.toUpperCase()} PAGE</div>;
-};
+interface NonceResponse {
+  nonce: string
+}
+interface VerifyResponse {
+  token: string
+}
 
-export default Options;
+const Options = ({ title }: Props) => {
+  return <Center p="10em" h="10vh%" color="white"></Center>
+}
+
+export default Options

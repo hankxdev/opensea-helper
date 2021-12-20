@@ -19,7 +19,7 @@ let trackingTokens: ITrackingCollection[] = []
 alarm.clearAll(() => {
   console.log('alarm cleared')
   getData(ACTION_NAME.TRACKING_TOKEN_LIST).then((data) => {
-    if (data.length < 1) {
+    if (!data || data.length < 1) {
       console.log('no tracking token')
       return
     }
@@ -123,7 +123,7 @@ crm.r.onMessage.addListener((req, sender, sendResponse) => {
         headers: myHeaders,
         redirect: 'follow'
       };
-      
+
       // @ts-ignore
       fetch(getRarityURL(tokenId, collectionName), requestOptions).then(res => res.json()).then(res => {
         // @ts-ignore
