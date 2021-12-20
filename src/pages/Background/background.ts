@@ -1,25 +1,41 @@
 import * as cheerio from 'cheerio'
 
 import { ACTION_NAME, crm } from '../../consts'
+import { checkToken, loopWithDelay } from '../../utils';
 
 import { CMD_NAME } from '../../consts';
 import { ITrackingCollection } from '../../intefaces';
 import { getCollectionData } from '../Popup/services';
 import { getData } from '../../storage'
-import { loopWithDelay } from '../../utils';
 import { saveData } from '../../storage';
 
 const tracking = true // todo make it as a setting
 
+let verified = false
+const checkUser = () => {
+  return new Promise((resolve, reject) => {
+    chrome.storage.sync.get('user', i => {
+      if (!i.user) {
+        verified = false
+        resolve(false)
+      }
+      const { token, address } = i.user
+      verified = checkToken(address, token)
+      resolve(verified)
+    })
+  }) as Promise<boolean>
+}
+
+
+checkUser()
 
 const alarm = crm.a
 
 let trackingTokens: ITrackingCollection[] = []
 
 alarm.clearAll(() => {
-  console.log('alarm cleared')
   getData(ACTION_NAME.TRACKING_TOKEN_LIST).then((data) => {
-    if (!data || data.length < 1) {
+    if (!data || data.length < 1 || !verified) {
       console.log('no tracking token')
       return
     }
@@ -48,7 +64,7 @@ alarm.clearAll(() => {
 alarm.onAlarm.addListener(alarm => {
   console.log(`${alarm.name} alarm has been triggered`)
   const token = trackingTokens.find(t => t.name === alarm.name)
-  if (!token) {
+  if (!token || !verified) {
     console.log('no token found')
     return
   }
@@ -110,7 +126,11 @@ const getRarityURL = (tokenId: string, collectionName: string): string => {
   return `https://apexgo-api.herokuapp.com/v1/getToken?token_id=${tokenId}&collection_name=${collectionName}`;
 }
 
+
 crm.r.onMessage.addListener((req, sender, sendResponse) => {
+  if (!verified) {
+    return
+  }
   switch (req.cmd) {
     case CMD_NAME.GET_TOKEN_RARITY:
       const { tokenId, collectionName } = req.data
@@ -129,8 +149,9 @@ crm.r.onMessage.addListener((req, sender, sendResponse) => {
         // @ts-ignore
         chrome.tabs.sendMessage(sender.tab.id, {
           cmd: CMD_NAME.SET_TOKEN_RARITY,
-          data: res}
-          )
+          data: res
+        }
+        )
       })
       break;
   }

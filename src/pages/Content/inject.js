@@ -1,5 +1,6 @@
 import $ from 'jquery'
 import { CMD_NAME } from '../../consts'
+import { checkToken } from '../../utils'
 
 const defaultOptions = {
   changeUI: true,
@@ -7,7 +8,16 @@ const defaultOptions = {
   showNotifty: true,
 }
 
-chrome.storage.sync.get("options", i => {
+chrome.storage.sync.get(["options", 'user'], i => {
+  console.log(i)
+  const user = i.user
+  if (!user) {
+    return
+  }
+  const { address, token } = user
+  if (!checkToken(address, token)) {
+    return
+  }
   const options = i.options ? i.options : defaultOptions;
   injectBuyNowButtonScript(options);
 })

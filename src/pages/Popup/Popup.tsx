@@ -22,14 +22,15 @@ const Popup = () => {
   }
 
   React.useEffect(() => {
-    chrome.storage.sync.get(['user'], (i) => {
+    chrome.storage.sync.get('user', (i) => {
       const user = i.user as IUserInfo
       if (!user) {
         setIsLogin(false)
         return
       }
+
       const { address, token, network } = user
-      const loggedIn = checkToken(user.token, user.address)
+      const loggedIn = checkToken(address, token)
       setIsLogin(loggedIn)
     })
   }, [])
