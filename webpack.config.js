@@ -7,6 +7,8 @@ var webpack = require('webpack'),
   HtmlWebpackPlugin = require('html-webpack-plugin'),
   TerserPlugin = require('terser-webpack-plugin');
 const NodePolyfillPlugin = require("node-polyfill-webpack-plugin")
+const WebpackObfuscator = require('webpack-obfuscator');
+
 
 
 const ASSET_PATH = process.env.ASSET_PATH || '/';
@@ -174,6 +176,11 @@ var options = {
 if (env.NODE_ENV === 'development') {
   options.devtool = 'cheap-module-source-map';
 } else {
+  options.plugins.push(
+    new WebpackObfuscator({
+      rotateStringArray: true
+    })
+  )
   options.optimization = {
     minimize: true,
     minimizer: [

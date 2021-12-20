@@ -6,7 +6,7 @@ import { getData, removeData, saveData } from '../../storage'
 
 import { CMD_NAME } from '../../consts';
 import { ITrackingCollection } from '../../intefaces';
-import { getCollectionData } from ', ../Popup/services';
+import { getCollectionData } from '../Popup/services';
 
 const tracking = true // todo make it as a setting
 
