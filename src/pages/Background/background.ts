@@ -2,12 +2,11 @@ import * as cheerio from 'cheerio'
 
 import { ACTION_NAME, crm } from '../../consts'
 import { checkToken, loopWithDelay } from '../../utils';
+import { getData, removeData, saveData } from '../../storage'
 
 import { CMD_NAME } from '../../consts';
 import { ITrackingCollection } from '../../intefaces';
-import { getCollectionData } from '../Popup/services';
-import { getData } from '../../storage'
-import { saveData } from '../../storage';
+import { getCollectionData } from ', ../Popup/services';
 
 const tracking = true // todo make it as a setting
 
@@ -21,6 +20,9 @@ const checkUser = () => {
       }
       const { token, address } = i.user
       verified = checkToken(address, token)
+      if (!verified) {
+        removeData('user')
+      }
       resolve(verified)
     })
   }) as Promise<boolean>

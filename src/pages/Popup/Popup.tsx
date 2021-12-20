@@ -11,6 +11,7 @@ import LoginSection from './components/LoginSection'
 import SideBar from './components/SideBar'
 import TrackCollection from './components/TrackCollection'
 import { checkToken } from '../../utils'
+import { removeData } from '../../storage'
 
 const Popup = () => {
   const [isSidebarOpen, setSidebarOpen] = React.useState(false)
@@ -31,6 +32,9 @@ const Popup = () => {
 
       const { address, token, network } = user
       const loggedIn = checkToken(address, token)
+      if (!loggedIn) {
+        removeData('user')
+      }
       setIsLogin(loggedIn)
     })
   }, [])
