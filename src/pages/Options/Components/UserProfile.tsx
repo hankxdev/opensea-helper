@@ -11,7 +11,9 @@ import {
 import React, { useEffect, useState } from 'react'
 import axios, { Method } from 'axios'
 
+import { IUserInfo } from '../../../intefaces'
 import { checkToken } from '../../../utils'
+import {removeData} from  '../../../storage'
 
 interface IProps {
   account: string
@@ -47,6 +49,7 @@ const UserProfile = ({ account, network, provider }: IProps) => {
       duration: 3000,
       isClosable: true,
     })
+    removeData('user')
     setIsVerifying(false)
   }
 
@@ -84,7 +87,6 @@ const UserProfile = ({ account, network, provider }: IProps) => {
 
       nonce = nonceResponse.data.nonce
     } catch (e) {
-      console.log(e)
       showError('error getting nonce')
       return
     }
@@ -124,7 +126,7 @@ const UserProfile = ({ account, network, provider }: IProps) => {
           address: account,
           network,
           token,
-        },
+        } as IUserInfo,
       })
     } catch (e) {
       console.log(e)

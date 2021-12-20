@@ -7,7 +7,7 @@ import { DeleteIcon, EditIcon } from '@chakra-ui/icons'
 import { getData, saveData } from '../../../storage'
 
 import { ACTION_NAME } from '../../../consts'
-import { ITrackingCollection } from '../../intefaces'
+import { ITrackingCollection } from '../../../intefaces'
 import ShowChartIcon from '../../../assets/img/show-chart.svg'
 
 type TokenCardProps = {

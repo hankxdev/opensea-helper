@@ -5,7 +5,7 @@ import * as React from 'react'
 import { Box, Button, Checkbox, Flex, Text, useToast } from '@chakra-ui/react'
 import { getData, saveData } from '../../../storage'
 
-import { IBasicOptions } from '../../intefaces'
+import { IBasicOptions } from '../../../intefaces'
 
 interface IProps {
   onBackToMain: () => void
@@ -48,7 +48,7 @@ const BasicOptions = ({ onBackToMain }: IProps) => {
         Change Opensea UI
       </Checkbox>
       <Checkbox
-      className="optionslist"
+        className="optionslist"
         colorScheme={options.autoBuy ? 'green' : 'red'}
         onChange={() => {
           setOptions({ ...options, autoBuy: !options.autoBuy })
@@ -58,7 +58,7 @@ const BasicOptions = ({ onBackToMain }: IProps) => {
         Auto Hit Buy Button
       </Checkbox>
       <Checkbox
-      className="optionslist"
+        className="optionslist"
         colorScheme={options.showNotify ? 'green' : 'red'}
         onChange={() => {
           setOptions({ ...options, showNotify: !options.showNotify })

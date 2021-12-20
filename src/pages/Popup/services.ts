@@ -1,6 +1,6 @@
+import { IGasFee, ITrackingCollection } from './../../intefaces';
+
 import { GasPriceOracle } from 'gas-price-oracle'
-import { IGasFee } from '../intefaces'
-import { ITrackingCollection } from './../intefaces';
 import { openseaAPI } from '../../consts';
 
 const defaultGasPriceOption = {

@@ -1,9 +1,10 @@
-// index.tsx
+import './Options.scss'
+
+import { ChakraProvider, extendTheme } from '@chakra-ui/react'
 
 import App from './App'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { ChakraProvider, extendTheme } from '@chakra-ui/react'
 
 ReactDOM.render(
   <React.StrictMode>
