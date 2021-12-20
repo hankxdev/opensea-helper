@@ -16,7 +16,7 @@ import { getData, saveData } from '../../../storage'
 
 import { ACTION_NAME } from '../../../consts'
 import { ArrowBackIcon } from '@chakra-ui/icons'
-import { ITrackingCollection } from '../../intefaces'
+import { ITrackingCollection } from '../../../intefaces'
 import { getCollectionData } from '../services'
 
 interface IProps {

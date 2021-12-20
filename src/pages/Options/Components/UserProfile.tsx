@@ -11,6 +11,7 @@ import {
 import React, { useEffect, useState } from 'react'
 import axios, { Method } from 'axios'
 
+import { IUserInfo } from '../../../intefaces'
 import { checkToken } from '../../../utils'
 
 interface IProps {
@@ -124,7 +125,7 @@ const UserProfile = ({ account, network, provider }: IProps) => {
           address: account,
           network,
           token,
-        },
+        } as IUserInfo,
       })
     } catch (e) {
       console.log(e)

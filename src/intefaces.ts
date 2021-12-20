@@ -23,3 +23,9 @@ export interface IBasicOptions {
   autoBuy: boolean
   showNotify: boolean
 }
+
+export interface IUserInfo {
+  address: string,
+  token: string,
+  network: string,
+}

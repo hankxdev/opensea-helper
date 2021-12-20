@@ -3,7 +3,7 @@ import * as cheerio from 'cheerio'
 import { ACTION_NAME, crm } from '../../consts'
 
 import { CMD_NAME } from '../../consts';
-import { ITrackingCollection } from '../intefaces';
+import { ITrackingCollection } from '../../intefaces';
 import { getCollectionData } from '../Popup/services';
 import { getData } from '../../storage'
 import { loopWithDelay } from '../../utils';

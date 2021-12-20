@@ -1,24 +1,23 @@
-import "../login.scss"
+import '../login.scss'
 
 import * as React from 'react'
 
-import {Box, Button, Flex} from '@chakra-ui/react'
+import { Box, Button, Flex } from '@chakra-ui/react'
 
 const LoginSection = () => {
-
-  const [ButtonText, setButtonText] = React.useState('Login With Discord')
-
   return (
     <Flex className="login">
       <Box>
-        <Button>
-          {ButtonText}
+        <Button
+          onClick={() => {
+            chrome.tabs.create({ url: 'options.html' })
+          }}
+        >
+          Login with MetaMask
         </Button>
       </Box>
-      
     </Flex>
   )
 }
-
 
 export default LoginSection
