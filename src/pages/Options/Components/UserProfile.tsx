@@ -26,19 +26,16 @@ interface IVerifyResponse {
 }
 
 const API = {
-  getNonce: 'http://127.0.0.1:5001/nifty-owl/us-central1/getNonceToSign',
+  getNonce: 'https://us-central1-nifty-owl.cloudfunctions.net/getNonceToSign',
   verifyMessage:
-    'http://127.0.0.1:5001/nifty-owl/us-central1/verifySignedMessage',
+    'https://us-central1-nifty-owl.cloudfunctions.net/verifySignedMessage',
 }
-// const API = {
-//   getNonce: 'https://us-central1-nifty-owl.cloudfunctions.net/getNonceToSign',
-//   verifyMessage:
-//     'https://us-central1-nifty-owl.cloudfunctions.net/verifySignedMessage',
-// }
 
 const UserProfile = ({ account, network, provider }: IProps) => {
   const [verified, setVerified] = useState(false)
   const [nonce, setNonce] = useState('')
+  const [token, setToken] = useState('')
+  const [isVerifying, setIsVerifying] = useState(false)
 
   const toast = useToast()
   const showError = (error: string) => {
@@ -58,6 +55,7 @@ const UserProfile = ({ account, network, provider }: IProps) => {
   }
 
   const verifyAcount = async () => {
+    setIsVerifying(true)
     let errorMsg = ''
     if (account === '') {
       errorMsg = 'not connected'
@@ -67,83 +65,97 @@ const UserProfile = ({ account, network, provider }: IProps) => {
         duration: 3000,
         isClosable: true,
       })
+      setIsVerifying(false)
       return
-    } else {
-      let nonceResponse
-      let nonce
-      try {
-        const data = JSON.stringify({
-          address: account,
-        })
-
-        const config = {
-          method: 'post' as Method,
-          url: API.getNonce,
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          data,
-        }
-
-        nonceResponse = await axios(config)
-        
-        nonce = nonceResponse.data.nonce
-      } catch (e) {
-        console.log(e)
-        showError('error getting nonce')
-        return
-      }
-      if (!nonce) {
-        showError('error getting nonce')
-        return
-      }
-
-      const signature = await provider.request({
-        method: 'personal_sign',
-        params: ['0x' + toHex(nonce), account],
+    }
+    let nonceResponse
+    let nonce
+    try {
+      const data = JSON.stringify({
+        address: account,
       })
 
-      console.log(signature)
-
-      if (!signature) {
-        showError('Looks like you are not able to sign messages')
-        return
+      const config = {
+        method: 'post' as Method,
+        url: API.getNonce,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        data,
       }
 
-      try {
-        const verifyResponse = await axios.post(API.verifyMessage, {
+      nonceResponse = await axios(config)
+
+      nonce = nonceResponse.data.nonce
+    } catch (e) {
+      console.log(e)
+      showError('error getting nonce')
+      setIsVerifying(false)
+      return
+    }
+    if (!nonce) {
+      showError('error getting nonce')
+      setIsVerifying(false)
+      return
+    }
+
+    const signature = await provider.request({
+      method: 'personal_sign',
+      params: ['0x' + toHex(nonce), account],
+    })
+
+    if (!signature) {
+      showError('Looks like you are not able to sign messages')
+      setIsVerifying(false)
+      return
+    }
+
+    try {
+      const verifyResponse = await axios.post(API.verifyMessage, {
+        address: account,
+        signature,
+        nonce: nonce,
+      })
+
+      setToken(verifyResponse.data.token)
+      setVerified(true)
+      setIsVerifying(false)
+      chrome.storage.sync.set({
+        user: {
           address: account,
-          signature,
-          nonce: nonce,
-        })
-
-        setVerified(verifyResponse.data.token)
-      } catch (e) {
-        console.log(e)
-        showError('error verifying message')
-      }
+          network,
+          token: verifyResponse.data.token,
+        },
+      })
+    } catch (e) {
+      console.log(e)
+      showError('error verifying message')
+      setIsVerifying(false)
     }
   }
 
   return (
-    <Center>
-      <Flex color="white" flexDir="column">
-        <Box fontSize="1.4rem">
-          <Text>Your Account: {account}</Text>
-          <Text>Current Network:{network}</Text>
-        </Box>
+    <Flex flexDir="column" maxW="335px" alignItems="center">
+      <Box fontSize="1rem" w="100%">
+        <Text noOfLines={3}>Your Account: {account}</Text>
+      </Box>
+      {verified ? (
+        <Text fontSize="1.2rem" color="green">
+          Verified! Now you can use the extension.
+        </Text>
+      ) : (
         <Box>
           <Button
-            color="black"
+            isLoading={isVerifying}
             onClick={() => {
               verifyAcount()
             }}
           >
-            Verify Your Account
+            Verify Account
           </Button>
         </Box>
-      </Flex>
-    </Center>
+      )}
+    </Flex>
   )
 }
 
