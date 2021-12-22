@@ -13,7 +13,7 @@ import axios, { Method } from 'axios'
 
 import { IUserInfo } from '../../../intefaces'
 import { checkToken } from '../../../utils'
-import {removeData} from  '../../../storage'
+import { removeData } from '../../../storage'
 
 interface IProps {
   account: string
@@ -121,13 +121,21 @@ const UserProfile = ({ account, network, provider }: IProps) => {
       setToken(token)
       setVerified(true)
       setIsVerifying(false)
-      chrome.storage.sync.set({
-        user: {
-          address: account,
-          network,
-          token,
-        } as IUserInfo,
-      })
+      chrome.storage.sync.set(
+        {
+          user: {
+            address: account,
+            network,
+            token,
+          } as IUserInfo,
+        },
+        () => {
+          chrome.runtime.sendMessage({
+            cmd: 'updateVerifyStatus',
+            verified: true,
+          })
+        }
+      )
     } catch (e) {
       console.log(e)
       showError('error verifying message')

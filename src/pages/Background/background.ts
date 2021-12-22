@@ -130,7 +130,7 @@ const getRarityURL = (tokenId: string, collectionName: string): string => {
 
 
 crm.r.onMessage.addListener((req, sender, sendResponse) => {
-  if (!verified) {
+  if (!verified && req.cmd !== 'updateVerifyStatus') {
     return
   }
   switch (req.cmd) {
@@ -156,5 +156,9 @@ crm.r.onMessage.addListener((req, sender, sendResponse) => {
         )
       })
       break;
+    case 'updateVerifyStatus':
+      verified = req.data.verified
+      break;
+
   }
 })
