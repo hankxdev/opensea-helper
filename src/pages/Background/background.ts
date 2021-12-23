@@ -159,6 +159,5 @@ crm.r.onMessage.addListener((req, sender, sendResponse) => {
     case 'updateVerifyStatus':
       verified = req.verified
       break;
-
   }
 })

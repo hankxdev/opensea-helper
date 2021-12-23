@@ -1,5 +1,4 @@
-import { isTypeNode } from "typescript";
-
+const expiresIn = 48 * 60 * 60 * 1000;
 interface IDecodedToken {
   aud: string;
   exp: number
@@ -51,5 +50,5 @@ export const parseJwt = (token: string): IDecodedToken => {
 
 export const checkToken = (address: string, token: string): boolean => {
   const decodedToken = parseJwt(token);
-  return decodedToken.uid === address && decodedToken.exp > Date.now() / 1000;
+  return decodedToken.uid === address && decodedToken.exp * 1000 + expiresIn  > Date.now();
 }

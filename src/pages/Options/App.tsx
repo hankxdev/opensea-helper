@@ -97,6 +97,7 @@ export default function App() {
           <Image w="300px" src={MetaMaskIcon} />
           {!isConnected ? (
             <Button
+            className='submitbutton'
               isLoading={isConnecting}
               onClick={() => {
                 connectWithMetaMask()
