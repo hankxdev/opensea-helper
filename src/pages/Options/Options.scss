@@ -15,17 +15,20 @@ body {
   justify-content: center;
 }
 
-button {
-  background: linear-gradient(
-    145deg,
-    rgba(96, 86, 175, 1) 0%,
-    rgba(126, 116, 208, 1) 100%
-  );
-  &:hover {
-    background: linear-gradient(
-      145deg,
-      rgb(26, 20, 65) 0%,
-      rgb(14, 12, 26) 100%
-    );
-  }
+.submitbutton {
+  font-size: 10px !important;
+  text-transform: uppercase;
+  cursor: pointer;
+  opacity: 0.8;
+  background: linear-gradient(145deg, #6056af 0%, #7e74d0 100%) !important;
+  border-radius: 2px;
+  padding: 5px;
+  height: 100%;
+  transition: all 0.25s ease;
+  margin-top: 10px;
+  color: white;
+}
+
+.submitbutton:hover {
+  opacity: 1;
 }

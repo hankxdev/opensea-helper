@@ -1,4 +1,10 @@
+import '../Options.scss'
+
 import {
+  Alert,
+  AlertDescription,
+  AlertIcon,
+  AlertTitle,
   Box,
   Button,
   Center,
@@ -142,17 +148,28 @@ const UserProfile = ({ account, network, provider }: IProps) => {
     }
   }
   return (
-    <Flex flexDir="column" maxW="335px" alignItems="center">
+    <Flex
+      flexDir="column"
+      maxW="335px"
+      justfyCotent="center"
+      alignItems="center"
+    >
       <Box fontSize="1rem" w="100%">
-        <Text noOfLines={3}>Your Account: {account}</Text>
+        <Alert status="success" variant="subtle" alignItems="center">
+          <AlertIcon />
+          <Text wordBreak="break-word">Your Account: {account}</Text>
+        </Alert>
       </Box>
       {verified ? (
-        <Text fontSize="1.2rem" color="green">
+        <Alert status="success" variant="solid">
+          <AlertIcon />
           Verified! Now you can use the extension.
-        </Text>
+        </Alert>
       ) : (
-        <Box>
+        <Box width="100%">
           <Button
+            w="100%"
+            className="submitbutton"
             isLoading={isVerifying}
             onClick={() => {
               verifyAcount()
