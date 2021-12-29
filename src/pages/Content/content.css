@@ -1,119 +1,118 @@
 .owl-buy-now-button {
-  position: absolute;
-  bottom: 0;
+    position: absolute;
+    bottom: 0;
 }
 
 /* CSS */
 .owl-buy-now-button {
-  background: linear-gradient(145deg, #6056af 0%, #7e74d0 100%);
-  border:0;
-  cursor: pointer;
-  display: inline-block;
-  font-weight: 500;
-  line-height: 2.5;
-  outline: transparent;
-  padding: 0 1rem;
-  text-align: center;
-  text-decoration: none;
-  transition: box-shadow 0.2s ease-in-out;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  white-space: nowrap;
-  width: 100%;
-  height: 40px;
-  color: #fff;
-  border-radius: 0px 0px 10px 10px;
-  font-size: 12px;
-  text-transform: uppercase;
-  opacity:0.8;
+    background: linear-gradient(145deg, #6056af 0%, #7e74d0 100%);
+    border: 0;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 500;
+    line-height: 2.5;
+    outline: transparent;
+    padding: 0 1rem;
+    text-align: center;
+    text-decoration: none;
+    transition: box-shadow 0.2s ease-in-out;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    width: 100%;
+    height: 40px;
+    color: #fff;
+    border-radius: 0px 0px 10px 10px;
+    font-size: 12px;
+    text-transform: uppercase;
+    opacity: 0.8;
 }
 
 .owl-buy-now-button:hover {
- opacity: 1.0;
- transition: all 0.25s ease;
- letter-spacing: 1px;
+    opacity: 1.0;
+    transition: all 0.25s ease;
+    letter-spacing: 1px;
 }
 
 .owl-buy-now-button:not([disabled]):focus {
-  box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.5),
-    -0.125rem -0.125rem 1rem   rgba(96, 86, 175, 1) 0%,
+    box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.5),
+    -0.125rem -0.125rem 1rem rgba(96, 86, 175, 1) 0%,
     0.125rem 0.125rem 1rem rgba(126, 116, 208, 1) 100%;
 }
 
 .owl-buy-now-button:not([disabled]):hover {
-  box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.5),
-    -0.125rem -0.125rem 1rem   rgba(96, 86, 175, 1) 0%,
+    box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.5),
+    -0.125rem -0.125rem 1rem rgba(96, 86, 175, 1) 0%,
     0.125rem 0.125rem 1rem rgba(126, 116, 208, 1) 100%;
 }
 
-.owl-buy-now-button-small{
-  background: linear-gradient(145deg, #6056af 0%, #7e74d0 100%);
-  border:0;
-  cursor: pointer;
-  display: inline-block;
-  font-weight: 500;
-  line-height: 2.5;
-  outline: transparent;
-  padding: 0 0.2rem;
-  text-align: center;
-  text-decoration: none;
-  transition: box-shadow 0.2s ease-in-out;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  white-space: nowrap;
-  width: 80px;
-  height: 30px;
-  color: #fff;
-  font-size: 10px;
-  text-transform: uppercase;
-  opacity:0.8;
-  border-radius:5px;
+.owl-buy-now-button-small {
+    background: linear-gradient(145deg, #6056af 0%, #7e74d0 100%);
+    border: 0;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 500;
+    line-height: 2.5;
+    outline: transparent;
+    padding: 0 0.2rem;
+    text-align: center;
+    text-decoration: none;
+    transition: box-shadow 0.2s ease-in-out;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    width: 80px;
+    height: 30px;
+    color: #fff;
+    font-size: 10px;
+    text-transform: uppercase;
+    opacity: 0.8;
+    border-radius: 5px;
 }
 
-.owl-buy-now-button-small:hover{
-  transition: all 0.5s ease;
-  opacity:1.0;
+.owl-buy-now-button-small:hover {
+    transition: all 0.5s ease;
+    opacity: 1.0;
 }
 
 
-
-.owl-rarity-container-activity{
-  background-color:#FF4136 !important;
-  height: 30px !important;
-  position: static !important;
-  font-size: 10px !important;
-  margin-right: 2px;
-  border-radius:5px!important;
-  color:white;
-  line-height:20px !important;
-  font-weight:500!important;
+.owl-rarity-container-activity {
+    background-color: #FF4136 !important;
+    height: 30px !important;
+    position: static !important;
+    font-size: 10px !important;
+    margin-right: 2px;
+    border-radius: 5px !important;
+    color: white;
+    line-height: 20px !important;
+    font-weight: 500 !important;
 }
 
 footer {
-  display:none!important;
+    display: none !important;
 }
 
 
 .CollectionHeaderreact__DivContainer-sc-1woywpk-0 {
-  display: none!important;
+    display: none !important;
 }
 
 .CollectionHeader--info {
-  display:flex!important;
+    display: flex !important;
 }
 
 
-.owl-rarity-container{
-  position: absolute;
-  top:0 ;
-  right:0;
-  background-color: #6056af;
-  padding: 5px;
-  border-radius: 0px 0px 0px 5px!important;
-  text-transform:uppercase;
-  font-size:10px;
+.owl-rarity-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #6056af;
+    padding: 5px;
+    border-radius: 0px 0px 0px 5px !important;
+    text-transform: uppercase;
+    font-size: 10px;
 }
 
 /*
@@ -198,3 +197,45 @@ footer {
   align-content: space-around;
 }
 */
+
+/*
+track collection popup
+ */
+
+.owl-add-collection-pop {
+    width: 350px;
+    height: 350px;
+    border: 1px solid gray;
+    box-shadow: 10px 10px 10px gray;
+    position: absolute;
+    top: 200px;
+    left: 50%;
+    margin-left: -175px;
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    pading: 10px
+}
+
+.owl-add-collection-close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.owl-add-collection-title {
+
+}
+
+.owl-add-collection-price {
+
+}
+
+.owl-add-collection-pop-button {
+
+}
