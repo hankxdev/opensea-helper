@@ -17,6 +17,7 @@ const checkUser = () => {
       if (!i.user) {
         verified = false
         resolve(false)
+        return
       }
       const { token, address } = i.user
       verified = checkToken(address, token)
