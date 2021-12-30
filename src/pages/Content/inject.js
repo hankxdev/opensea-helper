@@ -18,9 +18,11 @@ chrome.storage.sync.get(["options", 'user'], i => {
 	if (!checkToken(address, token)) {
 		return
 	}
+	setInterval(()=>{
+		appendCollectionBtn()
+	}, 500)
 	const options = i.options ? i.options : defaultOptions;
 	injectBuyNowButtonScript(options);
-
 })
 
 const injectBuyNowButtonScript = options => {

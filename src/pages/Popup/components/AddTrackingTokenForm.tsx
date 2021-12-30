@@ -13,7 +13,10 @@ import {
 
 import {ArrowBackIcon} from '@chakra-ui/icons'
 import {ITrackingCollection} from '../../../intefaces'
-import {crm} from "../../../consts";
+import {ACTION_NAME, crm} from "../../../consts";
+import {useEffect} from "react";
+import {getData, saveData} from "../../../storage";
+import {getCollectionData} from "../services";
 
 interface IProps {
   token: ITrackingCollection
@@ -57,7 +60,7 @@ const AddTrackingCollectionForm = ({token, onCancel}: IProps) => {
     })
   }
 
-  const saveCollection = () => {
+  const saveCollection = async () => {
     if (
       collection.name === '' ||
       collection.url === '' ||
@@ -72,28 +75,34 @@ const AddTrackingCollectionForm = ({token, onCancel}: IProps) => {
       })
       return
     }
+    setCollection(collection)
     setIsSaving(true)
-    crm.r.sendMessage({
-      cmd: "addCollection", data: collection
+    const result = await getData(ACTION_NAME.TRACKING_TOKEN_LIST) as Array<ITrackingCollection>
+    let collections = result ? result : []
+    const extraData = await getCollectionData(collection)
+    collection.banner = extraData.collection.banner_image_url
+    collection.currentPrice = extraData.collection.stats.floor_price
+    collection.tracking = true
+    const collectionIndex = collections.findIndex(
+      (item: ITrackingCollection) => item.url === collection.url
+    )
+    if (collectionIndex !== -1) {
+      collections[collectionIndex] = collection
+    } else {
+      collections.push(collection)
+    }
+    await saveData(ACTION_NAME.TRACKING_TOKEN_LIST, collections)
+    toast({
+      title: `${collection.name} has been added`,
+      status: 'success',
+      position: 'top',
+      isClosable: true,
     })
+    setIsSaving(false)
+    resetCollection()
   }
 
 
-  /**
-   * listen to the runtime message
-   */
-  crm.r.onMessage.addListener((req, sender, sendResponse) => {
-    if (req.cmd === "collectionAdded") {
-      toast({
-        title: `${collection.name} has been added`,
-        status: 'success',
-        position: 'top',
-        isClosable: true,
-      })
-      setIsSaving(false)
-      resetCollection()
-    }
-  })
   return (
     <Flex flexDir="column">
       <Flex justifyContent="space-between">

@@ -129,23 +129,31 @@ const getRarityURL = (tokenId: string, collectionName: string): string => {
   return `https://apexgo-api.herokuapp.com/v1/getToken?token_id=${tokenId}&collection_name=${collectionName}`;
 }
 
-const saveTrackingCollection = async (collection: ITrackingCollection) => {
-  const result = await getData(ACTION_NAME.TRACKING_TOKEN_LIST) as Array<ITrackingCollection>
-  let collections = result ? result : []
-  const extraData = await getCollectionData(collection)
-  collection.banner = extraData.collection.banner_image_url
-  collection.currentPrice = extraData.collection.stats.floor_price
-  collection.tracking = true
-  const collectionIndex = collections.findIndex(
-    (item: ITrackingCollection) => item.url === collection.url
-  )
-  if (collectionIndex !== -1) {
-    collections[collectionIndex] = collection
-  } else {
-    collections.push(collection)
+const saveTrackingCollection = async (collection: ITrackingCollection, sender: chrome.runtime.MessageSender) => {
+  try{
+    const result = await getData(ACTION_NAME.TRACKING_TOKEN_LIST) as Array<ITrackingCollection>
+    let collections = result ? result : []
+    const extraData = await getCollectionData(collection)
+    collection.banner = extraData.collection.banner_image_url
+    collection.currentPrice = extraData.collection.stats.floor_price
+    collection.tracking = true
+    const collectionIndex = collections.findIndex(
+      (item: ITrackingCollection) => item.url === collection.url
+    )
+    if (collectionIndex !== -1) {
+      collections[collectionIndex] = collection
+    } else {
+      collections.push(collection)
+    }
+    await saveData(ACTION_NAME.TRACKING_TOKEN_LIST, collections)
+    // @ts-ignore
+    crm.t.sendMessage(sender.tab.id, {cmd: "collectionAdded"})
+  }catch (e){
+    // @ts-ignore
+    crm.t.sendMessage(sender.tab.id, {cmd: "collectionNotAdded"})
   }
-  await saveData(ACTION_NAME.TRACKING_TOKEN_LIST, collections)
-  crm.r.sendMessage({cmd: "collectionAdded"})
+
+
 }
 
 const getRarityToken = async () => {
@@ -191,7 +199,7 @@ crm.r.onMessage.addListener((req, sender, sendResponse) => {
         tracking: true,
         url,
         price,
-      })
+      }, sender)
       break;
   }
 })

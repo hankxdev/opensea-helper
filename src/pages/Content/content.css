@@ -204,7 +204,7 @@ track collection popup
 
 .owl-add-collection-pop {
     width: 350px;
-    height: 350px;
+    height: 120px;
     border: 1px solid gray;
     box-shadow: 10px 10px 10px gray;
     position: absolute;
@@ -215,7 +215,7 @@ track collection popup
     border-radius: 5px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     pading: 10px
 }
