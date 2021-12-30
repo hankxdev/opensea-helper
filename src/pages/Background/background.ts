@@ -1,12 +1,12 @@
 import * as cheerio from 'cheerio'
 
-import { ACTION_NAME, crm } from '../../consts'
-import { checkToken, loopWithDelay } from '../../utils';
-import { getData, removeData, saveData } from '../../storage'
+import {ACTION_NAME, crm} from '../../consts'
+import {checkToken, loopWithDelay} from '../../utils';
+import {getData, removeData, saveData} from '../../storage'
 
-import { CMD_NAME } from '../../consts';
-import { ITrackingCollection } from '../../intefaces';
-import { getCollectionData } from '../Popup/services';
+import {CMD_NAME} from '../../consts';
+import {ITrackingCollection} from '../../intefaces';
+import {getCollectionData} from '../Popup/services';
 
 const tracking = true // todo make it as a setting
 
@@ -19,7 +19,7 @@ const checkUser = () => {
         resolve(false)
         return
       }
-      const { token, address } = i.user
+      const {token, address} = i.user
       verified = checkToken(address, token)
       if (!verified) {
         removeData('user')
@@ -121,12 +121,43 @@ const scanCollectionPage = async (url: string) => {
   const firstToken = $('article').first().find('a').first().attr('href') || ''
   // opent this token in opensea
   // TODO make it as a setting
-  chrome.tabs.create({ url: buildAssetURL(firstToken) })
+  chrome.tabs.create({url: buildAssetURL(firstToken)})
 }
 
 
 const getRarityURL = (tokenId: string, collectionName: string): string => {
   return `https://apexgo-api.herokuapp.com/v1/getToken?token_id=${tokenId}&collection_name=${collectionName}`;
+}
+
+const saveTrackingCollection = async (collection: ITrackingCollection, sender: chrome.runtime.MessageSender) => {
+  try{
+    const result = await getData(ACTION_NAME.TRACKING_TOKEN_LIST) as Array<ITrackingCollection>
+    let collections = result ? result : []
+    const extraData = await getCollectionData(collection)
+    collection.banner = extraData.collection.banner_image_url
+    collection.currentPrice = extraData.collection.stats.floor_price
+    collection.tracking = true
+    const collectionIndex = collections.findIndex(
+      (item: ITrackingCollection) => item.url === collection.url
+    )
+    if (collectionIndex !== -1) {
+      collections[collectionIndex] = collection
+    } else {
+      collections.push(collection)
+    }
+    await saveData(ACTION_NAME.TRACKING_TOKEN_LIST, collections)
+    // @ts-ignore
+    crm.t.sendMessage(sender.tab.id, {cmd: "collectionAdded"})
+  }catch (e){
+    // @ts-ignore
+    crm.t.sendMessage(sender.tab.id, {cmd: "collectionNotAdded"})
+  }
+
+
+}
+
+const getRarityToken = async () => {
+
 }
 
 
@@ -136,7 +167,7 @@ crm.r.onMessage.addListener((req, sender, sendResponse) => {
   }
   switch (req.cmd) {
     case CMD_NAME.GET_TOKEN_RARITY:
-      const { tokenId, collectionName } = req.data
+      const {tokenId, collectionName} = req.data
 
       const myHeaders = new Headers();
       myHeaders.append("Authorization", `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlfQ.9zwFEsTv43zB7vv-4nJ_KShuUb0EzzH5pfZrqN154rw`);
@@ -151,14 +182,24 @@ crm.r.onMessage.addListener((req, sender, sendResponse) => {
       fetch(getRarityURL(tokenId, collectionName), requestOptions).then(res => res.json()).then(res => {
         // @ts-ignore
         chrome.tabs.sendMessage(sender.tab.id, {
-          cmd: CMD_NAME.SET_TOKEN_RARITY,
-          data: res
-        }
+            cmd: CMD_NAME.SET_TOKEN_RARITY,
+            data: res
+          }
         )
       })
       break;
     case 'updateVerifyStatus':
       verified = req.verified
+      break;
+    case 'addCollection':
+      const {name, url, price} = req.data
+      saveTrackingCollection({
+        address: url,
+        name,
+        tracking: true,
+        url,
+        price,
+      }, sender)
       break;
   }
 })

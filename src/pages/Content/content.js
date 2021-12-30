@@ -1,7 +1,6 @@
 import { Network, OpenSeaPort } from 'opensea-js'
 
 import $ from 'jquery'
-import detectEthereumProvider from '@metamask/detect-provider'
 
 let seaport = null
 

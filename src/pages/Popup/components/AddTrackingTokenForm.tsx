@@ -4,27 +4,26 @@ import {
   Button,
   Flex,
   FormControl,
-  FormErrorMessage,
-  FormHelperText,
   FormLabel,
   Input,
   Spinner,
   Text,
   useToast,
 } from '@chakra-ui/react'
-import { getData, saveData } from '../../../storage'
 
-import { ACTION_NAME } from '../../../consts'
-import { ArrowBackIcon } from '@chakra-ui/icons'
-import { ITrackingCollection } from '../../../intefaces'
-import { getCollectionData } from '../services'
+import {ArrowBackIcon} from '@chakra-ui/icons'
+import {ITrackingCollection} from '../../../intefaces'
+import {ACTION_NAME, crm} from "../../../consts";
+import {useEffect} from "react";
+import {getData, saveData} from "../../../storage";
+import {getCollectionData} from "../services";
 
 interface IProps {
   token: ITrackingCollection
   onCancel: Function
 }
 
-const AddTrackingCollectionForm = ({ token, onCancel }: IProps) => {
+const AddTrackingCollectionForm = ({token, onCancel}: IProps) => {
   const toast = useToast()
   const [collection, setCollection] = React.useState<ITrackingCollection>(token)
   const [isSaving, setIsSaving] = React.useState(false)
@@ -61,7 +60,7 @@ const AddTrackingCollectionForm = ({ token, onCancel }: IProps) => {
     })
   }
 
-  const saveCollection = () => {
+  const saveCollection = async () => {
     if (
       collection.name === '' ||
       collection.url === '' ||
@@ -69,43 +68,40 @@ const AddTrackingCollectionForm = ({ token, onCancel }: IProps) => {
       collection.price < 0
     ) {
       toast({
-        title: `All fields are required, please chekc`,
+        title: `All fields are required, please check`,
         status: 'error',
         position: 'top',
         isClosable: true,
       })
       return
     }
+    setCollection(collection)
     setIsSaving(true)
-
-    getData(ACTION_NAME.TRACKING_TOKEN_LIST).then(
-      async (result: Array<ITrackingCollection>) => {
-        let collections = result ? result : []
-        const extraData = await getCollectionData(collection)
-        collection.banner = extraData.collection.banner_image_url
-        collection.currentPrice = extraData.collection.stats.floor_price
-        collection.tracking = true
-        const collectionIndex = collections.findIndex(
-          (item: ITrackingCollection) => item.url === collection.url
-        )
-        if (collectionIndex !== -1) {
-          collections[collectionIndex] = collection
-        } else {
-          collections.push(collection)
-        }
-        saveData(ACTION_NAME.TRACKING_TOKEN_LIST, collections).then(() => {
-          toast({
-            title: `${collection.name} has been added`,
-            status: 'success',
-            position: 'top',
-            isClosable: true,
-          })
-          setIsSaving(false)
-          resetCollection()
-        })
-      }
+    const result = await getData(ACTION_NAME.TRACKING_TOKEN_LIST) as Array<ITrackingCollection>
+    let collections = result ? result : []
+    const extraData = await getCollectionData(collection)
+    collection.banner = extraData.collection.banner_image_url
+    collection.currentPrice = extraData.collection.stats.floor_price
+    collection.tracking = true
+    const collectionIndex = collections.findIndex(
+      (item: ITrackingCollection) => item.url === collection.url
     )
+    if (collectionIndex !== -1) {
+      collections[collectionIndex] = collection
+    } else {
+      collections.push(collection)
+    }
+    await saveData(ACTION_NAME.TRACKING_TOKEN_LIST, collections)
+    toast({
+      title: `${collection.name} has been added`,
+      status: 'success',
+      position: 'top',
+      isClosable: true,
+    })
+    setIsSaving(false)
+    resetCollection()
   }
+
 
   return (
     <Flex flexDir="column">
@@ -157,7 +153,7 @@ const AddTrackingCollectionForm = ({ token, onCancel }: IProps) => {
         />
       </FormControl>
       <Button className="submitbutton" onClick={saveCollection}>
-        {isSaving ? <Spinner color="red.500" /> : 'Save'}
+        {isSaving ? <Spinner color="red.500"/> : 'Save'}
       </Button>
       <Button className="cancelbutton" onClick={handleCancel}>
         Cancel

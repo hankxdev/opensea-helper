@@ -4,10 +4,9 @@ export interface ITrackingCollection {
   tracking: boolean,
   url: string,
   price: number,
-  banner: string,
-  currentPrice: number
+  banner?: string,
+  currentPrice?: number
 }
-
 
 
 export interface IGasFee {
