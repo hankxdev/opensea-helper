@@ -4,27 +4,23 @@ import {
   Button,
   Flex,
   FormControl,
-  FormErrorMessage,
-  FormHelperText,
   FormLabel,
   Input,
   Spinner,
   Text,
   useToast,
 } from '@chakra-ui/react'
-import { getData, saveData } from '../../../storage'
 
-import { ACTION_NAME } from '../../../consts'
-import { ArrowBackIcon } from '@chakra-ui/icons'
-import { ITrackingCollection } from '../../../intefaces'
-import { getCollectionData } from '../services'
+import {ArrowBackIcon} from '@chakra-ui/icons'
+import {ITrackingCollection} from '../../../intefaces'
+import {crm} from "../../../consts";
 
 interface IProps {
   token: ITrackingCollection
   onCancel: Function
 }
 
-const AddTrackingCollectionForm = ({ token, onCancel }: IProps) => {
+const AddTrackingCollectionForm = ({token, onCancel}: IProps) => {
   const toast = useToast()
   const [collection, setCollection] = React.useState<ITrackingCollection>(token)
   const [isSaving, setIsSaving] = React.useState(false)
@@ -69,7 +65,7 @@ const AddTrackingCollectionForm = ({ token, onCancel }: IProps) => {
       collection.price < 0
     ) {
       toast({
-        title: `All fields are required, please chekc`,
+        title: `All fields are required, please check`,
         status: 'error',
         position: 'top',
         isClosable: true,
@@ -77,36 +73,27 @@ const AddTrackingCollectionForm = ({ token, onCancel }: IProps) => {
       return
     }
     setIsSaving(true)
-
-    getData(ACTION_NAME.TRACKING_TOKEN_LIST).then(
-      async (result: Array<ITrackingCollection>) => {
-        let collections = result ? result : []
-        const extraData = await getCollectionData(collection)
-        collection.banner = extraData.collection.banner_image_url
-        collection.currentPrice = extraData.collection.stats.floor_price
-        collection.tracking = true
-        const collectionIndex = collections.findIndex(
-          (item: ITrackingCollection) => item.url === collection.url
-        )
-        if (collectionIndex !== -1) {
-          collections[collectionIndex] = collection
-        } else {
-          collections.push(collection)
-        }
-        saveData(ACTION_NAME.TRACKING_TOKEN_LIST, collections).then(() => {
-          toast({
-            title: `${collection.name} has been added`,
-            status: 'success',
-            position: 'top',
-            isClosable: true,
-          })
-          setIsSaving(false)
-          resetCollection()
-        })
-      }
-    )
+    crm.r.sendMessage({
+      cmd: "addCollection", data: collection
+    })
   }
 
+
+  /**
+   * listen to the runtime message
+   */
+  crm.r.onMessage.addListener((req, sender, sendResponse) => {
+    if (req.cmd === "collectionAdded") {
+      toast({
+        title: `${collection.name} has been added`,
+        status: 'success',
+        position: 'top',
+        isClosable: true,
+      })
+      setIsSaving(false)
+      resetCollection()
+    }
+  })
   return (
     <Flex flexDir="column">
       <Flex justifyContent="space-between">
@@ -157,7 +144,7 @@ const AddTrackingCollectionForm = ({ token, onCancel }: IProps) => {
         />
       </FormControl>
       <Button className="submitbutton" onClick={saveCollection}>
-        {isSaving ? <Spinner color="red.500" /> : 'Save'}
+        {isSaving ? <Spinner color="red.500"/> : 'Save'}
       </Button>
       <Button className="cancelbutton" onClick={handleCancel}>
         Cancel

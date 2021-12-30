@@ -60,6 +60,7 @@ $('body').on("click", '.owl-add-collection', function () {
 			name, url, price
 		}
 	})
+	that.parent().remove()
 	alert("Collection added, goto popup to check it")
 }).on("click", '.owl-add-collection-close', function (){
 	const that = $(this)
