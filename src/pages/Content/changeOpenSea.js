@@ -54,7 +54,7 @@ $('body').on("click", '.owl-add-collection', function () {
 	const name = that.data('name')
 	let url = that.data('url')
 	let collectionName = url.replace('/collection/', '').replace(/\//ig, '')
-	url = 'https://opensea.io/' + url
+	url = 'https://opensea.io/collection/' + collectionName
 	const price = that.parent().find('input').val().trim()
 	if (!name || !url || !price) {
 		alert("collection name, url, and price can not be empty")

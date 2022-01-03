@@ -168,7 +168,6 @@ crm.r.onMessage.addListener((req, sender, sendResponse) => {
   switch (req.cmd) {
     case CMD_NAME.GET_TOKEN_RARITY:
       const {tokenId, collectionName} = req.data
-
       const myHeaders = new Headers();
       myHeaders.append("Authorization", `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlfQ.9zwFEsTv43zB7vv-4nJ_KShuUb0EzzH5pfZrqN154rw`);
 
