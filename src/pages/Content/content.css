@@ -205,19 +205,18 @@ track collection popup
 .owl-add-collection-pop {
     width: 350px;
     height: 120px;
-    border: 1px solid gray;
-    box-shadow: 10px 10px 10px gray;
     position: absolute;
     top: 200px;
     left: 50%;
     margin-left: -175px;
-    background-color: white;
+    background: linear-gradient(145deg, #6056af 0%, #7e74d0 100%);
     border-radius: 5px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    pading: 10px
+    padding: 10px;
+    box-shadow: 0 0 0 100000px rgb(0 0 0 / 60%);
 }
 
 .owl-add-collection-close {
@@ -229,13 +228,47 @@ track collection popup
 }
 
 .owl-add-collection-title {
+  font-size:12px;
+}
 
+.owl-add-collection-price-input {
+  color: #000;
+  border-radius: 5px;
+  border: none;
+  margin-right: 2px;
+  margin-left: 2px;
+  outline: none;
 }
 
 .owl-add-collection-price {
-
+  font-size:10px;
+  margin-left:5px;
 }
 
 .owl-add-collection-pop-button {
+  color: #fff;
+    border-radius: 5px;
+    border: none;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 500;
+    background: #000;
+}
 
+.owl-add-collection {
+  margin-left: 10px;
+  padding: 4px;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 500;
+  color: #fff;
+  background: linear-gradient(145deg, rgb(96, 86, 175) 0%, rgb(126, 116, 208) 100%);
+  border:none;
+  border-radius:5px;
+  opacity: 0.8;
+}
+
+.owl-add-collection:hover{
+  transition: all 0.5s ease;
+  opacity: 1.0;
 }

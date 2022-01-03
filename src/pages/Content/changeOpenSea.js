@@ -12,7 +12,7 @@ const createAddCollectionPopup = (name, url) => {
 		<div class="owl-add-collection-title">${name}</div>
 		<div class="owl-add-collection-price">Price: 
 		<input class="owl-add-collection-price-input"  type="number"/>eth</div>
-		<button class="owl-add-collection-pop-button" data-name="${name}" data-url="${url}"> Track It</button>
+		<button class="owl-add-collection-pop-button" data-name="${name}" data-url="${url}"> Monitor</button>
 	</div>`
 
 	return addCollectionPopup
@@ -24,7 +24,7 @@ const createAddCollectionPopup = (name, url) => {
  */
 const createAddCollectionBtn = (name, url) => {
 	return `
-<button class="owl-add-collection" data-name="${name}" data-url="${url}"> Track </button>`
+<button class="owl-add-collection" data-name="${name}" data-url="${url}"> Monitor </button>`
 }
 
 
