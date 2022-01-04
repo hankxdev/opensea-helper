@@ -14,12 +14,12 @@ import {
   Text,
   useToast,
 } from '@chakra-ui/react'
-import React, { useEffect, useState } from 'react'
-import axios, { Method } from 'axios'
+import React, {useEffect, useState} from 'react'
+import axios, {Method} from 'axios'
 
-import { IUserInfo } from '../../../intefaces'
-import { checkToken } from '../../../utils'
-import { removeData } from '../../../storage'
+import {IUserInfo} from '../../../intefaces'
+import {checkToken} from '../../../utils'
+import {removeData} from '../../../storage'
 
 interface IProps {
   account: string
@@ -36,12 +36,23 @@ interface IVerifyResponse {
 }
 
 const API = {
-  getNonce: 'https://us-central1-nifty-owl.cloudfunctions.net/getNonceToSign',
-  verifyMessage:
-    'https://us-central1-nifty-owl.cloudfunctions.net/verifySignedMessage',
+  baseURL: (remote?: boolean) => {
+    let url = 'https://us-central1-nifty-owl.cloudfunctions.net/'
+    if (!remote) {
+      url = 'http://localhost:5001/nifty-owl/us-central1/'
+    }
+    return url
+  },
+
+  getNonce: () => {
+    return API.baseURL() + 'getNonceToSign'
+  },
+  verifyMessage: () => {
+    return API.baseURL() + 'verifySignedMessage'
+  }
 }
 
-const UserProfile = ({ account, network, provider }: IProps) => {
+const UserProfile = ({account, network, provider}: IProps) => {
   const [verified, setVerified] = useState(false)
   const [nonce, setNonce] = useState('')
   const [token, setToken] = useState('')
@@ -82,7 +93,7 @@ const UserProfile = ({ account, network, provider }: IProps) => {
 
       const config = {
         method: 'post' as Method,
-        url: API.getNonce,
+        url: API.getNonce(),
         headers: {
           'Content-Type': 'application/json',
         },
@@ -112,12 +123,12 @@ const UserProfile = ({ account, network, provider }: IProps) => {
     }
 
     try {
-      const verifyResponse = await axios.post(API.verifyMessage, {
+      const verifyResponse = await axios.post(API.verifyMessage(), {
         address: account,
         signature,
         nonce: nonce,
       })
-      const { token } = verifyResponse.data
+      const {token} = verifyResponse.data
       if (!checkToken(account, token)) {
         showError('Could not verify you')
         setIsVerifying(false)
@@ -156,13 +167,13 @@ const UserProfile = ({ account, network, provider }: IProps) => {
     >
       <Box fontSize="1rem" w="100%">
         <Alert status="success" variant="subtle" alignItems="center">
-          <AlertIcon />
+          <AlertIcon/>
           <Text wordBreak="break-word">Your Account: {account}</Text>
         </Alert>
       </Box>
       {verified ? (
         <Alert status="success" variant="solid">
-          <AlertIcon />
+          <AlertIcon/>
           Verified! Now you can use the extension.
         </Alert>
       ) : (
