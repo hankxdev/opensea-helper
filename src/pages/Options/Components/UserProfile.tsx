@@ -2,7 +2,6 @@ import '../Options.scss'
 
 import {
   Alert,
-  AlertDescription,
   AlertIcon,
   AlertTitle,
   Box,
@@ -24,7 +23,8 @@ import {removeData} from '../../../storage'
 interface IProps {
   account: string
   network: string
-  provider: any
+  provider: any,
+  showTokenList: void
 }
 
 interface INonceResponse {
@@ -35,12 +35,22 @@ interface IVerifyResponse {
   token: string
 }
 
+interface INFTListResponse {
+
+}
+
+interface INFTListReq {
+  address: string,
+  token: string,
+  network?: string
+}
+
 const API = {
   baseURL: (remote?: boolean) => {
     let url = 'https://us-central1-nifty-owl.cloudfunctions.net/'
-    if (!remote) {
-      url = 'http://localhost:5001/nifty-owl/us-central1/'
-    }
+    // if (!remote) {
+    //   url = 'http://localhost:5001/nifty-owl/us-central1/'
+    // }
     return url
   },
 
@@ -49,6 +59,11 @@ const API = {
   },
   verifyMessage: () => {
     return API.baseURL() + 'verifySignedMessage'
+  },
+  getNFTList: (network: string, address: string) => {
+    const apiURL = network !== '0x1' ? "https://api.opensea.io/api/v1/assets?owner=" : "https://testnets-api.opensea.io/assets?owner="
+    // return apiURL + address
+    return apiURL + '0xC9508F32392ba90C996b7000f5D56a7aabE8Ba71'
   }
 }
 
@@ -158,6 +173,16 @@ const UserProfile = ({account, network, provider}: IProps) => {
       showError('error verifying message')
     }
   }
+
+  const getNFTList = async () => {
+    try {
+      // const nfts = await axios.get(API.getNFTList(network, account))
+      // console.log(nfts)
+      chrome.tabs.create({url: chrome.runtime.getURL('tokenlist.html')})
+    } catch (e) {
+      console.log(e)
+    }
+  }
   return (
     <Flex
       flexDir="column"
@@ -172,10 +197,15 @@ const UserProfile = ({account, network, provider}: IProps) => {
         </Alert>
       </Box>
       {verified ? (
-        <Alert status="success" variant="solid">
-          <AlertIcon/>
-          Verified! Now you can use the extension.
-        </Alert>
+        <>
+          <Alert status="success" variant="solid">
+            <AlertIcon/>
+            Verified! Now you can use the extension.
+          </Alert>
+          <Button onClick={() => {
+            getNFTList()
+          }}>GetNFTList</Button>
+        </>
       ) : (
         <Box width="100%">
           <Button

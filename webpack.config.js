@@ -47,6 +47,7 @@ var options = {
     contentScript: path.join(__dirname, 'src', 'pages', 'Content', 'content.js'),
     inject: path.join(__dirname, 'src', 'pages', 'Content', 'inject.js'),
     rarity: path.join(__dirname, 'src', 'pages', 'Content', 'Rarity', 'rarity.ts'),
+    tokenList: path.join(__dirname, 'src', 'pages', 'TokenList', 'index.tsx'),
   },
   output: {
     path: path.resolve(__dirname, 'build'),
@@ -162,6 +163,12 @@ var options = {
       template: templateHtml,
       filename: 'popup.html',
       chunks: ['popup'],
+      cache: false,
+    }),
+    new HtmlWebpackPlugin({
+      template: templateHtml,
+      filename: 'tokenlist.html',
+      chunks: ['tokenList'],
       cache: false,
     }),
   ],
