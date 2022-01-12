@@ -8,13 +8,14 @@ import {
   Text,
   useToast,
 } from '@chakra-ui/react'
-import React, { useEffect, useState } from 'react'
+import React, {useEffect, useState} from 'react'
 
 import Layout from './Components/Layout'
 import MetaMaskIcon from '../../assets/img/metamask-fox.svg'
 import UserProfile from './Components/UserProfile'
 import createMetaMaskProvider from 'metamask-extension-provider'
-import ethers from 'ethers'
+
+import NFTList from './Components/NFTList'
 
 export default function App() {
   const toast = useToast()
@@ -24,6 +25,7 @@ export default function App() {
   const [account, setAccount] = useState('')
   const [network, setNetwork] = useState('')
   const [isConnecting, setIsConnecting] = useState(false)
+  const [showTokenList, setShowTokenList] = useState(false)
 
   const initProvider = async () => {
     const provider = await createMetaMaskProvider()
@@ -83,36 +85,41 @@ export default function App() {
   return (
     <ChakraProvider>
       <Layout>
-        <Flex
-          backgroundColor="white"
-          minH="600px"
-          p="1rem"
-          borderWidth="1px"
-          borderRadius="lg"
-          overflow="hidden"
-          flexDirection="column"
-          justifyContent="space-around"
-          maxW="335px"
-        >
-          <Image w="300px" src={MetaMaskIcon} />
-          {!isConnected ? (
-            <Button
-            className='submitbutton'
-              isLoading={isConnecting}
-              onClick={() => {
-                connectWithMetaMask()
-              }}
-            >
-              Connect With Metamask
-            </Button>
-          ) : (
-            <UserProfile
-              account={account}
-              network={network}
-              provider={mmProvider}
-            />
-          )}
-        </Flex>
+        {showTokenList ? <NFTList address={account} network={network}/> : (
+          <Flex
+            backgroundColor="white"
+            minH="600px"
+            p="1rem"
+            borderWidth="1px"
+            borderRadius="lg"
+            overflow="hidden"
+            flexDirection="column"
+            justifyContent="space-around"
+            maxW="335px"
+          >
+            <Image w="300px" src={MetaMaskIcon}/>
+            {!isConnected ? (
+              <Button
+                className='submitbutton'
+                isLoading={isConnecting}
+                onClick={() => {
+                  connectWithMetaMask()
+                }}
+              >
+                Connect With Metamask
+              </Button>
+            ) : (
+              <UserProfile
+                account={account}
+                network={network}
+                provider={mmProvider}
+                showTokenList={() => {
+                  setShowTokenList(true)
+                }}
+              />
+            )}
+          </Flex>)}
+
       </Layout>
     </ChakraProvider>
   )

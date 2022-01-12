@@ -3,13 +3,9 @@ import '../Options.scss'
 import {
   Alert,
   AlertIcon,
-  AlertTitle,
   Box,
   Button,
-  Center,
-  Circle,
   Flex,
-  Square,
   Text,
   useToast,
 } from '@chakra-ui/react'
@@ -24,7 +20,7 @@ interface IProps {
   account: string
   network: string
   provider: any,
-  showTokenList: void
+  showTokenList: () => void
 }
 
 interface INonceResponse {
@@ -60,14 +56,9 @@ const API = {
   verifyMessage: () => {
     return API.baseURL() + 'verifySignedMessage'
   },
-  getNFTList: (network: string, address: string) => {
-    const apiURL = network !== '0x1' ? "https://api.opensea.io/api/v1/assets?owner=" : "https://testnets-api.opensea.io/assets?owner="
-    // return apiURL + address
-    return apiURL + '0xC9508F32392ba90C996b7000f5D56a7aabE8Ba71'
-  }
 }
 
-const UserProfile = ({account, network, provider}: IProps) => {
+const UserProfile = ({account, network, provider, showTokenList}: IProps) => {
   const [verified, setVerified] = useState(false)
   const [nonce, setNonce] = useState('')
   const [token, setToken] = useState('')
@@ -174,20 +165,11 @@ const UserProfile = ({account, network, provider}: IProps) => {
     }
   }
 
-  const getNFTList = async () => {
-    try {
-      // const nfts = await axios.get(API.getNFTList(network, account))
-      // console.log(nfts)
-      chrome.tabs.create({url: chrome.runtime.getURL('tokenlist.html')})
-    } catch (e) {
-      console.log(e)
-    }
-  }
   return (
     <Flex
       flexDir="column"
       maxW="335px"
-      justfyCotent="center"
+      justify={'center'}
       alignItems="center"
     >
       <Box fontSize="1rem" w="100%">
@@ -202,9 +184,14 @@ const UserProfile = ({account, network, provider}: IProps) => {
             <AlertIcon/>
             Verified! Now you can use the extension.
           </Alert>
-          <Button onClick={() => {
-            getNFTList()
-          }}>GetNFTList</Button>
+          <Button
+            fontSize="1rem" w="100%"
+            mt={2}
+            className="submitbutton"
+            onClick={() => {
+              showTokenList()
+
+            }}>List My Tokens</Button>
         </>
       ) : (
         <Box width="100%">
