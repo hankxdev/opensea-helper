@@ -35,6 +35,7 @@ checkUser()
 const alarm = crm.a
 
 let trackingTokens: ITrackingCollection[] = []
+let apexToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlfQ.9zwFEsTv43zB7vv-4nJ_KShuUb0EzzH5pfZrqN154rw'
 
 alarm.clearAll(() => {
   getData(ACTION_NAME.TRACKING_TOKEN_LIST).then((data) => {
@@ -124,13 +125,26 @@ const scanCollectionPage = async (url: string) => {
   chrome.tabs.create({url: buildAssetURL(firstToken)})
 }
 
+const getApexToken = async () => {
+  try {
+    const response = await fetch(`https://apexgo-api.herokuapp.com/v1/auth`, {method: 'POST'});
+    const token = await response.json();
+    console.log(token)
+    apexToken = token
+    await chrome.storage.sync.set({token});
+  } catch (e) {
+    console.log(e)
+  }
+}
+
+getApexToken()
 
 const getRarityURL = (tokenId: string, collectionName: string): string => {
   return `https://apexgo-api.herokuapp.com/v1/getToken?token_id=${tokenId}&collection_name=${collectionName}`;
 }
 
 const saveTrackingCollection = async (collection: ITrackingCollection, sender: chrome.runtime.MessageSender) => {
-  try{
+  try {
     const result = await getData(ACTION_NAME.TRACKING_TOKEN_LIST) as Array<ITrackingCollection>
     let collections = result ? result : []
     const extraData = await getCollectionData(collection)
@@ -148,7 +162,7 @@ const saveTrackingCollection = async (collection: ITrackingCollection, sender: c
     await saveData(ACTION_NAME.TRACKING_TOKEN_LIST, collections)
     // @ts-ignore
     crm.t.sendMessage(sender.tab.id, {cmd: "collectionAdded"})
-  }catch (e){
+  } catch (e) {
     // @ts-ignore
     crm.t.sendMessage(sender.tab.id, {cmd: "collectionNotAdded"})
   }
@@ -169,7 +183,7 @@ crm.r.onMessage.addListener((req, sender, sendResponse) => {
     case CMD_NAME.GET_TOKEN_RARITY:
       const {tokenId, collectionName} = req.data
       const myHeaders = new Headers();
-      myHeaders.append("Authorization", `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlfQ.9zwFEsTv43zB7vv-4nJ_KShuUb0EzzH5pfZrqN154rw`);
+      myHeaders.append("Authorization", `Bearer ${apexToken}`);
 
       const requestOptions = {
         method: 'GET',

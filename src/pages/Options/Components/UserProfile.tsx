@@ -2,29 +2,25 @@ import '../Options.scss'
 
 import {
   Alert,
-  AlertDescription,
   AlertIcon,
-  AlertTitle,
   Box,
   Button,
-  Center,
-  Circle,
   Flex,
-  Square,
   Text,
   useToast,
 } from '@chakra-ui/react'
-import React, { useEffect, useState } from 'react'
-import axios, { Method } from 'axios'
+import React, {useEffect, useState} from 'react'
+import axios, {Method} from 'axios'
 
-import { IUserInfo } from '../../../intefaces'
-import { checkToken } from '../../../utils'
-import { removeData } from '../../../storage'
+import {IUserInfo} from '../../../intefaces'
+import {checkToken} from '../../../utils'
+import {removeData} from '../../../storage'
 
 interface IProps {
   account: string
   network: string
-  provider: any
+  provider: any,
+  showTokenList: () => void
 }
 
 interface INonceResponse {
@@ -35,13 +31,34 @@ interface IVerifyResponse {
   token: string
 }
 
-const API = {
-  getNonce: 'https://us-central1-nifty-owl.cloudfunctions.net/getNonceToSign',
-  verifyMessage:
-    'https://us-central1-nifty-owl.cloudfunctions.net/verifySignedMessage',
+interface INFTListResponse {
+
 }
 
-const UserProfile = ({ account, network, provider }: IProps) => {
+interface INFTListReq {
+  address: string,
+  token: string,
+  network?: string
+}
+
+const API = {
+  baseURL: (remote?: boolean) => {
+    let url = 'https://us-central1-nifty-owl.cloudfunctions.net/'
+    // if (!remote) {
+    //   url = 'http://localhost:5001/nifty-owl/us-central1/'
+    // }
+    return url
+  },
+
+  getNonce: () => {
+    return API.baseURL() + 'getNonceToSign'
+  },
+  verifyMessage: () => {
+    return API.baseURL() + 'verifySignedMessage'
+  },
+}
+
+const UserProfile = ({account, network, provider, showTokenList}: IProps) => {
   const [verified, setVerified] = useState(false)
   const [nonce, setNonce] = useState('')
   const [token, setToken] = useState('')
@@ -82,7 +99,7 @@ const UserProfile = ({ account, network, provider }: IProps) => {
 
       const config = {
         method: 'post' as Method,
-        url: API.getNonce,
+        url: API.getNonce(),
         headers: {
           'Content-Type': 'application/json',
         },
@@ -112,12 +129,12 @@ const UserProfile = ({ account, network, provider }: IProps) => {
     }
 
     try {
-      const verifyResponse = await axios.post(API.verifyMessage, {
+      const verifyResponse = await axios.post(API.verifyMessage(), {
         address: account,
         signature,
         nonce: nonce,
       })
-      const { token } = verifyResponse.data
+      const {token} = verifyResponse.data
       if (!checkToken(account, token)) {
         showError('Could not verify you')
         setIsVerifying(false)
@@ -147,24 +164,35 @@ const UserProfile = ({ account, network, provider }: IProps) => {
       showError('error verifying message')
     }
   }
+
   return (
     <Flex
       flexDir="column"
       maxW="335px"
-      justfyCotent="center"
+      justify={'center'}
       alignItems="center"
     >
       <Box fontSize="1rem" w="100%">
         <Alert status="success" variant="subtle" alignItems="center">
-          <AlertIcon />
+          <AlertIcon/>
           <Text wordBreak="break-word">Your Account: {account}</Text>
         </Alert>
       </Box>
       {verified ? (
-        <Alert status="success" variant="solid">
-          <AlertIcon />
-          Verified! Now you can use the extension.
-        </Alert>
+        <>
+          <Alert status="success" variant="solid">
+            <AlertIcon/>
+            Verified! Now you can use the extension.
+          </Alert>
+          <Button
+            fontSize="1rem" w="100%"
+            mt={2}
+            className="submitbutton"
+            onClick={() => {
+              showTokenList()
+
+            }}>List My Tokens</Button>
+        </>
       ) : (
         <Box width="100%">
           <Button
