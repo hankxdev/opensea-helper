@@ -67,12 +67,12 @@ export const NFTCard = (props: INFTProps) => {
           {props.description}
         </Box>
 
-        <Box>
-          {parsePrice(props.last_sale.payment_token.decimals, props.last_sale.total_price)}
-          <Box as='span' color='gray.600' fontSize='sm'>
-            {props.last_sale.payment_token.symbol}
-          </Box>
-        </Box>
+        {/*<Box>*/}
+        {/*  {parsePrice(props.last_sale.payment_token.decimals, props.last_sale.total_price)}*/}
+        {/*  <Box as='span' color='gray.600' fontSize='sm'>*/}
+        {/*    {props.last_sale?.payment_token.symbol}*/}
+        {/*  </Box>*/}
+        {/*</Box>*/}
 
       </Box>
     </Box>

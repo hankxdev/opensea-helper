@@ -2,7 +2,6 @@ import {useState, useEffect} from "react";
 import {INFTProps, NFTCard} from "./NFT";
 import {Flex, Box, Text} from '@chakra-ui/react'
 import axios from "axios";
-import * as net from "net";
 
 interface IProps {
   address: string
@@ -17,6 +16,7 @@ interface INFTListResp {
 const getNFTListURL = (network: string, address: string) => {
   console.log(network)
   const apiURL = network !== '0x1' ? "https://api.opensea.io/api/v1/assets?owner=" : "https://api.opensea.io/assets?owner="
+  // return apiURL + '0x303181ACF601b672347aEc37DC6f4B6bE884BAa5'
   return apiURL + address
 }
 
