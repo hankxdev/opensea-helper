@@ -53,7 +53,7 @@ function changeOpenseaUI(changeUI) {
       })
     }
 
-  }, 200)
+  }, 100)
   return changeUIInterval
 }
 
