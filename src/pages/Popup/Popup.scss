@@ -10,7 +10,7 @@ body {
 .appname {
   font-size: 12px;
   text-transform: uppercase;
-  margin-left:60px;
+  margin-left: 60px;
 }
 
 .ethgas {
@@ -39,15 +39,15 @@ body {
   text-transform: uppercase;
   text-shadow: 1px 1px 1px #222;
   font-weight: 700;
-  cursor:pointer;
+  cursor: pointer;
   overflow: hidden;
   display: inherit;
   height: 35px;
 }
 
 .collectiontitle:hover {
-letter-spacing: 1px;
-transition: all 0.25s ease;
+  letter-spacing: 1px;
+  transition: all 0.25s ease;
 }
 
 .collectionName {
@@ -250,4 +250,31 @@ transition: all 0.25s ease;
   color: #ff4136 !important;
   opacity: 1;
   transition: all 0.25s ease;
+}
+
+.portlist {
+  height: 64px;
+  margin: 4px;
+}
+
+.portimage {
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 2px;
+  align-items: center;
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.portimage:hover {
+  opacity: 1;
+}
+
+.portimage img {
+  width: 60px;
+}
+
+.portfoliovalue {
+  height:100px;
+  background:#000;
 }

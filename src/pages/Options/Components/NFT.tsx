@@ -1,4 +1,5 @@
 import {Box, Image} from "@chakra-ui/react";
+import '../../Popup/Popup.scss'
 
 
 export interface ICollectionProps {
@@ -34,19 +35,20 @@ const openURL = (url: string) => {
   window.open(url, "_blank")
 }
 
-
 export const NFTCard = (props: INFTProps) => {
   return (
-    <Box m={1} maxW='sm' borderWidth='1px' bgColor={"white"} borderRadius='lg' width={"80px"} overflow='hidden'
+    
+    <Box className="portlist"
          onClick={() => {
            openURL(props.permalink)
          }}>
-      <Box style={{height: "80px", width: "80px"}} alignItems={"center"}>
+      <Box className="portimage">
         <Image src={props.image_url} alt={props.name}/>
       </Box>
       <Box pt='2'>
         <Box display='flex' alignItems='baseline'>
           <Box
+            display='none'
             color='gray.500'
             fontSize='12px'
             textTransform='uppercase'
