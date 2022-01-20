@@ -16,8 +16,8 @@ interface INFTListResp {
 const getNFTListURL = (network: string, address: string) => {
   console.log(network)
   const apiURL = network !== '0x1' ? "https://api.opensea.io/api/v1/assets?owner=" : "https://api.opensea.io/assets?owner="
-  // return apiURL + '0x303181ACF601b672347aEc37DC6f4B6bE884BAa5'
-  return apiURL + address
+  return apiURL + '0x303181ACF601b672347aEc37DC6f4B6bE884BAa5'
+  // return apiURL + address
 }
 
 
@@ -55,8 +55,11 @@ const NFTList = ({address, network}: IProps) => {
 
   return (
     <Box color={"white"}>
-      {nftList.length > 0 ? <Flex flexWrap={'wrap'}> {nftList.map((nft, index) => <NFTCard key={index} {...nft}/>)}</Flex> :
-        <Box><Text variant="info" fontSize={"xl"}>{loadingMsg}</Text></Box>}
+      {nftList.length > 0 ? <Flex flexWrap={'wrap'}>
+          {nftList.map((nft, index) => <NFTCard key={index} {...nft}/>)}</Flex> :
+        <Flex justifyContent='center' flexDir="column">
+          <Text variant="alert" fontSize={"xl"}>{loadingMsg}</Text>
+        </Flex>}
     </Box>
 
   )

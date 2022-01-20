@@ -37,36 +37,23 @@ const openURL = (url: string) => {
 
 export const NFTCard = (props: INFTProps) => {
   return (
-    <Box m={2} maxW='sm' borderWidth='1px' bgColor={"white"} borderRadius='lg' width={"250px"} overflow='hidden'
+    <Box m={1} maxW='sm' borderWidth='1px' bgColor={"white"} borderRadius='lg' width={"80px"} overflow='hidden'
          onClick={() => {
            openURL(props.permalink)
          }}>
-      <Box style={{height: "250px", width: "250px"}} alignItems={"center"}>
+      <Box style={{height: "80px", width: "80px"}} alignItems={"center"}>
         <Image src={props.image_url} alt={props.name}/>
       </Box>
-      <Box p='6'>
+      <Box pt='2'>
         <Box display='flex' alignItems='baseline'>
           <Box
             color='gray.500'
-            fontWeight='semibold'
-            letterSpacing='wide'
-            fontSize='xs'
+            fontSize='12px'
             textTransform='uppercase'
           >
             {props.name}
           </Box>
         </Box>
-
-        <Box
-          mt='1'
-          fontWeight='semibold'
-          as='h4'
-          lineHeight='tight'
-          isTruncated
-        >
-          {props.description}
-        </Box>
-
         {/*<Box>*/}
         {/*  {parsePrice(props.last_sale.payment_token.decimals, props.last_sale.total_price)}*/}
         {/*  <Box as='span' color='gray.600' fontSize='sm'>*/}
