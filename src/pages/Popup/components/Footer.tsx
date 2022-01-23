@@ -14,12 +14,13 @@ const Footer = ({onShowOptions}: Props) => {
       bottom="0"
       w="100%"
       p={2}
+      background='#19191c'
       boxShadow="0px 4px 4px 2px #0a0a0a;"
     >
       <Flex className="footer">
         <HamburgerIcon m={2} onClick={() => onShowOptions('nftList')}/>
         <SettingsIcon m={2} onClick={() => onShowOptions('options')}/>
-        <ExternalLinkIcon m={2}/>
+        <ExternalLinkIcon m={2} onClick={() => onShowOptions('nftList')}/>
       </Flex>
     </Box>
   )
