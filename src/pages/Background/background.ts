@@ -170,10 +170,6 @@ const saveTrackingCollection = async (collection: ITrackingCollection, sender: c
 
 }
 
-const getRarityToken = async () => {
-
-}
-
 
 crm.r.onMessage.addListener((req, sender, sendResponse) => {
   if (!verified && req.cmd !== 'updateVerifyStatus') {
