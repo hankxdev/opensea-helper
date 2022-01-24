@@ -74,7 +74,7 @@ const TrackCollection = () => {
             </Flex>
 
             {monitoringTokens && monitoringTokens.length > 0 ? (
-              <VStack>
+              <Box className="collection-list">
                 {monitoringTokens.map((token, index) => (
                   <CollectionCard
                     collection={token}
@@ -82,7 +82,7 @@ const TrackCollection = () => {
                     key={index}
                   />
                 ))}
-              </VStack>
+              </Box>
             ) : (
               <Box>
                 <Box>{loadingMsg}</Box>

@@ -1,13 +1,15 @@
 import '../Popup.scss'
 import * as React from 'react'
-import { Box, Center, Flex, IconButton, Text } from '@chakra-ui/react'
-import { getEthPrice, getGasPrice } from '../services'
-import { HamburgerIcon } from '@chakra-ui/icons'
+import {Box, Center, Flex, IconButton, Image, Text} from '@chakra-ui/react'
+import {getEthPrice, getGasPrice} from '../services'
+import Logo from '../../../assets/img/logo.png'
+
 interface Props {
   onShowSidebar: Function
   showSidebarButton?: boolean
 }
-const Header = ({ showSidebarButton = true, onShowSidebar }: Props) => {
+
+const Header = ({showSidebarButton = true, onShowSidebar}: Props) => {
   const [appName, setAppName] = React.useState('Nifty Owl')
   const [ethPrice, setEthPrice] = React.useState(0)
   const [gasFee, setGasFee] = React.useState(0)
@@ -18,25 +20,12 @@ const Header = ({ showSidebarButton = true, onShowSidebar }: Props) => {
   }, [])
 
   return (
-    <Flex className="headerbar">
-      {/* <Box flex="1">
-        {showSidebarButton && (
-          <IconButton
-            aria-label={'IconButton'}
-            icon={<HamburgerIcon w={4} h={4} />}
-            colorScheme="blackAlpha"
-            variant="outline"
-            onClick={() => {
-              onShowSidebar()
-            }}
-          />
-        )}
-      </Box> */}
-      <Center flex="2">
-        <Text className="appname">{appName}</Text>
+    <Flex className="headerbar" bgGradient='linear(to-l, #7928CA, #FF0080)'>
+      <Center flex="2" justifyContent="center">
+        <Image src={Logo} w="30px"/> <Text className="appname">{appName}</Text>
       </Center>
       <Flex
-      className="ethgas"
+        className="ethgas"
         opacity="0.8"
         paddingRight={2}
         flexDir="column"

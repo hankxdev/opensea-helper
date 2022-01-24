@@ -50,7 +50,6 @@ const Popup = () => {
   }, [])
 
   React.useEffect(()=>{
-    console.log("rendering....")
     switchComponent(showComponent)
   }, [showComponent])
 

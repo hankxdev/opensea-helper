@@ -10,16 +10,21 @@ body {
 .appname {
   font-size: 12px;
   text-transform: uppercase;
-  margin-left: 60px;
+  margin-left: 10px;
 }
 
 .ethgas {
   font-size: 10px;
 }
 
+.collection-list{
+  height: 400px;
+  overflow-y: auto;
+}
+
 .collection {
   width: 100%;
-  height: 55px;
+  height: 55px !important;
   background: #2c2c2f;
   border-radius: 5px;
   padding: 10px;
