@@ -10,7 +10,7 @@ interface Props {
 const Footer = ({onShowOptions}: Props) => {
   return (
     <Box
-      // position="absolute"
+      position="absolute"
       bottom="0"
       w="100%"
       p={2}

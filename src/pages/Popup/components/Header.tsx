@@ -2,7 +2,7 @@ import '../Popup.scss'
 import * as React from 'react'
 import {Box, Center, Flex, IconButton, Image, Text} from '@chakra-ui/react'
 import {getEthPrice, getGasPrice} from '../services'
-import Logo from '../../../assets/img/logo.png'
+import Logo from '../../../assets/img/logowhite.png'
 
 interface Props {
   onShowSidebar: Function
@@ -20,7 +20,7 @@ const Header = ({showSidebarButton = true, onShowSidebar}: Props) => {
   }, [])
 
   return (
-    <Flex className="headerbar" bgGradient='linear(to-l, #7928CA, #FF0080)'>
+    <Flex className="headerbar">
       <Center flex="2" justifyContent="center">
         <Image src={Logo} w="30px"/> <Text className="appname">{appName}</Text>
       </Center>
