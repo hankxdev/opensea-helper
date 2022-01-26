@@ -118,16 +118,26 @@ const NOTIFICATION_ID = 'OwlNotify'
 
 const showNotification = (cfg: IChromeNotificationConfig): void => {
   const {message, title} = cfg
-  crm.n.create(
-    NOTIFICATION_ID,
-    {
-      type: 'basic',
-      title,
-      message,
-    }
-  )
+  crm.n.clear(NOTIFICATION_ID, () => {
+    crm.n.create(
+      NOTIFICATION_ID,
+      {
+        type: 'basic',
+        title,
+        message,
+        iconUrl: chrome.runtime.getURL('logo.png')
+      }, () => {
+        console.log('notification has been shown')
+      }
+    )
+  })
+
 }
 
+showNotification({
+  message: 'a notification',
+  title: 'title'
+})
 
 async function getCollectionInfo(token: ITrackingCollection) {
   try {
@@ -139,7 +149,7 @@ async function getCollectionInfo(token: ITrackingCollection) {
     if (token.price >= price && token.tracking) {
       token.tracking = false
       console.log('price is lower, notifying...')
-      if(userInfo.isPaidUser){
+      if (userInfo.isPaidUser) {
         showNotification({
           message: `${token.name} price is ${price}`,
           title: 'Price is lower'
