@@ -44,7 +44,8 @@
     "identity",
     "alarms",
     "tabs",
-    "storage"
+    "storage",
+    "notifications"
   ],
   "web_accessible_resources": [
     {

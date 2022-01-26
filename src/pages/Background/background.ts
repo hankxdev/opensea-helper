@@ -7,8 +7,18 @@ import {getData, removeData, saveData} from '../../storage'
 import {CMD_NAME} from '../../consts';
 import {ITrackingCollection} from '../../intefaces';
 import {getCollectionData} from '../Popup/services';
+import {IUserInfo} from "../../intefaces";
+
 
 const tracking = true // todo make it as a setting
+
+let userInfo: IUserInfo = {
+  address: '',
+  token: '',
+  network: '',
+  isPaidUser: false
+}
+
 
 let verified = false
 const checkUser = () => {
@@ -16,13 +26,31 @@ const checkUser = () => {
     chrome.storage.sync.get('user', i => {
       if (!i.user) {
         verified = false
+        userInfo = {
+          address: '',
+          token: '',
+          network: '',
+          isPaidUser: false
+        }
         resolve(false)
         return
       }
       const {token, address} = i.user
       verified = checkToken(address, token)
       if (!verified) {
+        userInfo = {
+          address: '',
+          token: '',
+          network: '',
+          isPaidUser: false
+        }
         removeData('user')
+      }
+      userInfo = {
+        address,
+        token,
+        network: '0x1',
+        isPaidUser: true
       }
       resolve(verified)
     })
@@ -44,6 +72,9 @@ alarm.clearAll(() => {
       return
     }
 
+    if (!userInfo.isPaidUser) {
+      data.length = 1
+    }
     trackingTokens = data
     if (!tracking) {
       console.log('tracking is off')
@@ -51,6 +82,7 @@ alarm.clearAll(() => {
     }
 
     console.log('tracking is on')
+
 
     loopWithDelay((token: ITrackingCollection) => {
       return new Promise((resolve) => {
@@ -75,6 +107,28 @@ alarm.onAlarm.addListener(alarm => {
   getCollectionInfo(token);
 })
 
+
+interface IChromeNotificationConfig {
+  message: string,
+  title: string,
+}
+
+
+const NOTIFICATION_ID = 'OwlNotify'
+
+const showNotification = (cfg: IChromeNotificationConfig): void => {
+  const {message, title} = cfg
+  crm.n.create(
+    NOTIFICATION_ID,
+    {
+      type: 'basic',
+      title,
+      message,
+    }
+  )
+}
+
+
 async function getCollectionInfo(token: ITrackingCollection) {
   try {
     const data = await getCollectionData(token)
@@ -85,6 +139,12 @@ async function getCollectionInfo(token: ITrackingCollection) {
     if (token.price >= price && token.tracking) {
       token.tracking = false
       console.log('price is lower, notifying...')
+      if(userInfo.isPaidUser){
+        showNotification({
+          message: `${token.name} price is ${price}`,
+          title: 'Price is lower'
+        })
+      }
       scanCollectionPage(buildCollectionURL(token.name))
     }
 

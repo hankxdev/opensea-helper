@@ -4,6 +4,7 @@ export const crm = {
   r: chrome.runtime,
   t: chrome.tabs,
   a: chrome.alarms,
+  n: chrome.notifications
 }
 
 
