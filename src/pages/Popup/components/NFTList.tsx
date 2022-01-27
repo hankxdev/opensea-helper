@@ -1,7 +1,10 @@
-import {useState, useEffect} from "react";
+import {useState, useEffect, useContext} from "react";
 import {INFTProps, NFTCard} from "./NFT";
 import {Flex, Box, Text} from '@chakra-ui/react'
 import axios from "axios";
+import {UserContext} from "../index";
+
+import TokenListSkeleton from './TokenListSkeleton'
 
 interface IProps {
   address: string
@@ -25,6 +28,7 @@ const NFTList = ({address, network}: IProps) => {
 
   const [nftList, setNFTList] = useState([] as INFTListResp["assets"])
   const [loadingMsg, setLoadingMsg] = useState('loading your NFTs')
+  const {userInfo} = useContext(UserContext)
 
   const getNFTList = (url: string): Promise<any> => {
     return axios.get(getNFTListURL(network, address))
@@ -54,14 +58,17 @@ const NFTList = ({address, network}: IProps) => {
   }, [address])
 
   return (
-    <Box color={"white"}>
-      {nftList.length > 0 ? <Flex flexWrap={'wrap'}>
-          {nftList.map((nft, index) => <NFTCard key={index} {...nft}/>)}</Flex> :
-        <Flex justifyContent='center' flexDir="column">
-          <Text variant="alert" fontSize={"xl"}>{loadingMsg}</Text>
-        </Flex>}
-    </Box>
-
+    <>
+      {
+        userInfo.isPaidUser ? (<Box color={"white"}>
+          {nftList.length > 0 ? <Flex flexWrap={'wrap'}>
+              {nftList.map((nft, index) => <NFTCard key={index} {...nft}/>)}</Flex> :
+            <Flex justifyContent='center' flexDir="column">
+              <Text variant="alert" fontSize={"xl"}>{loadingMsg}</Text>
+            </Flex>}
+        </Box>) : <TokenListSkeleton/>
+      }
+    </>
   )
 }
 

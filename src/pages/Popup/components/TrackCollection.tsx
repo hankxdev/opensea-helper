@@ -2,18 +2,16 @@ import '../Popup.scss'
 
 import * as React from 'react'
 
-import { Box, Button, Flex, Stat, StatNumber, VStack } from '@chakra-ui/react'
-import { getData, saveData } from '../../../storage'
+import {Box, Button, Flex, Stat, StatNumber, VStack} from '@chakra-ui/react'
+import {getData, saveData} from '../../../storage'
 
-import { ACTION_NAME } from '../../../consts'
+import {ACTION_NAME} from '../../../consts'
 import AddTrackingCollectionForm from './AddTrackingTokenForm'
 import CollectionCard from './CollectionCard'
-import { ITrackingCollection } from '../../../intefaces'
+import {ITrackingCollection} from '../../../intefaces'
 
 const TrackCollection = () => {
-  const [monitoringTokens, setMonitoringTokens] = React.useState<
-    Array<ITrackingCollection>
-  >([])
+  const [monitoringTokens, setMonitoringTokens] = React.useState<Array<ITrackingCollection>>([])
   const [isAddingTracking, setIsAddingTracking] = React.useState(false)
   const [currentToken, setCurrentToken] = React.useState<ITrackingCollection>({
     address: '',
@@ -77,9 +75,16 @@ const TrackCollection = () => {
               <Box className="collection-list">
                 {monitoringTokens.map((token, index) => (
                   <CollectionCard
+                    index={index}
                     collection={token}
                     editToken={gotoEditToken}
                     key={index}
+                    userInfo={{
+                      token: '',
+                      network: '0x1',
+                      isPaidUser: false,
+                      address: '',
+                    }}
                   />
                 ))}
               </Box>

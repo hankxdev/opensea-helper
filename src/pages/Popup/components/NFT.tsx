@@ -1,5 +1,5 @@
 import {Box, Image} from "@chakra-ui/react";
-import '../../Popup/Popup.scss'
+import '../Popup.scss'
 
 
 export interface ICollectionProps {

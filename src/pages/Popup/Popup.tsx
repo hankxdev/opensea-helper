@@ -11,7 +11,7 @@ import LoginSection from './components/LoginSection'
 import TrackCollection from './components/TrackCollection'
 import {checkToken} from '../../utils'
 import {removeData} from '../../storage'
-import NFTList from '../Options/Components/NFTList'
+import NFTList from './components/NFTList'
 
 
 const Popup = () => {

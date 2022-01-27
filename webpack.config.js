@@ -46,8 +46,7 @@ var options = {
     background: path.join(__dirname, 'src', 'pages', 'Background', 'background.ts'),
     contentScript: path.join(__dirname, 'src', 'pages', 'Content', 'content.js'),
     inject: path.join(__dirname, 'src', 'pages', 'Content', 'inject.js'),
-    rarity: path.join(__dirname, 'src', 'pages', 'Content', 'Rarity', 'rarity.ts'),
-    tokenList: path.join(__dirname, 'src', 'pages', 'TokenList', 'index.tsx'),
+    rarity: path.join(__dirname, 'src', 'pages', 'Content', 'Rarity', 'rarity.ts')
   },
   output: {
     path: path.resolve(__dirname, 'build'),
