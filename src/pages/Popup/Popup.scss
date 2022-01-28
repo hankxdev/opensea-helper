@@ -53,8 +53,8 @@ body {
   font-size: 11px;
   opacity: 1 !important;
   text-transform: uppercase;
-  text-shadow: 1px 1px 1px #222;
-  font-weight: 700;
+  text-shadow: 1px 1px 4px #222;
+  font-weight: 500;
   cursor: pointer;
   overflow: hidden;
   display: inherit;
@@ -73,10 +73,10 @@ body {
 }
 
 .collectionfloor {
-  font-size: 9px;
+  font-size: 10px;
   text-transform: uppercase;
-  color: #64d998;
-  padding: 4px;
+  color: #6defa7;
+  padding: 5px;
   background: linear-gradient(
                   to right,
                   #252627,
@@ -84,8 +84,6 @@ body {
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   border-radius: 5px;
   height: 28px;
-  line-height: 22px;
-  margin-top: 4px;
   font-weight: 500;
 }
 
@@ -329,3 +327,40 @@ body {
   height: 50px !important;
   font-size: 18px !important;
 }
+
+.memberlock {
+  border-radius: 5px;
+    border: none;
+    color: rgb(255, 255, 255);
+    background: linear-gradient(
+72deg
+, rgb(96, 86, 175) 0%, rgb(126, 116, 208) 100%) border-box;
+    height: 20px;
+    width: 70px;
+    font-size: 10px;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, .4) 0px 2px 3px;
+    font-weight:500;
+    text-transform: lowercase;
+  }
+
+.memberlock:hover {
+  background: linear-gradient(
+72deg
+, rgb(96, 86, 175) 0%, rgb(126, 116, 208) 100%);
+	background-size: 400% 400%;
+	animation: gradient 2s ease infinite;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+    
