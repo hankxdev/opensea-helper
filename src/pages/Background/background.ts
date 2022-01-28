@@ -1,13 +1,13 @@
 import * as cheerio from 'cheerio'
 
-import {ACTION_NAME, crm} from '../../consts'
-import {checkToken, loopWithDelay} from '../../utils';
-import {getData, removeData, saveData} from '../../storage'
+import { ACTION_NAME, crm } from '../../consts'
+import { checkToken, loopWithDelay } from '../../utils'
+import { getData, removeData, saveData } from '../../storage'
 
-import {CMD_NAME} from '../../consts';
-import {ITrackingCollection} from '../../intefaces';
-import {getCollectionData} from '../Popup/services';
-import {IUserInfo} from "../../intefaces";
+import { CMD_NAME } from '../../consts'
+import { ITrackingCollection } from '../../intefaces'
+import { getCollectionData } from '../Popup/services'
+import { IUserInfo } from '../../intefaces'
 
 
 const tracking = true // todo make it as a setting
@@ -16,7 +16,7 @@ let userInfo: IUserInfo = {
   address: '',
   token: '',
   network: '',
-  isPaidUser: false
+  isPaidUser: false,
 }
 
 
@@ -30,19 +30,19 @@ const checkUser = () => {
           address: '',
           token: '',
           network: '',
-          isPaidUser: false
+          isPaidUser: false,
         }
         resolve(false)
         return
       }
-      const {token, address} = i.user
+      const { token, address } = i.user
       verified = checkToken(address, token)
       if (!verified) {
         userInfo = {
           address: '',
           token: '',
           network: '',
-          isPaidUser: false
+          isPaidUser: false,
         }
         removeData('user')
       }
@@ -50,7 +50,7 @@ const checkUser = () => {
         address,
         token,
         network: '0x1',
-        isPaidUser: true
+        isPaidUser: true,
       }
       resolve(verified)
     })
@@ -87,7 +87,7 @@ alarm.clearAll(() => {
     loopWithDelay((token: ITrackingCollection) => {
       return new Promise((resolve) => {
         alarm.create(token.name, {
-          when: Date.now() + 5 * 1000
+          when: Date.now() + 5 * 1000,
         })
         console.log(`tracking for ${token.name} has been set...`)
         resolve()
@@ -104,7 +104,7 @@ alarm.onAlarm.addListener(alarm => {
     console.log('no token found')
     return
   }
-  getCollectionInfo(token);
+  getCollectionInfo(token)
 })
 
 
@@ -117,27 +117,19 @@ interface IChromeNotificationConfig {
 const NOTIFICATION_ID = 'OwlNotify'
 
 const showNotification = (cfg: IChromeNotificationConfig): void => {
-  const {message, title} = cfg
-  crm.n.clear(NOTIFICATION_ID, () => {
-    crm.n.create(
-      NOTIFICATION_ID,
-      {
-        type: 'basic',
-        title,
-        message,
-        iconUrl: chrome.runtime.getURL('logo.png')
-      }, () => {
-        console.log('notification has been shown')
-      }
-    )
-  })
-
+  const { message, title } = cfg
+  crm.n.create(
+    NOTIFICATION_ID,
+    {
+      type: 'basic',
+      title,
+      message,
+      iconUrl: chrome.runtime.getURL('logo.png'),
+    }, () => {
+      console.log('notification has been shown')
+    },
+  )
 }
-
-showNotification({
-  message: 'a notification',
-  title: 'title'
-})
 
 async function getCollectionInfo(token: ITrackingCollection) {
   try {
@@ -152,7 +144,7 @@ async function getCollectionInfo(token: ITrackingCollection) {
       if (userInfo.isPaidUser) {
         showNotification({
           message: `${token.name} price is ${price}`,
-          title: 'Price is lower'
+          title: 'Price is lower',
         })
       }
       scanCollectionPage(buildCollectionURL(token.name))
@@ -170,7 +162,7 @@ async function getCollectionInfo(token: ITrackingCollection) {
   } finally {
     alarm.clear(token.name).then(() => {
       alarm.create(token.name, {
-        when: Date.now() + 5 * 1000
+        when: Date.now() + 5 * 1000,
       })
     })
   }
@@ -192,16 +184,16 @@ const scanCollectionPage = async (url: string) => {
   const firstToken = $('article').first().find('a').first().attr('href') || ''
   // opent this token in opensea
   // TODO make it as a setting
-  chrome.tabs.create({url: buildAssetURL(firstToken)})
+  chrome.tabs.create({ url: buildAssetURL(firstToken) })
 }
 
 const getApexToken = async () => {
   try {
-    const response = await fetch(`https://apexgo-api.herokuapp.com/v1/auth`, {method: 'POST'});
-    const token = await response.json();
+    const response = await fetch(`https://apexgo-api.herokuapp.com/v1/auth`, { method: 'POST' })
+    const token = await response.json()
     console.log(token)
     apexToken = token
-    await chrome.storage.sync.set({token});
+    await chrome.storage.sync.set({ token })
   } catch (e) {
     console.log(e)
   }
@@ -210,7 +202,7 @@ const getApexToken = async () => {
 getApexToken()
 
 const getRarityURL = (tokenId: string, collectionName: string): string => {
-  return `https://apexgo-api.herokuapp.com/v1/getToken?token_id=${tokenId}&collection_name=${collectionName}`;
+  return `https://apexgo-api.herokuapp.com/v1/getToken?token_id=${tokenId}&collection_name=${collectionName}`
 }
 
 const saveTrackingCollection = async (collection: ITrackingCollection, sender: chrome.runtime.MessageSender) => {
@@ -222,7 +214,7 @@ const saveTrackingCollection = async (collection: ITrackingCollection, sender: c
     collection.currentPrice = extraData.collection.stats.floor_price
     collection.tracking = true
     const collectionIndex = collections.findIndex(
-      (item: ITrackingCollection) => item.url === collection.url
+      (item: ITrackingCollection) => item.url === collection.url,
     )
     if (collectionIndex !== -1) {
       collections[collectionIndex] = collection
@@ -231,10 +223,10 @@ const saveTrackingCollection = async (collection: ITrackingCollection, sender: c
     }
     await saveData(ACTION_NAME.TRACKING_TOKEN_LIST, collections)
     // @ts-ignore
-    crm.t.sendMessage(sender.tab.id, {cmd: "collectionAdded"})
+    crm.t.sendMessage(sender.tab.id, { cmd: 'collectionAdded' })
   } catch (e) {
     // @ts-ignore
-    crm.t.sendMessage(sender.tab.id, {cmd: "collectionNotAdded"})
+    crm.t.sendMessage(sender.tab.id, { cmd: 'collectionNotAdded' })
   }
 
 
@@ -247,31 +239,31 @@ crm.r.onMessage.addListener((req, sender, sendResponse) => {
   }
   switch (req.cmd) {
     case CMD_NAME.GET_TOKEN_RARITY:
-      const {tokenId, collectionName} = req.data
-      const myHeaders = new Headers();
-      myHeaders.append("Authorization", `Bearer ${apexToken}`);
+      const { tokenId, collectionName } = req.data
+      const myHeaders = new Headers()
+      myHeaders.append('Authorization', `Bearer ${apexToken}`)
 
       const requestOptions = {
         method: 'GET',
         headers: myHeaders,
-        redirect: 'follow'
-      };
+        redirect: 'follow',
+      }
 
       // @ts-ignore
       fetch(getRarityURL(tokenId, collectionName), requestOptions).then(res => res.json()).then(res => {
         // @ts-ignore
         chrome.tabs.sendMessage(sender.tab.id, {
             cmd: CMD_NAME.SET_TOKEN_RARITY,
-            data: res
-          }
+            data: res,
+          },
         )
       })
-      break;
+      break
     case 'updateVerifyStatus':
       verified = req.verified
-      break;
+      break
     case 'addCollection':
-      const {name, url, price} = req.data
+      const { name, url, price } = req.data
       saveTrackingCollection({
         address: url,
         name,
@@ -279,6 +271,6 @@ crm.r.onMessage.addListener((req, sender, sendResponse) => {
         url,
         price,
       }, sender)
-      break;
+      break
   }
 })

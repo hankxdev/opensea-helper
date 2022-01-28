@@ -1,9 +1,9 @@
 import * as React from 'react';
-
-
 import {ChakraProvider, extendTheme} from '@chakra-ui/react';
-
 import {IUserInfo} from "../../intefaces";
+import Popup from './Popup';
+import {render} from 'react-dom';
+import {theme} from '../../theme';
 
 const defaultContextValue = {
   userInfo: {
@@ -19,9 +19,6 @@ const defaultContextValue = {
 
 export const UserContext = React.createContext(defaultContextValue)
 
-import Popup from './Popup';
-import {render} from 'react-dom';
-import {theme} from '../../theme';
 
 const customizedTheme = extendTheme(theme)
 export default function App() {
