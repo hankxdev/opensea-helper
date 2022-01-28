@@ -10,7 +10,7 @@ const TokenListSkeleton = () => {
         <Skeleton key={i} w="60px" h="84px">
         </Skeleton>
       ))}
-      <Box bgGradient='linear(to-l, #6056af, #7e74d0)' className={'overlay'}/>
+      <Box className={'overlay'}/>
       <Flex className={'membershipButtonWrapper'} w='100%' h='100%' style={{position: "absolute"}}>
         <MemberButton cssClass={'bigButton'}/>
       </Flex>
