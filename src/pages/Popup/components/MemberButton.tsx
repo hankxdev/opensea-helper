@@ -18,6 +18,7 @@ const basicStyle = {
   height: "30px",
   width: "70px",
   cursor: "pointer",
+
 }
 
 const MemberButton = (props: IProps) => {
@@ -31,6 +32,7 @@ const MemberButton = (props: IProps) => {
   return (
     <Flex title={'Purchase to unlock'} onClick={gotoPurchase} justifyContent={"space-between"}
           alignItems={'center'}
+          boxShadow='md'
           className={cssClass} style={{...style, ...basicStyle}} px={2}>
       <LockIcon/>Member
     </Flex>
