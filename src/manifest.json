@@ -1,31 +1,52 @@
 {
   "action": {
     "default_popup": "popup.html",
-    "default_icon": "icon-256.png"
+    "default_icon": "logo.png"
   },
   "background": {
     "service_worker": "background.bundle.js",
     "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://opensea.io/*"
+      ],
+      "js": [
+        "inject.bundle.js",
+        "rarity.bundle.js"
+      ],
+      "css": [
+        "content.css"
+      ]
+    }
+  ],
+  "externally_connectable": {
+    "matches": [
+      "https://metamask.io/*"
+    ],
+    "ids": [
+      "*"
+    ]
   },
   "host_permissions": [
     "*://*.opensea.io/*",
     "https://apexgo-api.herokuapp.com/*",
     "https://us-central1-nifty-owl.cloudfunctions.net/*"
   ],
-  "content_scripts": [
-    {
-      "matches": ["https://opensea.io/*"],
-      "js": ["inject.bundle.js", "rarity.bundle.js"],
-      "css": ["content.css"]
-    }
-  ],
   "icons": {
-    "128": "icon-256.png"
+    "128": "logo.png"
   },
-  "permissions": ["identity", "alarms", "tabs", "storage"],
   "manifest_version": 3,
   "name": "Nifty Owl",
   "options_page": "options.html",
+  "permissions": [
+    "identity",
+    "alarms",
+    "tabs",
+    "storage",
+    "notifications"
+  ],
   "web_accessible_resources": [
     {
       "resources": [
@@ -33,11 +54,9 @@
         "contentScript.bundle.js",
         "icon-256.png"
       ],
-      "matches": ["<all_urls>"]
+      "matches": [
+        "<all_urls>"
+      ]
     }
-  ],
-  "externally_connectable": {
-    "matches": ["https://metamask.io/*"],
-    "ids": ["*"]
-  }
+  ]
 }

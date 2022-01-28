@@ -9,34 +9,32 @@ const defaultOptions = {
 }
 
 chrome.storage.sync.get(["options", 'user'], i => {
-	console.log(i)
 	const user = i.user
 	if (!user) {
 		return
 	}
 	const {address, token} = user
-	if (!checkToken(address, token)) {
-		return
-	}
+	// if (!checkToken(address, token)) {
+	// 	return
+	// }
+	user.isPaidUser = checkToken(address, token)
 	setInterval(()=>{
 		appendCollectionBtn()
 	}, 500)
 	const options = i.options ? i.options : defaultOptions;
-	injectBuyNowButtonScript(options);
+	injectBuyNowButtonScript(options, user);
 })
 
-const injectBuyNowButtonScript = options => {
+const injectBuyNowButtonScript = (options, user) => {
 	const contentScript = chrome.runtime.getURL('contentScript.bundle.js')
-
 	const script = document.createElement('script')
 	script.src = contentScript
-
 	document.head.appendChild(script);
-
 	script.onload = () => {
 		window.postMessage({
 			type: 'ext_options',
-			options
+			options,
+			user
 		}, '*')
 	}
 }

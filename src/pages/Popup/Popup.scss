@@ -7,19 +7,35 @@ body {
   font-family: 'Roboto', sans-serif !important;
 }
 
+::-webkit-scrollbar {
+  width: 0; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
+}
+
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+  background: #FF0000;
+}
+
 .appname {
   font-size: 12px;
   text-transform: uppercase;
-  margin-left: 60px;
+  margin-left: 10px;
 }
 
 .ethgas {
   font-size: 10px;
 }
 
+.collection-list {
+  height: 400px;
+  overflow-y: auto;
+  padding-bottom: 25px;
+}
+
 .collection {
   width: 100%;
-  height: 55px;
+  height: 55px !important;
   background: #2c2c2f;
   border-radius: 5px;
   padding: 10px;
@@ -62,9 +78,9 @@ body {
   color: #64d998;
   padding: 4px;
   background: linear-gradient(
-    to right,
-    #252627,
-    #232526
+                  to right,
+                  #252627,
+                  #232526
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   border-radius: 5px;
   height: 28px;
@@ -99,9 +115,9 @@ body {
   -webkit-justify-content: center;
   justify-content: center;
   background: linear-gradient(
-    145deg,
-    rgba(96, 86, 175, 1) 0%,
-    rgba(126, 116, 208, 1) 100%
+                  72deg,
+                  rgba(96, 86, 175, 1) 0%,
+                  rgba(126, 116, 208, 1) 100%
   );
   padding: 10px;
 }
@@ -131,9 +147,9 @@ body {
 
 .footer svg:hover {
   color: linear-gradient(
-    145deg,
-    rgba(96, 86, 175, 1) 0%,
-    rgba(126, 116, 208, 1) 100%
+                  145deg,
+                  rgba(96, 86, 175, 1) 0%,
+                  rgba(126, 116, 208, 1) 100%
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -275,6 +291,48 @@ body {
 }
 
 .portfoliovalue {
-  height:100px;
-  background:#000;
+  height: 100px;
+  background: #000;
+}
+
+.skeletonList {
+  grid-template-columns: 50px 50px 50px 50px;
+  grid-template-rows: 80px;
+  column-gap: 27px;
+  row-gap: 10px;
+  padding: 2rem;
+  display: grid;
+
+  .overlay, .membershipButtonWrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+  }
+
+  .overlay {
+    //background: gray;
+    opacity: 0.5;
+  }
+
+  .membershipButtonWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.bigButton {
+  width: 120px !important;
+  height: 50px !important;
+  font-size: 18px !important;
+}
+
+.smallButton{
+  display: inline !important;
+  width: 60px !important;
+  height: 20px !important;
+  font-size: 10px !important;
 }

@@ -15,7 +15,7 @@ import MetaMaskIcon from '../../assets/img/metamask-fox.svg'
 import UserProfile from './Components/UserProfile'
 import createMetaMaskProvider from 'metamask-extension-provider'
 
-import NFTList from './Components/NFTList'
+import NFTList from '../Popup/components/NFTList'
 
 export default function App() {
   const toast = useToast()

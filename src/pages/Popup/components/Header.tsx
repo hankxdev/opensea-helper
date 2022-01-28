@@ -1,49 +1,42 @@
 import '../Popup.scss'
-import * as React from 'react'
-import { Box, Center, Flex, IconButton, Text } from '@chakra-ui/react'
+import { Box, Center, Flex, IconButton, Image, Text, useConst } from '@chakra-ui/react'
 import { getEthPrice, getGasPrice } from '../services'
-import { HamburgerIcon } from '@chakra-ui/icons'
+import Logo from '../../../assets/img/logowhite.png'
+import { UserContext } from '../index'
+import { useContext, useState, useEffect } from 'react'
+import MemberButton from './MemberButton'
+
 interface Props {
   onShowSidebar: Function
   showSidebarButton?: boolean
 }
-const Header = ({ showSidebarButton = true, onShowSidebar }: Props) => {
-  const [appName, setAppName] = React.useState('Nifty Owl')
-  const [ethPrice, setEthPrice] = React.useState(0)
-  const [gasFee, setGasFee] = React.useState(0)
 
-  React.useEffect(() => {
+const Header = ({ showSidebarButton = true, onShowSidebar }: Props) => {
+  const [appName, setAppName] = useState('Nifty Owl')
+  const [ethPrice, setEthPrice] = useState(0)
+  const [gasFee, setGasFee] = useState(0)
+  const { userInfo } = useContext(UserContext)
+
+  useEffect(() => {
     getEthPrice().then(setEthPrice)
     getGasPrice().then(setGasFee)
   }, [])
 
   return (
-    <Flex className="headerbar">
-      {/* <Box flex="1">
-        {showSidebarButton && (
-          <IconButton
-            aria-label={'IconButton'}
-            icon={<HamburgerIcon w={4} h={4} />}
-            colorScheme="blackAlpha"
-            variant="outline"
-            onClick={() => {
-              onShowSidebar()
-            }}
-          />
-        )}
-      </Box> */}
-      <Center flex="2">
-        <Text className="appname">{appName}</Text>
+    <Flex className='headerbar'>
+      <Center flex='5' justifyContent='center'>
+        <Image src={Logo} w='30px' /> <Text className='appname'>{appName}</Text>
       </Center>
       <Flex
-      className="ethgas"
-        opacity="0.8"
+        flex='2'
+        className='ethgas'
+        opacity='0.8'
         paddingRight={2}
-        flexDir="column"
-        fontStyle="italic"
+        flexDir='column'
+        fontStyle='italic'
       >
         <Box>ETH: ${ethPrice}</Box>
-        <Box>GAS: ${gasFee.toFixed(2)}</Box>
+        <Box>GAS: {userInfo.isPaidUser ? gasFee.toFixed(2) : <MemberButton cssClass="smallButton"/>}</Box>
       </Flex>
     </Flex>
   )

@@ -27,4 +27,5 @@ export interface IUserInfo {
   address: string,
   token: string,
   network: string,
+  isPaidUser?: boolean,
 }
