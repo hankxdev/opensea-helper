@@ -322,12 +322,6 @@ body {
   }
 }
 
-.bigButton {
-  width: 120px !important;
-  height: 50px !important;
-  font-size: 18px !important;
-}
-
 .memberlock {
   border-radius: 5px;
     border: none;
@@ -363,10 +357,16 @@ body {
 		background-position: 0% 50%;
 	}
 }
-    
+
+
+
+.bigButton {
+  width: 100px !important;
+  height: 40px !important;
+  font-size: 18px !important;
+}
+
 .smallButton{
   display: inline !important;
-  width: 60px !important;
-  height: 20px !important;
   font-size: 10px !important;
 }

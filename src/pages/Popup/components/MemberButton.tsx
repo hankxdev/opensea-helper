@@ -10,19 +10,6 @@ interface IProps {
   style?: React.CSSProperties
 }
 
-
-const basicStyle = {
-  borderRadius: "6px",
-  border: "none",
-  color: "#fff",
-  background: "linear-gradient(72deg, #6056af 0%, #7e74d0 100%)",
-  backgroundOrigin: "border-box",
-  height: "30px",
-  width: "70px",
-  cursor: "pointer",
-
-}
-
 const MemberButton = (props: IProps) => {
   const { cssClass, style } = props
   const gotoPurchase = () => {
@@ -37,16 +24,11 @@ const MemberButton = (props: IProps) => {
       onClick={gotoPurchase}
       justifyContent={'space-between'}
       alignItems={'center'}
-      className="memberlock"
+      className={`memberlock ${cssClass}`}
+      style={{ ...style }}
       px={2}
     >
-      <LockIcon />
-      Member
-    <Flex title={'Purchase to unlock'} onClick={gotoPurchase} justifyContent={"space-between"}
-          alignItems={'center'}
-          boxShadow='md'
-          className={cssClass} style={{...style, ...basicStyle}} px={2}>
-      <LockIcon/>Member
+      <LockIcon />Member
     </Flex>
   )
 }
