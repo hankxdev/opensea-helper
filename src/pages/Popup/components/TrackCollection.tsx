@@ -1,19 +1,20 @@
 import '../Popup.scss'
 
-import * as React from 'react'
+import { useEffect, useState } from 'react'
 
-import {Box, Button, Flex, Stat, StatNumber, VStack} from '@chakra-ui/react'
-import {getData, saveData} from '../../../storage'
+import { Box, Flex } from '@chakra-ui/react'
+import { getData } from '../../../storage'
 
-import {ACTION_NAME} from '../../../consts'
+import { ACTION_NAME } from '../../../consts'
 import AddTrackingCollectionForm from './AddTrackingTokenForm'
 import CollectionCard from './CollectionCard'
-import {ITrackingCollection} from '../../../intefaces'
+import { ITrackingCollection } from '../../../intefaces'
 
 const TrackCollection = () => {
-  const [monitoringTokens, setMonitoringTokens] = React.useState<Array<ITrackingCollection>>([])
-  const [isAddingTracking, setIsAddingTracking] = React.useState(false)
-  const [currentToken, setCurrentToken] = React.useState<ITrackingCollection>({
+  const [monitoringTokens, setMonitoringTokens] = useState<Array<ITrackingCollection>>([])
+  const [isAddingTracking, setIsAddingTracking] = useState(false)
+
+  const [currentToken, setCurrentToken] = useState<ITrackingCollection>({
     address: '',
     name: '',
     tracking: false,
@@ -22,9 +23,8 @@ const TrackCollection = () => {
     banner: '',
     currentPrice: 0,
   })
-
-  const [loadingMsg, setLoadingMsg] = React.useState(
-    'loading your tracking tokens'
+  const [loadingMsg, setLoadingMsg] = useState(
+    'loading your tracking tokens',
   )
 
   const getMonitoringTokens = async () => {
@@ -43,12 +43,12 @@ const TrackCollection = () => {
     setIsAddingTracking(true)
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     getMonitoringTokens()
-  }, [isAddingTracking, monitoringTokens])
+  }, [isAddingTracking])
 
   return (
-    <Flex p={4} flexDir="column" justifyContent="space-between">
+    <Flex p={4} flexDir='column' justifyContent='space-between'>
       <Box>
         {isAddingTracking ? (
           <AddTrackingCollectionForm
@@ -59,10 +59,10 @@ const TrackCollection = () => {
           />
         ) : (
           <>
-            <Flex justifyContent="space-between">
-              <Box className="pageheader">MONITORING</Box>
+            <Flex justifyContent='space-between'>
+              <Box className='pageheader'>MONITORING</Box>
               <Box
-                className="new"
+                className='new'
                 onClick={() => {
                   setIsAddingTracking(true)
                 }}
@@ -72,19 +72,13 @@ const TrackCollection = () => {
             </Flex>
 
             {monitoringTokens && monitoringTokens.length > 0 ? (
-              <Box className="collection-list">
+              <Box className='collection-list'>
                 {monitoringTokens.map((token, index) => (
                   <CollectionCard
                     index={index}
                     collection={token}
                     editToken={gotoEditToken}
                     key={index}
-                    userInfo={{
-                      token: '',
-                      network: '0x1',
-                      isPaidUser: false,
-                      address: '',
-                    }}
                   />
                 ))}
               </Box>

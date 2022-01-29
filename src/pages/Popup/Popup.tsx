@@ -1,4 +1,3 @@
-import * as React from 'react'
 import BasicOptions from './components/BasicOptions'
 import { Box } from '@chakra-ui/react'
 import Footer from './components/Footer'
@@ -11,35 +10,25 @@ import { removeData } from '../../storage'
 import NFTList from './components/NFTList'
 import './Popup.scss'
 
-import { UserContext } from './index'
-
-const emptyUser = {
-  address: '',
-  network: '',
-  token: '',
-  isPaidUser: false,
-} as IUserInfo
+import { useReducer, useState, useEffect } from 'react'
+import { emptyUserInfo, userReducer } from '../../reducer'
 
 const Popup = () => {
-  const [isSidebarOpen, setSidebarOpen] = React.useState(false)
-  const [isLogin, setIsLogin] = React.useState(false)
-  const [showOptions, setShowOptions] = React.useState(false)
-  const [showTokenList, setShowTokenList] = React.useState(false)
-  const [showMenu, setShowMenu] = React.useState(false)
-  const [showComponent, setShowComponent] = React.useState<string>('trackingList')
-  const { userInfo, setUserInfo } = React.useContext(UserContext)
-  const [user, setUser] = React.useState<IUserInfo>(emptyUser)
+  const [isSidebarOpen, setSidebarOpen] = useState(false)
+  const [isLogin, setIsLogin] = useState(false)
+  const [showComponent, setShowComponent] = useState<string>('trackingList')
+  const [state, dispatch] = useReducer(userReducer, { userInfo: emptyUserInfo })
 
   const toggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen)
   }
 
-  const logoutUser = ()=>{
+  const logoutUser = () => {
     setIsLogin(false)
-    setUserInfo(emptyUser)
+    dispatch({ type: 'reset' })
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     chrome.storage.sync.get('user', (i) => {
       const user = i.user as IUserInfo
       if (!user) {
@@ -55,18 +44,18 @@ const Popup = () => {
       }
       setIsLogin(loggedIn)
       setShowComponent('trackingList')
-      setUser(user)
-      setUserInfo(user)
+      user.isPaidUser = true
+      dispatch({ type: 'update', userInfo: user })
     })
   }, [])
 
 
-
-  React.useEffect(() => {
+  useEffect(() => {
     switchComponent(showComponent)
   }, [showComponent])
 
-  const switchComponent = (showComponent: string): React.ReactElement => {
+  const { userInfo } = state
+  const switchComponent = (showComponent: string) => {
     switch (showComponent) {
       case 'trackingList':
         return <TrackCollection />
@@ -77,7 +66,7 @@ const Popup = () => {
           }}
         />
       case 'nftList':
-        return <NFTList address={user.address} network={user.network} />
+        return <NFTList address={userInfo.address} network={userInfo.network} />
       default:
         return <LoginSection />
     }

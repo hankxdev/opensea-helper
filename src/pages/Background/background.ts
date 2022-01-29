@@ -68,7 +68,6 @@ let apexToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlfQ
 alarm.clearAll(() => {
   getData(ACTION_NAME.TRACKING_TOKEN_LIST).then((data) => {
     if (!data || data.length < 1 || !verified) {
-      console.log('no tracking token')
       return
     }
 
@@ -77,11 +76,9 @@ alarm.clearAll(() => {
     }
     trackingTokens = data
     if (!tracking) {
-      console.log('tracking is off')
       return
     }
 
-    console.log('tracking is on')
 
 
     loopWithDelay((token: ITrackingCollection) => {
@@ -89,7 +86,6 @@ alarm.clearAll(() => {
         alarm.create(token.name, {
           when: Date.now() + 5 * 1000,
         })
-        console.log(`tracking for ${token.name} has been set...`)
         resolve()
       })
     }, 2000, data)
@@ -98,7 +94,6 @@ alarm.clearAll(() => {
 
 
 alarm.onAlarm.addListener(alarm => {
-  console.log(`${alarm.name} alarm has been triggered`)
   const token = trackingTokens.find(t => t.name === alarm.name)
   if (!token || !verified) {
     console.log('no token found')
@@ -125,9 +120,7 @@ const showNotification = (cfg: IChromeNotificationConfig): void => {
       title,
       message,
       iconUrl: chrome.runtime.getURL('logo.png'),
-    }, () => {
-      console.log('notification has been shown')
-    },
+    }
   )
 }
 
@@ -136,11 +129,9 @@ async function getCollectionInfo(token: ITrackingCollection) {
     const data = await getCollectionData(token)
     const banner = data.collection.banner_image_url
     const price = data.collection.stats.floor_price
-    console.log(`${token.name} price is ${price}`)
 
     if (token.price >= price && token.tracking) {
       token.tracking = false
-      console.log('price is lower, notifying...')
       if (userInfo.isPaidUser) {
         showNotification({
           message: `${token.name} price is ${price}`,
