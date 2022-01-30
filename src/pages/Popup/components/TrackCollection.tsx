@@ -3,7 +3,7 @@ import '../Popup.scss'
 import { useEffect, useState } from 'react'
 
 import { Box, Flex } from '@chakra-ui/react'
-import { getData } from '../../../storage'
+import { getData, saveData } from '../../../storage'
 
 import { ACTION_NAME } from '../../../consts'
 import AddTrackingCollectionForm from './AddTrackingTokenForm'
@@ -43,6 +43,18 @@ const TrackCollection = () => {
     setIsAddingTracking(true)
   }
 
+  const deleteToken = (collection: ITrackingCollection) => {
+    getData(ACTION_NAME.TRACKING_TOKEN_LIST).then((result) => {
+      const updatedList = result.filter((t: ITrackingCollection) => {
+        return t.name !== collection.name
+      })
+      saveData(ACTION_NAME.TRACKING_TOKEN_LIST, updatedList).then(() => {
+        setMonitoringTokens(updatedList)
+      })
+    })
+  }
+
+
   useEffect(() => {
     getMonitoringTokens()
   }, [isAddingTracking])
@@ -78,6 +90,7 @@ const TrackCollection = () => {
                     index={index}
                     collection={token}
                     editToken={gotoEditToken}
+                    deleteToken={deleteToken}
                     key={index}
                   />
                 ))}

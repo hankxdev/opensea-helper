@@ -14,25 +14,17 @@ import { emptyUserInfo, userReducer } from '../../../reducer'
 type TokenCardProps = {
   collection: ITrackingCollection
   editToken: (collection: ITrackingCollection) => void
+  deleteToken: (collection: ITrackingCollection) => void
   index: number
 }
+const sampleImage = 'https://avatars.githubusercontent.com/u/4986062?v=4'
 
-const CollectionCard = ({ collection, editToken, index }: TokenCardProps) => {
-  const { name, price, url, tracking, banner, currentPrice } = collection
-  const sampleImage = 'https://avatars.githubusercontent.com/u/4986062?v=4'
+
+const CollectionCard = ({ collection, editToken, deleteToken, index }: TokenCardProps) => {
+  const { name, banner, currentPrice } = collection
   const [state, dispatch] = useReducer(userReducer, { userInfo: emptyUserInfo })
 
   const { userInfo } = state
-
-  const deleteToken = () => {
-    getData(ACTION_NAME.TRACKING_TOKEN_LIST).then((result) => {
-      const updaedList = result.filter((t: ITrackingCollection) => {
-        return t.name !== name
-      })
-      saveData(ACTION_NAME.TRACKING_TOKEN_LIST, updaedList).then(() => {
-      })
-    })
-  }
 
   return (
     <Box position='relative' className='collection' my={1}>
@@ -66,9 +58,7 @@ const CollectionCard = ({ collection, editToken, index }: TokenCardProps) => {
             <DeleteIcon
               className='deleteicon'
               cursor='pointer'
-              onClick={() => {
-                deleteToken()
-              }}
+              onClick={()=>deleteToken(collection)}
             />
           </Box>
         </Flex>
