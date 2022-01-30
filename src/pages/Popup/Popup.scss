@@ -370,3 +370,39 @@ body {
   display: inline !important;
   font-size: 10px !important;
 }
+
+.portgrid {
+  grid-template-columns: 50px 50px 50px 50px;
+  column-gap: 25px;
+  row-gap: 4px;
+  padding: 2rem;
+  display: grid;
+}
+
+.portgriditem {
+  opacity: 0.2!important;
+  border-radius: 2px!important;
+  background: #A0AEC0!important;
+  -webkit-animation: 0.8s linear infinite alternate animation-snm94m!important;
+  animation: 0.8s linear infinite alternate animation-snm94m!important;
+  box-shadow: var(--chakra-shadows-none)!important;
+  -webkit-background-clip: padding-box!important;
+  background-clip: padding-box!important;
+  cursor: default!important;
+  color: var(--chakra-colors-transparent)!important;
+  pointer-events: none!important;
+  -webkit-user-select: none!important;
+  -moz-user-select: none!important;
+  -ms-user-select: none!important;
+  user-select: none!important;
+  width: 70px!important;
+  height: 70px!important;
+}
+
+.membershipButtonWrapper {
+  width: 100%;
+    padding-top: 168px;
+    display: flex;
+    justify-content: space-evenly;
+    align-content: flex-end;
+}
