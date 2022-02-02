@@ -1,10 +1,10 @@
-import {useState, useEffect, useContext} from "react";
+import {Box, Flex, Text} from '@chakra-ui/react'
 import {INFTProps, NFTCard} from "./NFT";
-import {Flex, Box, Text} from '@chakra-ui/react'
-import axios from "axios";
-import {UserContext} from "../index";
+import {useContext, useEffect, useState} from "react";
 
+import { AppContext } from '../../../reducer'
 import TokenListSkeleton from './TokenListSkeleton'
+import axios from "axios";
 
 interface IProps {
   address: string
@@ -28,7 +28,8 @@ const NFTList = ({address, network}: IProps) => {
 
   const [nftList, setNFTList] = useState([] as INFTListResp["assets"])
   const [loadingMsg, setLoadingMsg] = useState('loading your NFTs')
-  const {userInfo} = useContext(UserContext)
+  const {state, dispatch} = useContext(AppContext)
+  const {userInfo} = state
 
   const getNFTList = (url: string): Promise<any> => {
     return axios.get(getNFTListURL(network, address))

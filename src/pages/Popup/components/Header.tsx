@@ -1,9 +1,19 @@
 import '../Popup.scss'
-import { Box, Center, Flex, IconButton, Image, Text, useConst } from '@chakra-ui/react'
+
+import {
+  Box,
+  Center,
+  Flex,
+  IconButton,
+  Image,
+  Text,
+  useConst,
+} from '@chakra-ui/react'
 import { getEthPrice, getGasPrice } from '../services'
+import { useContext, useEffect, useState } from 'react'
+
+import { AppContext } from '../../../reducer'
 import Logo from '../../../assets/img/logowhite.png'
-import { UserContext } from '../index'
-import { useContext, useState, useEffect } from 'react'
 import MemberButton from './MemberButton'
 
 interface Props {
@@ -15,7 +25,9 @@ const Header = ({ showSidebarButton = true, onShowSidebar }: Props) => {
   const [appName, setAppName] = useState('Nifty Owl')
   const [ethPrice, setEthPrice] = useState(0)
   const [gasFee, setGasFee] = useState(0)
-  const { userInfo } = useContext(UserContext)
+  const { state, dispatch } = useContext(AppContext)
+
+  const { userInfo } = state
 
   useEffect(() => {
     getEthPrice().then(setEthPrice)
@@ -23,20 +35,27 @@ const Header = ({ showSidebarButton = true, onShowSidebar }: Props) => {
   }, [])
 
   return (
-    <Flex className='headerbar'>
-      <Center flex='5' justifyContent='center'>
-        <Image src={Logo} w='30px' /> <Text className='appname'>{appName}</Text>
+    <Flex className="headerbar">
+      <Center flex="5" justifyContent="center">
+        <Image src={Logo} w="30px" /> <Text className="appname">{appName}</Text>
       </Center>
       <Flex
-        flex='2'
-        className='ethgas'
-        opacity='0.8'
+        flex="2"
+        className="ethgas"
+        opacity="0.8"
         paddingRight={2}
-        flexDir='column'
-        fontStyle='italic'
+        flexDir="column"
+        fontStyle="italic"
       >
         <Box>ETH: ${ethPrice}</Box>
-        <Box>GAS: {userInfo.isPaidUser ? gasFee.toFixed(2) : <MemberButton cssClass="smallButton"/>}</Box>
+        <Box>
+          GAS:{' '}
+          {userInfo.isPaidUser ? (
+            gasFee.toFixed(2)
+          ) : (
+            <MemberButton cssClass="smallButton" />
+          )}
+        </Box>
       </Flex>
     </Flex>
   )

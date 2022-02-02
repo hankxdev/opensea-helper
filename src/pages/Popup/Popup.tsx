@@ -1,31 +1,31 @@
+import './Popup.scss'
+
+import { useContext, useEffect, useState } from 'react'
+
+import { AppContext } from '../../reducer'
 import BasicOptions from './components/BasicOptions'
 import { Box } from '@chakra-ui/react'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import { IUserInfo } from '../../intefaces'
 import LoginSection from './components/LoginSection'
+import NFTList from './components/NFTList'
 import TrackCollection from './components/TrackCollection'
 import { checkToken } from '../../utils'
 import { removeData } from '../../storage'
-import NFTList from './components/NFTList'
-import './Popup.scss'
-
-import { useReducer, useState, useEffect } from 'react'
-import { emptyUserInfo, userReducer } from '../../reducer'
 
 const Popup = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(false)
   const [isLogin, setIsLogin] = useState(false)
   const [showComponent, setShowComponent] = useState<string>('trackingList')
-  const [state, dispatch] = useReducer(userReducer, { userInfo: emptyUserInfo })
-
+  const { state, dispatch } = useContext(AppContext)
   const toggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen)
   }
 
   const logoutUser = () => {
     setIsLogin(false)
-    dispatch({ type: 'reset' })
+    dispatch({ type: 'RESET_USER_INFO' })
   }
 
   useEffect(() => {
@@ -45,7 +45,7 @@ const Popup = () => {
       setIsLogin(loggedIn)
       setShowComponent('trackingList')
       user.isPaidUser = true
-      dispatch({ type: 'update', userInfo: user })
+      dispatch({ type: 'SET_USER_INFO', payload: user })
     })
   }, [])
 

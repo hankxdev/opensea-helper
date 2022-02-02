@@ -1,15 +1,13 @@
 import '../Popup.scss'
-import { Box, Flex, Image, Text } from '@chakra-ui/react'
+
+import { Box, Flex, Image } from '@chakra-ui/react'
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons'
-import { getData, saveData } from '../../../storage'
+import { useContext, useEffect } from 'react'
 
-import { ACTION_NAME } from '../../../consts'
-import { ITrackingCollection, IUserInfo } from '../../../intefaces'
-import ShowChartIcon from '../../../assets/img/show-chart.svg'
-
+import { AppContext } from '../../../reducer'
+import { ITrackingCollection } from '../../../intefaces'
 import MemberButton from './MemberButton'
-import { useReducer } from 'react'
-import { emptyUserInfo, userReducer } from '../../../reducer'
+import ShowChartIcon from '../../../assets/img/show-chart.svg'
 
 type TokenCardProps = {
   collection: ITrackingCollection
@@ -22,9 +20,13 @@ const sampleImage = 'https://avatars.githubusercontent.com/u/4986062?v=4'
 
 const CollectionCard = ({ collection, editToken, deleteToken, index }: TokenCardProps) => {
   const { name, banner, currentPrice } = collection
-  const [state, dispatch] = useReducer(userReducer, { userInfo: emptyUserInfo })
+  const {state, dispatch} = useContext(AppContext)
 
   const { userInfo } = state
+
+  useEffect(()=>{
+    console.log(userInfo)
+  }, [userInfo])
 
   return (
     <Box position='relative' className='collection' my={1}>
