@@ -1,18 +1,19 @@
 import React from 'react'
 import {Box, Flex, Skeleton} from '@chakra-ui/react'
 import MemberButton from "./MemberButton";
+import '../Popup.scss'
 
 const TokenListSkeleton = () => {
-  const length = 15
+  const length = 16
   return (
-    <Box className={'skeletonList'} style={{position: 'relative', height: "100%"}}>
+    <Box className={'portgrid'} style={{position: 'relative', height: "100%"}}>
       {Array.from(Array(length)).map((_, i) => (
-        <Skeleton key={i} w="60px" h="84px">
+        <Skeleton className={'portgriditem'}>
         </Skeleton>
       ))}
       <Box className={'overlay'}/>
       <Flex className={'membershipButtonWrapper'} w='100%' h='100%' style={{position: "absolute"}}>
-        <MemberButton cssClass={'bigButton'}/>
+        <MemberButton cssClass={'memberlock'}/>
       </Flex>
     </Box>)
 }
