@@ -1,7 +1,7 @@
 {
   "action": {
     "default_popup": "popup.html",
-    "default_icon": "logo.png"
+    "default_icon": "img/logo.png"
   },
   "background": {
     "service_worker": "background.bundle.js",
@@ -35,7 +35,7 @@
     "https://us-central1-nifty-owl.cloudfunctions.net/*"
   ],
   "icons": {
-    "128": "logo.png"
+    "128": "img/logo.png"
   },
   "manifest_version": 3,
   "name": "Nifty Owl",
@@ -52,7 +52,7 @@
       "resources": [
         "inject.bundle.js",
         "contentScript.bundle.js",
-        "icon-256.png"
+        "img/*"
       ],
       "matches": [
         "<all_urls>"

@@ -1,6 +1,6 @@
 import {CMD_NAME} from '../../consts'
-import {checkToken} from '../../utils'
 import {appendCollectionBtn} from './changeOpenSea'
+import {checkToken} from '../../utils'
 
 const defaultOptions = {
 	changeUI: true,
@@ -27,6 +27,7 @@ chrome.storage.sync.get(["options", 'user'], i => {
 
 const injectBuyNowButtonScript = (options, user) => {
 	const contentScript = chrome.runtime.getURL('contentScript.bundle.js')
+  options.cartIcon = chrome.runtime.getURL('img/cart.svg')
 	const script = document.createElement('script')
 	script.src = contentScript
 	document.head.appendChild(script);

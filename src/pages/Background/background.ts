@@ -6,9 +6,8 @@ import { getData, removeData, saveData } from '../../storage'
 
 import { CMD_NAME } from '../../consts'
 import { ITrackingCollection } from '../../intefaces'
-import { getCollectionData } from '../Popup/services'
 import { IUserInfo } from '../../intefaces'
-
+import { getCollectionData } from '../Popup/services'
 
 const tracking = true // todo make it as a setting
 
@@ -119,7 +118,7 @@ const showNotification = (cfg: IChromeNotificationConfig): void => {
       type: 'basic',
       title,
       message,
-      iconUrl: chrome.runtime.getURL('logo.png'),
+      iconUrl: chrome.runtime.getURL('img/logo.png'),
     }
   )
 }
