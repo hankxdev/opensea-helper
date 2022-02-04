@@ -8,6 +8,7 @@ let option = {
   changeUI: true,
   autoBuy: false,
   showNotify: true,
+  cartIcon: ''
 }
 
 let lastURL = window.location.href
@@ -18,6 +19,9 @@ let userInfo = {
   address: '',
   isPaidUser: false,
 }
+
+let collectionInfos = {}
+
 
 
 window.addEventListener('message', e => {
@@ -63,7 +67,8 @@ function changeOpenseaUI(changeUI) {
     } else {
       const tokenEls = $('article')
       tokenEls.each((_, el) => {
-        injectBuyNowButton(el)
+        const tokenId = $(el).find("a").attr('href')?.split('/').reverse()[0]
+        injectBuyNowButton(el, tokenId)
         requestRarityData(el)
       })
     }
@@ -119,13 +124,55 @@ function requestRarityData(el) {
 }
 
 
-function injectBuyNowButton(el) {
+function buttonHtml(tokenId) {
+  return `
+  <div class="owl-buy-now-button" data-cate-id="${getCollectionName()}" data-token-id="${tokenId}">
+    <div class="owl-buy-now-button-inner">
+      <div class="owl-left">
+        <div class="owl-dots">...</div>
+        <div class="owl-rank">Rank: <span class="owl-rank-value"></span></div>
+        <div class="owl-floor">Floor: <span class="owl-floor-value"></span></div>
+      </div>
+        <div class="owl-right">
+          <div class="owl-buy-now"><img src="${option.cartIcon}"/></div>
+        </div>
+    </div>
+  </div>
+  `
+}
+
+
+function getCollectionName() {
+  return document.querySelector('a[href^="/collection"]')?.href.split('/').reverse()[0].match(/[\w-]+/)[0]
+}
+
+
+function injectBuyNowButton(el, tokenId) {
   if ($(el).find('.owl-buy-now-button').length === 0) {
-    $(el).append(`<button class='btn btn-primary owl-buy-now-button'>
-                Buy it now
-              </button>`,
-    )
+    $(el).append(buttonHtml(tokenId))
+    getFloorPrice().then(floorPrice => {
+      $(".owl-floor-value").text(floorPrice)
+    })
   }
+}
+
+function getFloorPrice() {
+  const name = getCollectionName()
+  return new Promise((resolve, reject) => {
+    if (collectionInfos[name]) {
+      resolve(collectionInfos[name].floorPrice)
+    } else {
+      $.ajax({
+        url: `https://api.opensea.io/api/v1/collection/${name}`,
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+          collectionInfos[name] = { floorPrice: data.collection.stats.floor_price }
+          resolve(collectionInfos[name].floorPrice)
+        }
+      })
+    }
+  })
 }
 
 
@@ -142,14 +189,13 @@ function injectRarity(tokenId, ranking, score) {
       tokenListItem.find('div[class^=\'AssetCellreact\']').parent().after(rarityContainer)
     }
   } else {
-    $(`article[data-token-id="${tokenId}"]`).append(rarityContainer)
+    $(`article[data-token-id="${tokenId}"]`).find(".owl-rank-value").text(`#${ranking}`)
   }
 }
 
 
 function initBuyProcess(el) {
   const that = $(el)
-  that.text('...')
   that.addClass('disabled')
   const link = that.parent().find('a').attr('href')
   const assetAddress = link.match(/0x\w+/)[0]
@@ -174,21 +220,19 @@ function initBuyProcess(el) {
       } catch (e) {
         alert(e)
       } finally {
-        that.text('Buy it now')
         that.removeClass('disabled')
       }
     }).catch(e => {
-    alert(e)
-  }).finally(() => {
-    that.text('Buy it now')
-    that.removeClass('disabled')
-  })
+      alert(e)
+    }).finally(() => {
+      that.removeClass('disabled')
+    })
 }
 
 
 // const provider = await detectEthereumProvider()
 
-$('body').on('click', '.owl-buy-now-button, .owl-buy-now-button-small', function(e) {
+$('body').on('click', '.owl-buy-now-button, .owl-buy-now-button-small', function (e) {
   e.preventDefault()
   let that = $(this)
   initBuyProcess(that)

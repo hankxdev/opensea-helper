@@ -46,7 +46,6 @@ var options = {
     background: path.join(__dirname, 'src', 'pages', 'Background', 'background.ts'),
     contentScript: path.join(__dirname, 'src', 'pages', 'Content', 'content.js'),
     inject: path.join(__dirname, 'src', 'pages', 'Content', 'inject.js'),
-    rarity: path.join(__dirname, 'src', 'pages', 'Content', 'Rarity', 'rarity.ts')
   },
   output: {
     path: path.resolve(__dirname, 'build'),
@@ -146,8 +145,8 @@ var options = {
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: 'src/assets/img/logo.png',
-          to: path.join(__dirname, 'build'),
+          from: 'src/assets/img/',
+          to: path.join(__dirname, 'build/img/'),
           force: true,
         },
       ],
