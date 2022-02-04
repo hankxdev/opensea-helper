@@ -41,7 +41,7 @@ const CollectionCard = ({ collection, editToken, deleteToken, index }: TokenCard
           chrome.tabs.create({ url: `https://opensea.io/collection/${name}?tab=activity` })
         }} />
         {
-          userInfo.isPaidUser || index < 1 ? (<Box textAlign='center'>
+          userInfo.isPaidUser || index < 2 ? (<Box textAlign='center'>
             <span className='collectionfloor'>Floor {currentPrice}</span>
           </Box>) : <MemberButton />
         }
