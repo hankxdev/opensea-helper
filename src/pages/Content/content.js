@@ -57,12 +57,10 @@ function changeOpenseaUI(changeUI) {
         requestRarityData(el)
       })
     } else if (url.includes('/assets/')) {
-      const tokenButtonEl = $('.TradeStation--main button:contains(Buy now)')
+      const tokenButtonEl = $('article')
+      const tokenId = url.split('/').reverse()[0]
       if (tokenButtonEl.length > 0) {
-        const buttonWrapper = tokenButtonEl.parent()
-        injectBuyNowButton(buttonWrapper)
-        buttonWrapper.css({ position: 'relative' })
-        $('.owl-buy-now-button').css({ 'border-radius': '10px', 'height': '100%' })
+        injectBuyNowButton(tokenButtonEl, tokenId)
       }
     } else {
       const tokenEls = $('article')
@@ -196,10 +194,21 @@ function injectRarity(tokenId, ranking, score) {
 
 function initBuyProcess(el) {
   const that = $(el)
+  if(that.hasClass('disabled')){
+    alert('buy process is running')
+    return
+  }
   that.addClass('disabled')
-  const link = that.parent().find('a').attr('href')
-  const assetAddress = link.match(/0x\w+/)[0]
-  const assetId = link.match(/\/(\d+)/g)[1].replace('/', '')
+  let assetAddress = ''
+  let assetId = ''
+  if (window.location.href.includes('/assets/')) {
+    assetId = window.location.href.split('/').reverse()[0]
+    assetAddress = window.location.href.split('/').reverse()[1] 
+  } else {
+    const link = that.parent().find('a').attr('href')
+    assetAddress = link.match(/0x\w+/)[0]
+    assetId = link.match(/\/(\d+)/g)[1].replace('/', '')
+  }
   if (!seaport) {
     // const provider = new Web3.providers.HttpProvider(
     //   'https://mainnet.infura.io'
