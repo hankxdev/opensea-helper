@@ -1,8 +1,6 @@
 import './Options.scss'
 
-import * as React from 'react'
-
-import { Box, Button, Center, Flex, Spinner } from '@chakra-ui/react'
+import { Center } from '@chakra-ui/react'
 
 interface Props {
   title: string

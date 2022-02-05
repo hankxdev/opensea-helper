@@ -20,7 +20,6 @@ interface IProps {
   account: string
   network: string
   provider: any,
-  showTokenList: () => void
 }
 
 interface INonceResponse {
@@ -58,7 +57,7 @@ const API = {
   },
 }
 
-const UserProfile = ({account, network, provider, showTokenList}: IProps) => {
+const UserProfile = ({account, network, provider}: IProps) => {
   const [verified, setVerified] = useState(false)
   const [nonce, setNonce] = useState('')
   const [token, setToken] = useState('')
@@ -184,14 +183,6 @@ const UserProfile = ({account, network, provider, showTokenList}: IProps) => {
             <AlertIcon/>
             Verified! Now you can use the extension.
           </Alert>
-          <Button
-            fontSize="1rem" w="100%"
-            mt={2}
-            className="submitbutton"
-            onClick={() => {
-              showTokenList()
-
-            }}>List My Tokens</Button>
         </>
       ) : (
         <Box width="100%">
