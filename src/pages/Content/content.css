@@ -1,9 +1,10 @@
 /* CSS */
 .owl-buy-now-button {
     background: linear-gradient(145deg, #6056af 0%, #7e74d0 100%);
-    background-image: url('chrome-extension://__MSG_@@extension_id__/img/logowhite-bg.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 300px 100px;
     border: 0;
-    cursor: pointer;
     display: inline-block;
     font-weight: 500;
     line-height: 1.2;
@@ -20,14 +21,9 @@
     height: 60px;
     color: #fff;
     border-radius: 0px 0px 10px 10px;
-    font-size: 12px;
+    font-size: 10px;
     text-transform: uppercase;
-    opacity: 0.8;
-    position: absolute;
     bottom: 0;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: auto;
 }
 
 .owl-buy-now-button-inner{
@@ -43,22 +39,27 @@
   text-align: left;
 }
 
-.owl-buy-now-button-inner .owl-buy-now{
-  width: 30px;
+.owl-buy-now {
+  width: 35px;
+  height: 35px;
   padding: 5px;
+  background: linear-gradient(145deg, #6056af 0%, #7e74d0 100%);
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.205) 0px 2px 2px 0px;
+  cursor: pointer;
 }
 
 .owl-buy-now img{
-  width: 30px;
-  background-color: #6056af;
-  border-radius: 4px;
-  border: 1px solid #000;
+  width: 100%;
+  opacity:0.8;
+}
+
+.owl-buy-now img:hover {
+opacity: 1;
 }
 
 .owl-buy-now-button:hover {
-    opacity: 1.0;
-    transition: all 0.25s ease;
-    letter-spacing: 1px;
+  
 }
 
 .owl-buy-now-button:not([disabled]):focus {
@@ -114,6 +115,10 @@
     color: white;
     line-height: 20px !important;
     font-weight: 500 !important;
+}
+
+.AssetCardFooterreact {
+  height:0px!important;
 }
 
 footer {
