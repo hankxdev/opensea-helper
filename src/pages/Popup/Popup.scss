@@ -50,7 +50,7 @@ body {
 }
 
 .collectiontitle {
-  font-size: 11px;
+  font-size: 10px;
   opacity: 1 !important;
   text-transform: uppercase;
   text-shadow: 1px 1px 4px #222;
@@ -62,7 +62,7 @@ body {
 }
 
 .collectiontitle:hover {
-  letter-spacing: 1px;
+  letter-spacing: .5px;
   transition: all 0.25s ease;
 }
 
