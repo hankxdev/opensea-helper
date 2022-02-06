@@ -58,10 +58,21 @@ function changeOpenseaUI(changeUI) {
       })
     } else if (url.includes('/assets/')) {
       const tokenButtonEl = $('article')
-      const tokenId = url.split('/').reverse()[0]
-      if (tokenButtonEl.length > 0) {
-        injectBuyNowButton(tokenButtonEl, tokenId)
+      if (tokenButtonEl.length < 1) {
+        return
       }
+      tokenButtonEl.each((_, el) => {
+        const $el = $(el)
+        let tokenId = ''
+        if ($el.find("a").length < 1) {
+          tokenId = url.split('/').reverse()[0]
+        } else {
+          tokenId = $el.find("a").attr('href')?.split('/').reverse()[0]
+        }
+        injectBuyNowButton($el, tokenId)
+      })
+
+
     } else {
       const tokenEls = $('article')
       tokenEls.each((_, el) => {
@@ -146,12 +157,13 @@ function getCollectionName() {
 
 
 function injectBuyNowButton(el, tokenId) {
-  if ($(el).find('.owl-buy-now-button').length === 0) {
-    $(el).append(buttonHtml(tokenId))
-    getFloorPrice().then(floorPrice => {
-      $(".owl-floor-value").text(floorPrice)
-    })
+  if ($(el).find('.owl-buy-now-button').length > 0) {
+    return
   }
+  $(el).append(buttonHtml(tokenId))
+  getFloorPrice().then(floorPrice => {
+    $(".owl-floor-value").text(floorPrice)
+  })
 }
 
 function getFloorPrice() {
@@ -194,20 +206,18 @@ function injectRarity(tokenId, ranking, score) {
 
 function initBuyProcess(el) {
   const that = $(el)
-  if(that.hasClass('disabled')){
+  if (that.hasClass('disabled')) {
     alert('buy process is running')
     return
   }
-  that.addClass('disabled')
+  that.find('.owl-buy-now').addClass('disabled spin-cart')
   let assetAddress = ''
-  let assetId = ''
+  let assetId = that.data('token-id')
   if (window.location.href.includes('/assets/')) {
-    assetId = window.location.href.split('/').reverse()[0]
-    assetAddress = window.location.href.split('/').reverse()[1] 
+    assetAddress = window.location.href.split('/').reverse()[1]
   } else {
     const link = that.parent().find('a').attr('href')
     assetAddress = link.match(/0x\w+/)[0]
-    assetId = link.match(/\/(\d+)/g)[1].replace('/', '')
   }
   if (!seaport) {
     // const provider = new Web3.providers.HttpProvider(
@@ -229,12 +239,12 @@ function initBuyProcess(el) {
       } catch (e) {
         alert(e)
       } finally {
-        that.removeClass('disabled')
+        that.find('.owl-buy-now').removeClass('disabled spin-cart')
       }
     }).catch(e => {
       alert(e)
     }).finally(() => {
-      that.removeClass('disabled')
+      that.find('.owl-buy-now').removeClass('disabled spin-cart')
     })
 }
 
