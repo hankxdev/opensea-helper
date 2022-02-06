@@ -3,7 +3,7 @@ const path = require("path");
 const CopyPlugin = require("copy-webpack-plugin");
 const NodePolyfillPlugin = require("node-polyfill-webpack-plugin")
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const TerserPlugin = require('terser-webpack-plugin');
+
 
 const srcDir = path.join(__dirname, "..", "src");
 const rootDir = path.join(__dirname, "..");
@@ -40,12 +40,12 @@ module.exports = {
     publicPath: ASSET_PATH,
   },
   optimization: {
-    splitChunks: {
-      name: "vendor",
-      chunks(chunk) {
-        return chunk.name !== 'background';
-      }
-    },
+    // splitChunks: {
+    //   name: "vendor",
+    //   chunks(chunk) {
+    //     return chunk.name !== 'background';
+    //   }
+    // },
   },
   module: {
     rules: [
@@ -55,9 +55,7 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
-        // look for .css or .scss files
         test: /\.(css|scss)$/,
-        // in the `src` directory
         use: [
           {
             loader: 'style-loader',
@@ -134,12 +132,6 @@ module.exports = {
       filename: 'popup.html',
       chunks: ['popup'],
       cache: false,
-    }),
-    new HtmlWebpackPlugin({
-      template: templateHtml,
-      filename: 'tokenlist.html',
-      chunks: ['tokenList'],
-      cache: false,
-    }),
+    })
   ],
 };

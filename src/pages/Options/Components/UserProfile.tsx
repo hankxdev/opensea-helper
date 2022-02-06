@@ -22,23 +22,7 @@ interface IProps {
   provider: any,
 }
 
-interface INonceResponse {
-  nonce: string
-}
 
-interface IVerifyResponse {
-  token: string
-}
-
-interface INFTListResponse {
-
-}
-
-interface INFTListReq {
-  address: string,
-  token: string,
-  network?: string
-}
 
 const API = {
   baseURL: (remote?: boolean) => {
@@ -116,6 +100,7 @@ const UserProfile = ({account, network, provider}: IProps) => {
       showError('error getting nonce')
       return
     }
+    console.log(account)
 
     const signature = await provider.request({
       method: 'personal_sign',

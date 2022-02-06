@@ -8,8 +8,8 @@
     "url": "https://github.com/hankxdev/opensea-helper.git"
   },
   "scripts": {
-    "build": "webpack --config webpack/webpack.prod.js",
-    "start": "webpack --config webpack/webpack.dev.js --watch",
+    "build": "yarn clean; webpack --config webpack/webpack.prod.js",
+    "start": "yarn clean; webpack --config webpack/webpack.dev.js --watch",
     "prettier": "prettier --write '**/*.{js,jsx,css,html}'",
     "clean": "rimraf build",
     "test": "npx jest"

@@ -1,6 +1,5 @@
 import $ from 'jquery'
 
-
 /**
  *
  * @param name string
