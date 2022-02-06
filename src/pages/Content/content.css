@@ -1,9 +1,9 @@
 /* CSS */
 .owl-buy-now-button {
-    background: linear-gradient(145deg, #6056af 0%, #7e74d0 100%);
+   background-image: url('chrome-extension://__MSG_@@extension_id__/img/smallbranding.png'), linear-gradient(145deg, #6056af 0%, #7e74d0 100%);
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 300px 100px;
+    background-size: cover;
     border: 0;
     display: inline-block;
     font-weight: 500;
@@ -25,6 +25,7 @@
     text-transform: uppercase;
     bottom: 0;
 }
+
 
 .owl-buy-now-button-inner{
   display: flex;

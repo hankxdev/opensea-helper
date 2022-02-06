@@ -13,7 +13,7 @@ const LoginSection = () => {
             chrome.tabs.create({ url: 'options.html' })
           }}
         >
-          Login with MetaMask
+          Login
         </Button>
       </Box>
     </Flex>
