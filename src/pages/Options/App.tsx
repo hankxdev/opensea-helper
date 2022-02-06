@@ -60,7 +60,7 @@ export default function App() {
   }
 
   const connectWeb3 = async () => {
-    const accounts = await mmProvider.enable()
+    const accounts = await mmProvider.request({ method: 'eth_requestAccounts' })
     setAccount(accounts[0])
     setIsConnected(true)
     setIsConnecting(false)
@@ -100,7 +100,7 @@ export default function App() {
 
   useEffect(() => {
     initProvider()
-    checkUser()
+    // checkUser()
   }, [])
 
   return (

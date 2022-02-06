@@ -4,7 +4,7 @@
     "default_icon": "img/logo.png"
   },
   "background": {
-    "service_worker": "background.bundle.js",
+    "service_worker": "background.js",
     "type": "module"
   },
   "content_scripts": [
@@ -13,7 +13,7 @@
         "https://opensea.io/*"
       ],
       "js": [
-        "inject.bundle.js"
+        "inject.js"
       ],
       "css": [
         "content.css"
@@ -49,8 +49,7 @@
   "web_accessible_resources": [
     {
       "resources": [
-        "inject.bundle.js",
-        "contentScript.bundle.js",
+        "contentScript.js",
         "img/*"
       ],
       "matches": [
