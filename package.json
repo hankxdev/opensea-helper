@@ -8,10 +8,11 @@
     "url": "https://github.com/hankxdev/opensea-helper.git"
   },
   "scripts": {
-    "build": "node utils/build.js",
-    "start": "node utils/webserver.js --watch",
-    "dev": "cross-env NODE_ENV=development webpack --watch",
-    "prettier": "prettier --write '**/*.{js,jsx,css,html}'"
+    "build": "webpack --config webpack/webpack.prod.js",
+    "start": "webpack --config webpack/webpack.dev.js --watch",
+    "prettier": "prettier --write '**/*.{js,jsx,css,html}'",
+    "clean": "rimraf build",
+    "test": "npx jest"
   },
   "dependencies": {
     "@chakra-ui/icon": "^1.1.13",
