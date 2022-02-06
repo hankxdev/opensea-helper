@@ -1,9 +1,13 @@
-import {Box, Flex, Text} from '@chakra-ui/react'
-import {INFTProps, NFTCard} from "./NFT";
-import {useContext, useEffect, useState} from "react";
+import { Box, Flex, Text, Center } from '@chakra-ui/react'
+import { INFTProps, NFTCard } from "./NFT";
+import { useContext, useEffect, useState } from "react";
 
 import { AppContext } from '../../../reducer'
 import TokenListSkeleton from './TokenListSkeleton'
+
+import LoadingSpinner from "./LoadingSpinner";
+
+
 import axios from "axios";
 
 interface IProps {
@@ -24,12 +28,14 @@ const getNFTListURL = (network: string, address: string) => {
 }
 
 
-const NFTList = ({address, network}: IProps) => {
+const NFTList = ({ address, network }: IProps) => {
 
   const [nftList, setNFTList] = useState([] as INFTListResp["assets"])
   const [loadingMsg, setLoadingMsg] = useState('loading your NFTs')
-  const {state, dispatch} = useContext(AppContext)
-  const {userInfo} = state
+  const { state } = useContext(AppContext)
+  const { userInfo } = state
+
+  const [hasError, setErrors] = useState(false)
 
   const getNFTList = (url: string): Promise<any> => {
     return axios.get(getNFTListURL(network, address))
@@ -44,14 +50,14 @@ const NFTList = ({address, network}: IProps) => {
       const data = resp.data as INFTListResp
       if (data && data.assets) {
         if (data.assets.length > 0) {
-          // @ts-ignore
-          // const tokens = new Array(20).fill(data.assets[1])
           setNFTList(data.assets)
         } else {
+          setErrors(true)
           setLoadingMsg("seems you don't have any NFT")
         }
 
       } else {
+        setErrors(true)
         setLoadingMsg("could not load your nfts ")
       }
 
@@ -63,11 +69,9 @@ const NFTList = ({address, network}: IProps) => {
       {
         userInfo.isPaidUser ? (<Box color={"white"}>
           {nftList.length > 0 ? <Flex flexWrap={'wrap'}>
-              {nftList.map((nft, index) => <NFTCard key={index} {...nft}/>)}</Flex> :
-            <Flex justifyContent='center' flexDir="column">
-              <Text variant="alert" fontSize={"xl"}>{loadingMsg}</Text>
-            </Flex>}
-        </Box>) : <TokenListSkeleton/>
+            {nftList.map((nft, index) => <NFTCard key={index} {...nft} />)}</Flex> :
+            <LoadingSpinner msg={loadingMsg} hasError={hasError}/>}
+        </Box>) : <TokenListSkeleton />
       }
     </>
   )

@@ -13,8 +13,7 @@
         "https://opensea.io/*"
       ],
       "js": [
-        "inject.bundle.js",
-        "rarity.bundle.js"
+        "inject.bundle.js"
       ],
       "css": [
         "content.css"
