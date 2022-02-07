@@ -16,17 +16,30 @@ const defaultGasPriceOption = {
 }
 
 
-export const getGasPrice = async () => {
-  const oracle = new GasPriceOracle(defaultGasPriceOption)
-  const gasPrice: IGasFee = await oracle.gasPrices(defaultGasPriceOption.defaultFallbackGasPrices)
-  return gasPrice.standard
+export const getGasPrice = (): Promise<number> => {
+  return new Promise((resolve, reject) => {
+    fetch('https://api.anyblock.tools/ethereum/ethereum/mainnet/gasprice/').then(res => res.json()).then(res => {
+      if (!res.health) {
+        resolve(0)
+      }
+      resolve(res.standard && !isNaN(res.standard) ? res.standard : 0)
+    }).catch(err => {
+      console.log(err)
+      resolve(0)
+    })
+  })
 }
 
 
-export const getEthPrice = async () => {
-  const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd')
-  const data = await response.json()
-  return data.ethereum.usd
+export const getEthPrice = (): Promise<number> => {
+  return new Promise((resolve, reject) => {
+    fetch('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd').then(res => res.json()).then(res => {
+      resolve(res.ethereum.usd)
+    }).catch(err => {
+      console.log(err)
+      resolve(0)
+    })
+  })
 }
 
 

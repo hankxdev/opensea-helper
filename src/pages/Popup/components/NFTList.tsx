@@ -115,11 +115,11 @@ const NFTList = ({ address, network }: IProps) => {
                 <Flex justifyContent="space-between" className='nftlist-bar'>
                   <Box className='bar-address'>Address: {address}</Box>
                   <Box className='bar-total-sale'>Value: {toalSale.map((s, i) => {
-                    return <span key={i}>{s.price} {' ' + s.symbol}</span>
+                    return <span key={s.symbol}>{s.price} {' ' + s.symbol}</span>
                   })}</Box>
                 </Flex>
                 <Flex flexWrap={'wrap'}>
-                  {nftList.map((nft, index) => <NFTCard key={index} {...nft} />)}
+                  {nftList.map((nft, index) => <NFTCard key={nft.token_id} {...nft} />)}
                 </Flex>
               </>
             ) :

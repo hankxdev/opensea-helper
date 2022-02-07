@@ -24,10 +24,6 @@ const CollectionCard = ({ collection, editToken, deleteToken, index }: TokenCard
 
   const { userInfo } = state
 
-  useEffect(()=>{
-    console.log(userInfo)
-  }, [userInfo])
-
   return (
     <Box position='relative' className='collection' my={1}>
       <Image src={banner || sampleImage} className='collectionbackground' />
