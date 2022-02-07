@@ -94,12 +94,12 @@ const NFTList = ({ address, network }: IProps) => {
           setTotalSale(totalSale)
         } else {
           setErrors(true)
-          setLoadingMsg("seems you don't have any NFT")
+          setLoadingMsg("Seems you don't have any NFT")
         }
 
       } else {
         setErrors(true)
-        setLoadingMsg("could not load your nfts ")
+        setLoadingMsg("Could not load your NFTs ")
       }
 
     })
@@ -112,7 +112,7 @@ const NFTList = ({ address, network }: IProps) => {
           {nftList.length > 0 ?
             (
               <>
-                <Flex justifyContent="space-between" className='nftlist-bar' bgGradient="linear(to-l, #7928CA, #FF0080)">
+                <Flex justifyContent="space-between" className='nftlist-bar'>
                   <Box className='bar-address'>Address: {address}</Box>
                   <Box className='bar-total-sale'>Value: {toalSale.map((s, i) => {
                     return <span key={i}>{s.price} {' ' + s.symbol}</span>
