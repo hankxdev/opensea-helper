@@ -91,7 +91,7 @@ const TrackCollection = () => {
                     collection={token}
                     editToken={gotoEditToken}
                     deleteToken={deleteToken}
-                    key={index}
+                    key={token.name}
                   />
                 ))}
               </Box>
