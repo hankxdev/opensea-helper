@@ -16,7 +16,7 @@ import { removeData } from '../../storage'
 
 const Popup = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(false)
-  const [isLogin, setIsLogin] = useState(false)
+  const [isLogin, setIsLogin] = useState(true)
   const [showComponent, setShowComponent] = useState<string>('trackingList')
   const { state, dispatch } = useContext(AppContext)
   const toggleSidebar = () => {
@@ -24,7 +24,7 @@ const Popup = () => {
   }
 
   const logoutUser = () => {
-    setIsLogin(false)
+    // setIsLogin(false)
     dispatch({ type: 'RESET_USER_INFO' })
   }
 
