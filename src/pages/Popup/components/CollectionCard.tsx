@@ -20,7 +20,7 @@ const sampleImage = 'https://avatars.githubusercontent.com/u/4986062?v=4'
 
 const CollectionCard = ({ collection, editToken, deleteToken, index }: TokenCardProps) => {
   const { name, banner, currentPrice } = collection
-  const {state, dispatch} = useContext(AppContext)
+  const {state} = useContext(AppContext)
 
   const { userInfo } = state
 
