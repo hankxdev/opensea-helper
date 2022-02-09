@@ -6,18 +6,20 @@ import {checkToken} from '../../utils'
 const defaultOptions = {
 	changeUI: true,
 	autoBuy: false,
-	showNotifty: true,
+	showNotify: true,
+}
+
+const defaultUser = {
+	address: '',
+	network: '',
+	token: '',
+	isPaidUser: false,
+
 }
 
 chrome.storage.sync.get(["options", 'user'], i => {
-	const user = i.user
-	if (!user) {
-		return
-	}
+	const user = i.user ? i.user: defaultUser
 	const {address, token} = user
-	// if (!checkToken(address, token)) {
-	// 	return
-	// }
 	user.isPaidUser = checkToken(address, token)
 	setInterval(()=>{
 		appendCollectionBtn()

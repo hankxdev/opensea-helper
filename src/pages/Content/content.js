@@ -22,6 +22,12 @@ let userInfo = {
 
 let collectionInfos = {}
 
+const memeberButton = `
+<div title="Purchase to unlock" class="owl-memebr-btn memberlock smallButton">
+<i color="gray" size="16" value="" class=" material-icons">lock</i>  Member
+</div>
+`
+
 
 
 window.addEventListener('message', e => {
@@ -34,14 +40,13 @@ window.addEventListener('message', e => {
   } else if (e.data.type === 'setRarityData') {
     const { rarityData } = e.data
     console.log(e.data.rarityData)
-
     injectRarity(rarityData.token_id, rarityData.ranking, rarityData.score)
   }
 })
 
 function changeOpenseaUI(changeUI) {
   if (!changeUI) {
-    return 0
+    return
   }
   const changeUIInterval = setInterval(() => {
     const url = window.location.href
@@ -104,13 +109,22 @@ function sendMessagetoPage(type, data) {
 }
 
 function requestRarityData(el) {
-  let tokenId = $(el).attr('data-token-id')
+  const $el = $(el)
+  if(!userInfo.isPaidUser){
+    const owlBar= $el.parent().find('.owl-buy-now-button')
+    const rankBar = owlBar.find('.owl-rank')
+    if(rankBar.find('.owl-memebr-btn').length < 1){
+      rankBar.append(memeberButton)
+    }
+    return
+  }
+  let tokenId = $el.attr('data-token-id')
   //first time scan this token
   if (tokenId) {
     return
   }
 
-  tokenId = $(el).find('a').attr('href')?.split('/').reverse()[0]
+  tokenId = $el.find('a').attr('href')?.split('/').reverse()[0]
 
   if (!tokenId) {
     return
@@ -123,7 +137,7 @@ function requestRarityData(el) {
       $(`div[role="listitem"][data-token-id="${tokenId}"]`).find('div[class^=\'AssetCellreact\']').parent().after(rarityEl)
     }
   }
-  $(el).attr('data-token-id', tokenId)
+  $el.attr('data-token-id', tokenId)
   const collectionName = document.querySelector('a[href^="/collection"]')?.href.split('/').reverse()[0].match(/[\w-]+/)[0]
   if (lastTokens.includes(tokenId)) {
     return
@@ -253,6 +267,14 @@ function initBuyProcess(el) {
 
 $('body').on('click', '.owl-buy-now-button, .owl-buy-now-button-small', function (e) {
   e.preventDefault()
+  if(!userInfo.isPaidUser){
+    alert('You need to be a paid user to buy tokens')
+    return
+  }
   let that = $(this)
   initBuyProcess(that)
+}).on("click", ".owl-memebr-btn", function (e){
+  e.preventDefault()
+  e.stopPropagation()
+  window.open("https://niftyowl.io", "_blank")
 })
