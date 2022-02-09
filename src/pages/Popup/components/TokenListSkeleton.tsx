@@ -8,8 +8,7 @@ const TokenListSkeleton = () => {
   return (
     <Box className={'portgrid'} style={{position: 'relative', height: "100%"}}>
       {Array.from(Array(length)).map((_, i) => (
-        <Skeleton className={'portgriditem'}>
-        </Skeleton>
+        <Skeleton key={i} className={'portgriditem'} />
       ))}
       <Box className={'overlay'}/>
       <Flex className={'membershipButtonWrapper'} w='100%' h='100%' style={{position: "absolute"}}>

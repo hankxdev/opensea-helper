@@ -2,7 +2,6 @@ import { AppContext, initState, userReducer } from '../../reducer'
 import { ChakraProvider, extendTheme } from '@chakra-ui/react'
 import React, { useReducer } from 'react'
 
-import { IUserInfo } from '../../intefaces'
 import Popup from './Popup'
 import { render } from 'react-dom'
 import { theme } from '../../theme'
