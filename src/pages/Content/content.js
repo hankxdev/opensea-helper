@@ -68,13 +68,14 @@ function changeOpenseaUI(changeUI) {
       }
       tokenButtonEl.each((_, el) => {
         const $el = $(el)
-        let tokenId = ''
+        let tokenId
         if ($el.find("a").length < 1) {
           tokenId = url.split('/').reverse()[0]
         } else {
           tokenId = $el.find("a").attr('href')?.split('/').reverse()[0]
         }
-        injectBuyNowButton($el, tokenId)
+        injectBuyNowButton(el, tokenId)
+        requestRarityData(el)
       })
 
 
