@@ -78,10 +78,11 @@ alarm.clearAll(() => {
       return
     }
 
-
-
     loopWithDelay((token: ITrackingCollection) => {
       return new Promise((resolve) => {
+        if(!token){
+          resolve()
+        }
         alarm.create(token.name, {
           when: Date.now() + 5 * 1000,
         })
