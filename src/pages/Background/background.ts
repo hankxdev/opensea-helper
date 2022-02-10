@@ -66,12 +66,12 @@ let apexToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlfQ
 
 alarm.clearAll(() => {
   getData(ACTION_NAME.TRACKING_TOKEN_LIST).then((data) => {
-    if (!data || data.length < 1 || !verified) {
+    if (!data || data.length < 1) {
       return
     }
 
     if (!userInfo.isPaidUser) {
-      data.length = 1
+      data.length = 2
     }
     trackingTokens = data
     if (!tracking) {
@@ -224,9 +224,6 @@ const saveTrackingCollection = async (collection: ITrackingCollection, sender: c
 
 
 crm.r.onMessage.addListener((req, sender, sendResponse) => {
-  if (!verified && req.cmd !== 'updateVerifyStatus') {
-    return
-  }
   switch (req.cmd) {
     case CMD_NAME.GET_TOKEN_RARITY:
       const { tokenId, collectionName } = req.data
