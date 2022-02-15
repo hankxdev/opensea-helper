@@ -120,12 +120,13 @@ export default function App() {
           <Image w="300px" src={MetaMaskIcon} />
           <Alert status="info" variant="subtle" alignItems="center">
             <AlertIcon />
-            <Text wordBreak="break-word" fontSize="14px">There will be <b>2</b> steps <br />
-              1: link your account
+            <Text wordBreak="break-word" fontSize="14px"><a href='https://niftyowl.io'><b>Nifty Owl Pass</b></a> (NFT) Required: <br />
+              1: Link Account
               <br />
-              2: verify your account
+              2: Verify NFT Ownership
               <br />
-              <b> NO PAYMENT IS NEEDED</b>
+              
+       
             </Text>
           </Alert>
           {!isConnected ? (
@@ -136,7 +137,7 @@ export default function App() {
                 connectWithMetaMask()
               }}
             >
-              Connect With Metamask
+              Verify Account
             </Button>
           ) : (
             <UserProfile
