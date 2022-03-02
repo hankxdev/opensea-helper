@@ -29,6 +29,10 @@ const Popup = () => {
   }
 
   useEffect(() => {
+    // @ts-ignore
+    console.log(window._gaq)
+        // @ts-ignore
+    window._gaq.push(['_trackPageview', "popup"]);
     chrome.storage.sync.get('user', (i) => {
       const user = i.user as IUserInfo
       if (!user) {

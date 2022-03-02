@@ -43,7 +43,7 @@ const API = {
 
 const UserProfile = ({account, network, provider}: IProps) => {
   const [verified, setVerified] = useState(false)
-  const [nonce, setNonce] = useState('')
+  const [nonce, setNone] = useState('')
   const [token, setToken] = useState('')
   const [isVerifying, setIsVerifying] = useState(false)
 

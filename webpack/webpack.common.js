@@ -104,6 +104,16 @@ module.exports = {
           force: true,
         },
         {
+          from: path.join(rootDir,'src/pages/analytics.js'),
+          to: path.join(rootDir, 'build'),
+          force: true,
+        },
+        {
+          from: path.join(rootDir,'src/pages/initga.js'),
+          to: path.join(rootDir, 'build'),
+          force: true,
+        },
+        {
           from: path.join(rootDir, 'src/manifest.json'),
           to: path.join(rootDir, 'build'),
           force: true,
@@ -133,5 +143,6 @@ module.exports = {
       chunks: ['popup'],
       cache: false,
     })
+  
   ],
 };
