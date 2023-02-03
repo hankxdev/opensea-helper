@@ -1,0 +1,58 @@
+{
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "img/logo.png"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://opensea.io/*"
+      ],
+      "js": [
+        "inject.js"
+      ],
+      "css": [
+        "content.css"
+      ]
+    }
+  ],
+  "externally_connectable": {
+    "matches": [
+      "https://metamask.io/*"
+    ],
+    "ids": [
+      "*"
+    ]
+  },
+  "host_permissions": [
+    "*://*.opensea.io/*",
+    "https://apexgo-api.herokuapp.com/*",
+    "https://us-central1-nifty-owl.cloudfunctions.net/*"
+  ],
+  "icons": {
+    "128": "img/logo.png"
+  },
+  "manifest_version": 3,
+  "name": "Nifty Owl",
+  "options_page": "options.html",
+  "permissions": [
+    "alarms",
+    "storage",
+    "notifications"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "contentScript.js",
+        "img/*"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ]
+}

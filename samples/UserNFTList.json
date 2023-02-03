@@ -1,0 +1,1074 @@
+[
+  {
+    "id": 247731209,
+    "token_id": "4090",
+    "num_sales": 1,
+    "background_color": null,
+    "image_url": "https://lh3.googleusercontent.com/pqV8YF6rdFIBzi61CGTnNUrKvXQyQeJrcO3kVkWmBc2ax3Vh7JiY4rsUvCIU3BFxC1RUnPgR0WuEfUarLZ5W71lZ5VVKPyXpLfuh",
+    "image_preview_url": "https://lh3.googleusercontent.com/pqV8YF6rdFIBzi61CGTnNUrKvXQyQeJrcO3kVkWmBc2ax3Vh7JiY4rsUvCIU3BFxC1RUnPgR0WuEfUarLZ5W71lZ5VVKPyXpLfuh=s250",
+    "image_thumbnail_url": "https://lh3.googleusercontent.com/pqV8YF6rdFIBzi61CGTnNUrKvXQyQeJrcO3kVkWmBc2ax3Vh7JiY4rsUvCIU3BFxC1RUnPgR0WuEfUarLZ5W71lZ5VVKPyXpLfuh=s128",
+    "image_original_url": "ipfs://QmaBvtjsTC52cJLtccS5vg7odGqJ9pniBTGd7FiV2QPHwi/4090.png",
+    "animation_url": null,
+    "animation_original_url": null,
+    "name": "Girlie #4090",
+    "description": "A collection of 10,000 unique & beautiful women. Created and illustrated by 14 y/o digital artist Valeria.",
+    "external_link": null,
+    "asset_contract": {
+      "address": "0x4f7e2a72a99d45f4fd5a2fc211f8dc5c36a049bd",
+      "asset_contract_type": "non-fungible",
+      "created_date": "2022-01-16T09:14:58.306066",
+      "name": "Girlies",
+      "nft_version": "3.0",
+      "opensea_version": null,
+      "owner": 200926944,
+      "schema_name": "ERC721",
+      "symbol": "GRLS",
+      "total_supply": "0",
+      "description": "Girlies is an NFT collection created and illustrated by 14 y/o digital artist [Valeria](https://twitter.com/Valeria_NFT). The collection features 10,000 hand-drawn pieces that celebrate women. We're donating to charities that support girls. Visit [girlies.art](https://girlies.art) to see our roadmap.\n**✨SOLD OUT✨**\n\nERC-721 token hosted on IPFS. You own all the rights to your girlie.",
+      "external_link": "https://girlies.art",
+      "image_url": "https://lh3.googleusercontent.com/GfPAPMX_Nl_hj-i0kC57QItUJu2_YmorVZpjyY5GB7n14Z_VxAs6fEszWbAD0zIgVb1mdA24UVzwjfQJX5gQAm2CqJnbyUCwmAsHtw=s120",
+      "default_to_fiat": false,
+      "dev_buyer_fee_basis_points": 0,
+      "dev_seller_fee_basis_points": 500,
+      "only_proxied_transfers": false,
+      "opensea_buyer_fee_basis_points": 0,
+      "opensea_seller_fee_basis_points": 250,
+      "buyer_fee_basis_points": 0,
+      "seller_fee_basis_points": 750,
+      "payout_address": "0x523a261647810cc7ebc867f6d0f47ecacbdeda46"
+    },
+    "permalink": "https://opensea.io/assets/0x4f7e2a72a99d45f4fd5a2fc211f8dc5c36a049bd/4090",
+    "collection": {
+      "banner_image_url": "https://lh3.googleusercontent.com/pb5xpI-ydG3JxRRFwrGP2acLZyafn6GWF2i6N-uFaND6Kall8mrUREkyC7fin58-Qbfmoek5LWEA8P636viIxzOcSwsvw85Xn-I-948=s2500",
+      "chat_url": null,
+      "created_date": "2022-01-16T09:19:25.575090",
+      "default_to_fiat": false,
+      "description": "Girlies is an NFT collection created and illustrated by 14 y/o digital artist [Valeria](https://twitter.com/Valeria_NFT). The collection features 10,000 hand-drawn pieces that celebrate women. We're donating to charities that support girls. Visit [girlies.art](https://girlies.art) to see our roadmap.\n**✨SOLD OUT✨**\n\nERC-721 token hosted on IPFS. You own all the rights to your girlie.",
+      "dev_buyer_fee_basis_points": "0",
+      "dev_seller_fee_basis_points": "500",
+      "discord_url": "https://discord.gg/XQkT788tUu",
+      "display_data": {
+        "card_display_style": "cover"
+      },
+      "external_url": "https://girlies.art",
+      "featured": false,
+      "featured_image_url": "https://lh3.googleusercontent.com/i67TYr79ZHMolpalxrUvx46CDQmo71RdqfsMgXBw9KYcl5ZCtAih8Q6wZKiGvK5xMdA1B-xgDKRH1K8i7Q2xQUgtHEpCXl2eYwzrIA=s300",
+      "hidden": false,
+      "safelist_request_status": "approved",
+      "image_url": "https://lh3.googleusercontent.com/GfPAPMX_Nl_hj-i0kC57QItUJu2_YmorVZpjyY5GB7n14Z_VxAs6fEszWbAD0zIgVb1mdA24UVzwjfQJX5gQAm2CqJnbyUCwmAsHtw=s120",
+      "is_subject_to_whitelist": false,
+      "large_image_url": "https://lh3.googleusercontent.com/i67TYr79ZHMolpalxrUvx46CDQmo71RdqfsMgXBw9KYcl5ZCtAih8Q6wZKiGvK5xMdA1B-xgDKRH1K8i7Q2xQUgtHEpCXl2eYwzrIA=s300",
+      "medium_username": null,
+      "name": "Girlies NFT",
+      "only_proxied_transfers": false,
+      "opensea_buyer_fee_basis_points": "0",
+      "opensea_seller_fee_basis_points": "250",
+      "payout_address": "0x523a261647810cc7ebc867f6d0f47ecacbdeda46",
+      "require_email": false,
+      "short_description": null,
+      "slug": "girlies-nft",
+      "telegram_url": null,
+      "twitter_username": null,
+      "instagram_username": null,
+      "wiki_url": null
+    },
+    "decimals": 0,
+    "token_metadata": "https://opensea.mypinata.cloud/ipfs/QmdF4AYbsZAyQXvfs48GKYyhjEJ9T94vAZw7jLiptqRE1m/4090.json",
+    "owner": {
+      "user": {
+        "username": "KVNFT"
+      },
+      "profile_img_url": "https://storage.googleapis.com/opensea-static/opensea-profile/25.png",
+      "address": "0x303181acf601b672347aec37dc6f4b6be884baa5",
+      "config": ""
+    },
+    "sell_orders": null,
+    "creator": {
+      "user": {
+        "username": "Girlies_NFT"
+      },
+      "profile_img_url": "https://storage.googleapis.com/opensea-static/opensea-profile/21.png",
+      "address": "0x523a261647810cc7ebc867f6d0f47ecacbdeda46",
+      "config": "verified"
+    },
+    "traits": [
+      {
+        "trait_type": "Eyeshadow",
+        "value": "Coral_Pink",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 881,
+        "order": null
+      },
+      {
+        "trait_type": "Skin Tone",
+        "value": "Olive",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 1274,
+        "order": null
+      },
+      {
+        "trait_type": "Background",
+        "value": "Wavy_Rosewood",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 198,
+        "order": null
+      },
+      {
+        "trait_type": "Necklaces",
+        "value": "Heart_Silver",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 543,
+        "order": null
+      },
+      {
+        "trait_type": "Facial Features",
+        "value": "Mole",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 188,
+        "order": null
+      },
+      {
+        "trait_type": "Mouth",
+        "value": "Smile_Nude",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 222,
+        "order": null
+      },
+      {
+        "trait_type": "Clothes",
+        "value": "Denim_White_Shirt",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 187,
+        "order": null
+      },
+      {
+        "trait_type": "Earrings",
+        "value": "Triangles_Gold",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 212,
+        "order": null
+      },
+      {
+        "trait_type": "Eyes",
+        "value": "Blue",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 827,
+        "order": null
+      },
+      {
+        "trait_type": "Eyebrows",
+        "value": "Upturned",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 2458,
+        "order": null
+      },
+      {
+        "trait_type": "Hair",
+        "value": "Curly_Bun_Brown",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 190,
+        "order": null
+      }
+    ],
+    "last_sale": {
+      "asset": {
+        "token_id": "4090",
+        "decimals": 0
+      },
+      "asset_bundle": null,
+      "event_type": "successful",
+      "event_timestamp": "2022-02-01T23:33:46",
+      "auction_type": null,
+      "total_price": "312500000000000000",
+      "payment_token": {
+        "id": 1,
+        "symbol": "ETH",
+        "address": "0x0000000000000000000000000000000000000000",
+        "image_url": "https://storage.opensea.io/files/6f8e2979d428180222796ff4a33ab929.svg",
+        "name": "Ether",
+        "decimals": 18,
+        "eth_price": "1.000000000000000",
+        "usd_price": "3021.940000000000055000"
+      },
+      "transaction": {
+        "block_hash": "0xd239a501a6bcd81cb2e6aac870bf668c8739fe0e18024e49ed4dd3b714bca212",
+        "block_number": "14123141",
+        "from_account": {
+          "user": {
+            "username": "KVNFT"
+          },
+          "profile_img_url": "https://storage.googleapis.com/opensea-static/opensea-profile/25.png",
+          "address": "0x303181acf601b672347aec37dc6f4b6be884baa5",
+          "config": ""
+        },
+        "id": 263808389,
+        "timestamp": "2022-02-01T23:33:46",
+        "to_account": {
+          "user": {
+            "username": "OpenSea-Orders"
+          },
+          "profile_img_url": "https://storage.googleapis.com/opensea-static/opensea-profile/22.png",
+          "address": "0x7be8076f4ea4a4ad08075c2508e481d6c946d12b",
+          "config": "verified"
+        },
+        "transaction_hash": "0xbe7e55c9d5c1ae589a93143f33bf4dceeec57cbd0bbf80565c9a667662291af1",
+        "transaction_index": "47"
+      },
+      "created_date": "2022-02-01T23:34:10.241791",
+      "quantity": "1"
+    },
+    "top_bid": null,
+    "listing_date": null,
+    "is_presale": false,
+    "transfer_fee_payment_token": null,
+    "transfer_fee": null
+  },
+  {
+    "id": 247723506,
+    "token_id": "2278",
+    "num_sales": 1,
+    "background_color": null,
+    "image_url": "https://lh3.googleusercontent.com/V8Z1-hrPvnRdbz2k3s6p9JVFvE2qwshX1zRck7luQ-UIxSQzCIWU_-ZaNOWXPgT-OX1JKnn3GpnKiqakk1C5WuBwIcXxNBJK2WM9JQ",
+    "image_preview_url": "https://lh3.googleusercontent.com/V8Z1-hrPvnRdbz2k3s6p9JVFvE2qwshX1zRck7luQ-UIxSQzCIWU_-ZaNOWXPgT-OX1JKnn3GpnKiqakk1C5WuBwIcXxNBJK2WM9JQ=s250",
+    "image_thumbnail_url": "https://lh3.googleusercontent.com/V8Z1-hrPvnRdbz2k3s6p9JVFvE2qwshX1zRck7luQ-UIxSQzCIWU_-ZaNOWXPgT-OX1JKnn3GpnKiqakk1C5WuBwIcXxNBJK2WM9JQ=s128",
+    "image_original_url": "ipfs://QmaBvtjsTC52cJLtccS5vg7odGqJ9pniBTGd7FiV2QPHwi/2278.png",
+    "animation_url": null,
+    "animation_original_url": null,
+    "name": "Girlie #2278",
+    "description": "A collection of 10,000 unique & beautiful women. Created and illustrated by 14 y/o digital artist Valeria.",
+    "external_link": null,
+    "asset_contract": {
+      "address": "0x4f7e2a72a99d45f4fd5a2fc211f8dc5c36a049bd",
+      "asset_contract_type": "non-fungible",
+      "created_date": "2022-01-16T09:14:58.306066",
+      "name": "Girlies",
+      "nft_version": "3.0",
+      "opensea_version": null,
+      "owner": 200926944,
+      "schema_name": "ERC721",
+      "symbol": "GRLS",
+      "total_supply": "0",
+      "description": "Girlies is an NFT collection created and illustrated by 14 y/o digital artist [Valeria](https://twitter.com/Valeria_NFT). The collection features 10,000 hand-drawn pieces that celebrate women. We're donating to charities that support girls. Visit [girlies.art](https://girlies.art) to see our roadmap.\n**✨SOLD OUT✨**\n\nERC-721 token hosted on IPFS. You own all the rights to your girlie.",
+      "external_link": "https://girlies.art",
+      "image_url": "https://lh3.googleusercontent.com/GfPAPMX_Nl_hj-i0kC57QItUJu2_YmorVZpjyY5GB7n14Z_VxAs6fEszWbAD0zIgVb1mdA24UVzwjfQJX5gQAm2CqJnbyUCwmAsHtw=s120",
+      "default_to_fiat": false,
+      "dev_buyer_fee_basis_points": 0,
+      "dev_seller_fee_basis_points": 500,
+      "only_proxied_transfers": false,
+      "opensea_buyer_fee_basis_points": 0,
+      "opensea_seller_fee_basis_points": 250,
+      "buyer_fee_basis_points": 0,
+      "seller_fee_basis_points": 750,
+      "payout_address": "0x523a261647810cc7ebc867f6d0f47ecacbdeda46"
+    },
+    "permalink": "https://opensea.io/assets/0x4f7e2a72a99d45f4fd5a2fc211f8dc5c36a049bd/2278",
+    "collection": {
+      "banner_image_url": "https://lh3.googleusercontent.com/pb5xpI-ydG3JxRRFwrGP2acLZyafn6GWF2i6N-uFaND6Kall8mrUREkyC7fin58-Qbfmoek5LWEA8P636viIxzOcSwsvw85Xn-I-948=s2500",
+      "chat_url": null,
+      "created_date": "2022-01-16T09:19:25.575090",
+      "default_to_fiat": false,
+      "description": "Girlies is an NFT collection created and illustrated by 14 y/o digital artist [Valeria](https://twitter.com/Valeria_NFT). The collection features 10,000 hand-drawn pieces that celebrate women. We're donating to charities that support girls. Visit [girlies.art](https://girlies.art) to see our roadmap.\n**✨SOLD OUT✨**\n\nERC-721 token hosted on IPFS. You own all the rights to your girlie.",
+      "dev_buyer_fee_basis_points": "0",
+      "dev_seller_fee_basis_points": "500",
+      "discord_url": "https://discord.gg/XQkT788tUu",
+      "display_data": {
+        "card_display_style": "cover"
+      },
+      "external_url": "https://girlies.art",
+      "featured": false,
+      "featured_image_url": "https://lh3.googleusercontent.com/i67TYr79ZHMolpalxrUvx46CDQmo71RdqfsMgXBw9KYcl5ZCtAih8Q6wZKiGvK5xMdA1B-xgDKRH1K8i7Q2xQUgtHEpCXl2eYwzrIA=s300",
+      "hidden": false,
+      "safelist_request_status": "approved",
+      "image_url": "https://lh3.googleusercontent.com/GfPAPMX_Nl_hj-i0kC57QItUJu2_YmorVZpjyY5GB7n14Z_VxAs6fEszWbAD0zIgVb1mdA24UVzwjfQJX5gQAm2CqJnbyUCwmAsHtw=s120",
+      "is_subject_to_whitelist": false,
+      "large_image_url": "https://lh3.googleusercontent.com/i67TYr79ZHMolpalxrUvx46CDQmo71RdqfsMgXBw9KYcl5ZCtAih8Q6wZKiGvK5xMdA1B-xgDKRH1K8i7Q2xQUgtHEpCXl2eYwzrIA=s300",
+      "medium_username": null,
+      "name": "Girlies NFT",
+      "only_proxied_transfers": false,
+      "opensea_buyer_fee_basis_points": "0",
+      "opensea_seller_fee_basis_points": "250",
+      "payout_address": "0x523a261647810cc7ebc867f6d0f47ecacbdeda46",
+      "require_email": false,
+      "short_description": null,
+      "slug": "girlies-nft",
+      "telegram_url": null,
+      "twitter_username": null,
+      "instagram_username": null,
+      "wiki_url": null
+    },
+    "decimals": 0,
+    "token_metadata": "https://opensea.mypinata.cloud/ipfs/QmdF4AYbsZAyQXvfs48GKYyhjEJ9T94vAZw7jLiptqRE1m/2278.json",
+    "owner": {
+      "user": {
+        "username": "KVNFT"
+      },
+      "profile_img_url": "https://storage.googleapis.com/opensea-static/opensea-profile/25.png",
+      "address": "0x303181acf601b672347aec37dc6f4b6be884baa5",
+      "config": ""
+    },
+    "sell_orders": null,
+    "creator": {
+      "user": {
+        "username": "Girlies_NFT"
+      },
+      "profile_img_url": "https://storage.googleapis.com/opensea-static/opensea-profile/21.png",
+      "address": "0x523a261647810cc7ebc867f6d0f47ecacbdeda46",
+      "config": "verified"
+    },
+    "traits": [
+      {
+        "trait_type": "Clothes",
+        "value": "Tan_Sleeveless",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 221,
+        "order": null
+      },
+      {
+        "trait_type": "Necklaces",
+        "value": "Circle_Silver",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 574,
+        "order": null
+      },
+      {
+        "trait_type": "Eyeliner",
+        "value": "Cat_Eye",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 5083,
+        "order": null
+      },
+      {
+        "trait_type": "Hair",
+        "value": "Straight_Lilac",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 178,
+        "order": null
+      },
+      {
+        "trait_type": "Facial Features",
+        "value": "Plant",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 692,
+        "order": null
+      },
+      {
+        "trait_type": "Mouth",
+        "value": "Smile_Brown",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 361,
+        "order": null
+      },
+      {
+        "trait_type": "Eyeshadow",
+        "value": "Emerald",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 421,
+        "order": null
+      },
+      {
+        "trait_type": "Background",
+        "value": "Rosewater",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 246,
+        "order": null
+      },
+      {
+        "trait_type": "Eyes",
+        "value": "Gray",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 615,
+        "order": null
+      },
+      {
+        "trait_type": "Skin Tone",
+        "value": "Tan",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 1303,
+        "order": null
+      },
+      {
+        "trait_type": "Eyebrows",
+        "value": "Upturned",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 2458,
+        "order": null
+      },
+      {
+        "trait_type": "Earrings",
+        "value": "Tiny_Hearts_Silver",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 405,
+        "order": null
+      }
+    ],
+    "last_sale": {
+      "asset": {
+        "token_id": "2278",
+        "decimals": 0
+      },
+      "asset_bundle": null,
+      "event_type": "successful",
+      "event_timestamp": "2022-01-29T14:29:56",
+      "auction_type": null,
+      "total_price": "255000000000000000",
+      "payment_token": {
+        "id": 1,
+        "symbol": "ETH",
+        "address": "0x0000000000000000000000000000000000000000",
+        "image_url": "https://storage.opensea.io/files/6f8e2979d428180222796ff4a33ab929.svg",
+        "name": "Ether",
+        "decimals": 18,
+        "eth_price": "1.000000000000000",
+        "usd_price": "3021.940000000000055000"
+      },
+      "transaction": {
+        "block_hash": "0x8ac5837fe106ef67e38bdf8bdb70ca8ae8231005da6e7afeeaa13ef36b43d76b",
+        "block_number": "14101171",
+        "from_account": {
+          "user": {
+            "username": "KVNFT"
+          },
+          "profile_img_url": "https://storage.googleapis.com/opensea-static/opensea-profile/25.png",
+          "address": "0x303181acf601b672347aec37dc6f4b6be884baa5",
+          "config": ""
+        },
+        "id": 260824802,
+        "timestamp": "2022-01-29T14:29:56",
+        "to_account": {
+          "user": {
+            "username": "OpenSea-Orders"
+          },
+          "profile_img_url": "https://storage.googleapis.com/opensea-static/opensea-profile/22.png",
+          "address": "0x7be8076f4ea4a4ad08075c2508e481d6c946d12b",
+          "config": "verified"
+        },
+        "transaction_hash": "0x0606884e806a6e1b24c8c7c8cfc7db74b8e3910885af5b79e35364caf3123109",
+        "transaction_index": "287"
+      },
+      "created_date": "2022-01-29T14:30:35.232796",
+      "quantity": "1"
+    },
+    "top_bid": null,
+    "listing_date": null,
+    "is_presale": false,
+    "transfer_fee_payment_token": null,
+    "transfer_fee": null
+  },
+  {
+    "id": 156721871,
+    "token_id": "76718363520262931270422765965675154399510932096822275255419725313958167223717",
+    "num_sales": 0,
+    "background_color": null,
+    "image_url": "https://storage.opensea.io/files/4f446662b86be05004d98a3f2ca751ba.svg",
+    "image_preview_url": "https://storage.opensea.io/files/4f446662b86be05004d98a3f2ca751ba.svg",
+    "image_thumbnail_url": "https://storage.opensea.io/files/4f446662b86be05004d98a3f2ca751ba.svg",
+    "image_original_url": "https://metadata.ens.domains/mainnet/0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85/0xa99d0e12667bde49d323fe777d5e750c19b980a7be75254cabef3fcc583c9da5/image",
+    "animation_url": null,
+    "animation_original_url": null,
+    "name": "kvnfo.eth",
+    "description": "kvnfo.eth, an ENS name.",
+    "external_link": "https://app.ens.domains/name/kvnfo.eth",
+    "asset_contract": {
+      "address": "0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85",
+      "asset_contract_type": "non-fungible",
+      "created_date": "2019-05-08T21:59:29.327544",
+      "name": "ENS",
+      "nft_version": "3.0",
+      "opensea_version": null,
+      "owner": 111982386,
+      "schema_name": "ERC721",
+      "symbol": "ENS",
+      "total_supply": null,
+      "description": "Ethereum Name Service (ENS) domains are secure domain names for the decentralized world. ENS domains provide a way for users to map human readable names to blockchain and non-blockchain resources, like Ethereum addresses, IPFS hashes, or website URLs. ENS domains can be bought and sold on secondary markets.",
+      "external_link": "https://ens.domains",
+      "image_url": "https://lh3.googleusercontent.com/0cOqWoYA7xL9CkUjGlxsjreSYBdrUBE0c6EO1COG4XE8UeP-Z30ckqUNiL872zHQHQU5MUNMNhfDpyXIP17hRSC5HQ=s60",
+      "default_to_fiat": false,
+      "dev_buyer_fee_basis_points": 0,
+      "dev_seller_fee_basis_points": 0,
+      "only_proxied_transfers": false,
+      "opensea_buyer_fee_basis_points": 0,
+      "opensea_seller_fee_basis_points": 250,
+      "buyer_fee_basis_points": 0,
+      "seller_fee_basis_points": 250,
+      "payout_address": null
+    },
+    "permalink": "https://opensea.io/assets/0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85/76718363520262931270422765965675154399510932096822275255419725313958167223717",
+    "collection": {
+      "banner_image_url": null,
+      "chat_url": null,
+      "created_date": "2019-05-08T21:59:36.282454",
+      "default_to_fiat": false,
+      "description": "Ethereum Name Service (ENS) domains are secure domain names for the decentralized world. ENS domains provide a way for users to map human readable names to blockchain and non-blockchain resources, like Ethereum addresses, IPFS hashes, or website URLs. ENS domains can be bought and sold on secondary markets.",
+      "dev_buyer_fee_basis_points": "0",
+      "dev_seller_fee_basis_points": "0",
+      "discord_url": null,
+      "display_data": {
+        "card_display_style": "cover"
+      },
+      "external_url": "https://ens.domains",
+      "featured": false,
+      "featured_image_url": "https://lh3.googleusercontent.com/BBj09xD7R4bBtg1lgnAAS9_TfoYXKwMtudlk-0fVljlURaK7BWcARCpkM-1LGNGTAcsGO6V1TgrtmQFvCo8uVYW_QEfASK-9j6Nr=s300",
+      "hidden": false,
+      "safelist_request_status": "verified",
+      "image_url": "https://lh3.googleusercontent.com/0cOqWoYA7xL9CkUjGlxsjreSYBdrUBE0c6EO1COG4XE8UeP-Z30ckqUNiL872zHQHQU5MUNMNhfDpyXIP17hRSC5HQ=s60",
+      "is_subject_to_whitelist": false,
+      "large_image_url": "https://lh3.googleusercontent.com/BBj09xD7R4bBtg1lgnAAS9_TfoYXKwMtudlk-0fVljlURaK7BWcARCpkM-1LGNGTAcsGO6V1TgrtmQFvCo8uVYW_QEfASK-9j6Nr=s300",
+      "medium_username": "the-ethereum-name-service",
+      "name": "ENS: Ethereum Name Service",
+      "only_proxied_transfers": false,
+      "opensea_buyer_fee_basis_points": "0",
+      "opensea_seller_fee_basis_points": "250",
+      "payout_address": null,
+      "require_email": false,
+      "short_description": null,
+      "slug": "ens",
+      "telegram_url": null,
+      "twitter_username": "ensdomains",
+      "instagram_username": null,
+      "wiki_url": null
+    },
+    "decimals": null,
+    "token_metadata": null,
+    "owner": {
+      "user": {
+        "username": "KVNFT"
+      },
+      "profile_img_url": "https://storage.googleapis.com/opensea-static/opensea-profile/25.png",
+      "address": "0x303181acf601b672347aec37dc6f4b6be884baa5",
+      "config": ""
+    },
+    "sell_orders": null,
+    "creator": {
+      "user": null,
+      "profile_img_url": "https://storage.googleapis.com/opensea-static/opensea-profile/9.png",
+      "address": "0x4fe4e666be5752f1fdd210f4ab5de2cc26e3e0e8",
+      "config": ""
+    },
+    "traits": [
+      {
+        "trait_type": "Length",
+        "value": 5,
+        "display_type": "number",
+        "max_value": null,
+        "trait_count": 0,
+        "order": null
+      },
+      {
+        "trait_type": "Expiration Date",
+        "value": 1734639277,
+        "display_type": "date",
+        "max_value": null,
+        "trait_count": 0,
+        "order": null
+      },
+      {
+        "trait_type": "Registration Date",
+        "value": 1639968421,
+        "display_type": "date",
+        "max_value": null,
+        "trait_count": 0,
+        "order": null
+      }
+    ],
+    "last_sale": null,
+    "top_bid": null,
+    "listing_date": null,
+    "is_presale": false,
+    "transfer_fee_payment_token": null,
+    "transfer_fee": null
+  },
+  {
+    "id": 72885209,
+    "token_id": "1115",
+    "num_sales": 0,
+    "background_color": null,
+    "image_url": "https://lh3.googleusercontent.com/y7n0JOpL2SCM-WZMnq_n66fM9GZPFTbn7nJzW4OybfUVNpk0v0u8GOPi6cSVROQ0cUTXo0iBs0HAsOuX3Pk_NPmPMVNgRy0J8qrV4ic",
+    "image_preview_url": "https://lh3.googleusercontent.com/y7n0JOpL2SCM-WZMnq_n66fM9GZPFTbn7nJzW4OybfUVNpk0v0u8GOPi6cSVROQ0cUTXo0iBs0HAsOuX3Pk_NPmPMVNgRy0J8qrV4ic=s250",
+    "image_thumbnail_url": "https://lh3.googleusercontent.com/y7n0JOpL2SCM-WZMnq_n66fM9GZPFTbn7nJzW4OybfUVNpk0v0u8GOPi6cSVROQ0cUTXo0iBs0HAsOuX3Pk_NPmPMVNgRy0J8qrV4ic=s128",
+    "image_original_url": "https://gateway.pinata.cloud/ipfs/Qmd25cQHVvQ7KfqGwQ9uL84Y9eEwq2hG2g9EU23ZpwstC4/1115.png",
+    "animation_url": null,
+    "animation_original_url": null,
+    "name": "SpaceAliens #1115",
+    "description": "SpaceAliens is an exclusive generative NFT collection in the SpaceBoys metaverse.",
+    "external_link": "http://spaceboys.fun/alien_nft/1115",
+    "asset_contract": {
+      "address": "0xa3902a07efefd5502f8d792ea32130417f8f6541",
+      "asset_contract_type": "non-fungible",
+      "created_date": "2021-10-14T07:32:02.602318",
+      "name": "SpaceAliensNFT",
+      "nft_version": "3.0",
+      "opensea_version": null,
+      "owner": 86783739,
+      "schema_name": "ERC721",
+      "symbol": "SANFT",
+      "total_supply": "4",
+      "description": "SpaceAliens is an exclusive generative NFT collection in the SpaceBoys metaverse.",
+      "external_link": "https://www.spaceboys.fun/",
+      "image_url": "https://lh3.googleusercontent.com/7KqGY56Yc_lRKloRElRmHVUMPd2INWcZtB4Qj4CfEoSi_SPGJHbEOhme6utFmI_-6NbhYECvvp9yD0wywT7O5ZPo9cG9Q0qxBpo6wvQ=s120",
+      "default_to_fiat": false,
+      "dev_buyer_fee_basis_points": 0,
+      "dev_seller_fee_basis_points": 700,
+      "only_proxied_transfers": false,
+      "opensea_buyer_fee_basis_points": 0,
+      "opensea_seller_fee_basis_points": 250,
+      "buyer_fee_basis_points": 0,
+      "seller_fee_basis_points": 950,
+      "payout_address": "0x05b5f543292d6b82877688f6f82154e0d30b8579"
+    },
+    "permalink": "https://opensea.io/assets/0xa3902a07efefd5502f8d792ea32130417f8f6541/1115",
+    "collection": {
+      "banner_image_url": "https://lh3.googleusercontent.com/BmJgHxRSnwok--Doiae62YOLC8cBo6LJnu_09rh7f1Tn4GiiBuF5Ihlg471Zditbay903y1VVJ7ko1WeDX4UAfj596EnI8hgjTvd=s2500",
+      "chat_url": null,
+      "created_date": "2021-10-14T07:32:04.472221",
+      "default_to_fiat": false,
+      "description": "SpaceAliens is an exclusive generative NFT collection in the SpaceBoys metaverse.",
+      "dev_buyer_fee_basis_points": "0",
+      "dev_seller_fee_basis_points": "700",
+      "discord_url": "https://discord.gg/NVAQa9YcSC",
+      "display_data": {
+        "card_display_style": "cover"
+      },
+      "external_url": "https://www.spaceboys.fun/",
+      "featured": false,
+      "featured_image_url": null,
+      "hidden": false,
+      "safelist_request_status": "not_requested",
+      "image_url": "https://lh3.googleusercontent.com/7KqGY56Yc_lRKloRElRmHVUMPd2INWcZtB4Qj4CfEoSi_SPGJHbEOhme6utFmI_-6NbhYECvvp9yD0wywT7O5ZPo9cG9Q0qxBpo6wvQ=s120",
+      "is_subject_to_whitelist": false,
+      "large_image_url": null,
+      "medium_username": null,
+      "name": "SpaceAliensNFT",
+      "only_proxied_transfers": false,
+      "opensea_buyer_fee_basis_points": "0",
+      "opensea_seller_fee_basis_points": "250",
+      "payout_address": "0x05b5f543292d6b82877688f6f82154e0d30b8579",
+      "require_email": false,
+      "short_description": null,
+      "slug": "spacealiensnft",
+      "telegram_url": null,
+      "twitter_username": "SpaceBoysNFTs",
+      "instagram_username": null,
+      "wiki_url": null
+    },
+    "decimals": 0,
+    "token_metadata": "https://gateway.pinata.cloud/ipfs/QmTA1TvKGRGfeYKYWM87Bs2CrBauNmXkNm11Hk2di1rew8/1115.json",
+    "owner": {
+      "user": {
+        "username": "KVNFT"
+      },
+      "profile_img_url": "https://storage.googleapis.com/opensea-static/opensea-profile/25.png",
+      "address": "0x303181acf601b672347aec37dc6f4b6be884baa5",
+      "config": ""
+    },
+    "sell_orders": null,
+    "creator": {
+      "user": {
+        "username": "SpaceBoysDeployer"
+      },
+      "profile_img_url": "https://storage.googleapis.com/opensea-static/opensea-profile/17.png",
+      "address": "0xab39b2dd0c5a4a37e1d5a0827326d2502e696209",
+      "config": ""
+    },
+    "traits": [
+      {
+        "trait_type": "Top",
+        "value": "Ninja Star",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 51,
+        "order": null
+      },
+      {
+        "trait_type": "On Face",
+        "value": "Lightning",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 62,
+        "order": null
+      },
+      {
+        "trait_type": "Body",
+        "value": "Brown",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 83,
+        "order": null
+      },
+      {
+        "trait_type": "Background",
+        "value": "Starry Night",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 61,
+        "order": null
+      },
+      {
+        "trait_type": "Back",
+        "value": "Devil Wings",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 28,
+        "order": null
+      },
+      {
+        "trait_type": "Face",
+        "value": "Bored",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 97,
+        "order": null
+      },
+      {
+        "trait_type": "Clothes",
+        "value": "Waves Tee",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 32,
+        "order": null
+      }
+    ],
+    "last_sale": null,
+    "top_bid": null,
+    "listing_date": null,
+    "is_presale": false,
+    "transfer_fee_payment_token": null,
+    "transfer_fee": null
+  },
+  {
+    "id": 58062212,
+    "token_id": "206",
+    "num_sales": 0,
+    "background_color": null,
+    "image_url": "https://lh3.googleusercontent.com/FOQrJKfpDRljvgXducTOErCBJ77GX2uQ6wscKYPZQ6SmC_sB9vGNuOVFuFRPexLDE78sTZS37Fs3FcozXiLd9qi9-NHZ1a25RB8U",
+    "image_preview_url": "https://lh3.googleusercontent.com/FOQrJKfpDRljvgXducTOErCBJ77GX2uQ6wscKYPZQ6SmC_sB9vGNuOVFuFRPexLDE78sTZS37Fs3FcozXiLd9qi9-NHZ1a25RB8U=s250",
+    "image_thumbnail_url": "https://lh3.googleusercontent.com/FOQrJKfpDRljvgXducTOErCBJ77GX2uQ6wscKYPZQ6SmC_sB9vGNuOVFuFRPexLDE78sTZS37Fs3FcozXiLd9qi9-NHZ1a25RB8U=s128",
+    "image_original_url": "https://ipfs.io/ipfs/QmaA2YTtgFqoA26SbY2jq3KEHMmJNRDhfgDwFjaoCma4Ba/206.png",
+    "animation_url": null,
+    "animation_original_url": null,
+    "name": "Menacing Punk #206",
+    "description": null,
+    "external_link": null,
+    "asset_contract": {
+      "address": "0x84688a238a3b71cdebedcb2906084ad6785608cb",
+      "asset_contract_type": "non-fungible",
+      "created_date": "2021-09-20T00:41:27.813798",
+      "name": "Menacing Punk Society",
+      "nft_version": "3.0",
+      "opensea_version": null,
+      "owner": 50971618,
+      "schema_name": "ERC721",
+      "symbol": "MPS",
+      "total_supply": "0",
+      "description": "The years 2150 and 1,111 Menacing Punks didn't survive. This is them. \n\nMenacing Punk Society is a generative continuation project.\n\nThis project pays homage to the original CryptoPunks and is not affiliated with Larva Labs. ",
+      "external_link": null,
+      "image_url": "https://lh3.googleusercontent.com/OVQ2uXHHe-kdqW37izIvqOe0ihPdqTACdup9tJIz6kKp3U9LWiZwtE6k1TQxBPCZHQr2At6AEYdqueYOn_ye6AZsxd4xueX5ej45lg=s120",
+      "default_to_fiat": false,
+      "dev_buyer_fee_basis_points": 0,
+      "dev_seller_fee_basis_points": 500,
+      "only_proxied_transfers": false,
+      "opensea_buyer_fee_basis_points": 0,
+      "opensea_seller_fee_basis_points": 250,
+      "buyer_fee_basis_points": 0,
+      "seller_fee_basis_points": 750,
+      "payout_address": "0x5e1ddaef0823613c363bd359bdcd6fcc145b938d"
+    },
+    "permalink": "https://opensea.io/assets/0x84688a238a3b71cdebedcb2906084ad6785608cb/206",
+    "collection": {
+      "banner_image_url": "https://lh3.googleusercontent.com/E4NbJlgS3dwwppwGahfm1DQDDWvsbJZX3jD5yUMlaT9zLTbTY3BqojPy5iKLNA8HZ6aBD4uBQXDGu81kweCJqVSw66TbzHJzkiJE=s2500",
+      "chat_url": null,
+      "created_date": "2021-09-20T01:07:20.322983",
+      "default_to_fiat": false,
+      "description": "The years 2150 and 1,111 Menacing Punks didn't survive. This is them. \n\nMenacing Punk Society is a generative continuation project.\n\nThis project pays homage to the original CryptoPunks and is not affiliated with Larva Labs. ",
+      "dev_buyer_fee_basis_points": "0",
+      "dev_seller_fee_basis_points": "500",
+      "discord_url": null,
+      "display_data": {
+        "card_display_style": "contain"
+      },
+      "external_url": null,
+      "featured": false,
+      "featured_image_url": "https://lh3.googleusercontent.com/bBewqh0rvidjgroUah1hyCfWRavIu8xnjBEVO6vpJg1HsC-x5VJBPtqdNWDJ7O5UIF52EzFyUq8_BJ71ndj2ieCK6Nl6bmSdDAqhoQ=s300",
+      "hidden": false,
+      "safelist_request_status": "not_requested",
+      "image_url": "https://lh3.googleusercontent.com/OVQ2uXHHe-kdqW37izIvqOe0ihPdqTACdup9tJIz6kKp3U9LWiZwtE6k1TQxBPCZHQr2At6AEYdqueYOn_ye6AZsxd4xueX5ej45lg=s120",
+      "is_subject_to_whitelist": false,
+      "large_image_url": "https://lh3.googleusercontent.com/bBewqh0rvidjgroUah1hyCfWRavIu8xnjBEVO6vpJg1HsC-x5VJBPtqdNWDJ7O5UIF52EzFyUq8_BJ71ndj2ieCK6Nl6bmSdDAqhoQ=s300",
+      "medium_username": null,
+      "name": "Menacing Punk Society",
+      "only_proxied_transfers": false,
+      "opensea_buyer_fee_basis_points": "0",
+      "opensea_seller_fee_basis_points": "250",
+      "payout_address": "0x5e1ddaef0823613c363bd359bdcd6fcc145b938d",
+      "require_email": false,
+      "short_description": null,
+      "slug": "menacing-punk-society",
+      "telegram_url": null,
+      "twitter_username": "menacingpunks",
+      "instagram_username": null,
+      "wiki_url": null
+    },
+    "decimals": 0,
+    "token_metadata": "https://ipfs.io/ipfs/QmTWZxgtUNe7ob3VjqH7aWFo2kCBA89jm5vUCGGXW83j56/206",
+    "owner": {
+      "user": {
+        "username": "KVNFT"
+      },
+      "profile_img_url": "https://storage.googleapis.com/opensea-static/opensea-profile/25.png",
+      "address": "0x303181acf601b672347aec37dc6f4b6be884baa5",
+      "config": ""
+    },
+    "sell_orders": null,
+    "creator": {
+      "user": {
+        "username": "mmbit"
+      },
+      "profile_img_url": "https://storage.googleapis.com/opensea-static/opensea-profile/33.png",
+      "address": "0x7cb81178d26f31b23dc39feeef3d098be9b7f816",
+      "config": ""
+    },
+    "traits": [
+      {
+        "trait_type": "Eyes",
+        "value": "Purple Shades",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 63,
+        "order": null
+      },
+      {
+        "trait_type": "Chin",
+        "value": "None",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 905,
+        "order": null
+      },
+      {
+        "trait_type": "Hat",
+        "value": "Crazy Blue Hair",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 25,
+        "order": null
+      },
+      {
+        "trait_type": "Base",
+        "value": "Skeleton",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 1020,
+        "order": null
+      },
+      {
+        "trait_type": "Background",
+        "value": "Light Green",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 524,
+        "order": null
+      },
+      {
+        "trait_type": "Accessories",
+        "value": "None",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 857,
+        "order": null
+      },
+      {
+        "trait_type": "Mouth",
+        "value": "None",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 858,
+        "order": null
+      }
+    ],
+    "last_sale": null,
+    "top_bid": null,
+    "listing_date": null,
+    "is_presale": false,
+    "transfer_fee_payment_token": null,
+    "transfer_fee": null
+  },
+  {
+    "id": 58062192,
+    "token_id": "205",
+    "num_sales": 0,
+    "background_color": null,
+    "image_url": "https://lh3.googleusercontent.com/f28KU_4Ok4de-Z76i9iuYD_s3vB98853otYffMdjyp-vh1jGUupaXPgVH_INxFTDZDbYYQEu3-ptEBJ_ZzuAOSLYw6LeZRMUvDm0",
+    "image_preview_url": "https://lh3.googleusercontent.com/f28KU_4Ok4de-Z76i9iuYD_s3vB98853otYffMdjyp-vh1jGUupaXPgVH_INxFTDZDbYYQEu3-ptEBJ_ZzuAOSLYw6LeZRMUvDm0=s250",
+    "image_thumbnail_url": "https://lh3.googleusercontent.com/f28KU_4Ok4de-Z76i9iuYD_s3vB98853otYffMdjyp-vh1jGUupaXPgVH_INxFTDZDbYYQEu3-ptEBJ_ZzuAOSLYw6LeZRMUvDm0=s128",
+    "image_original_url": "https://ipfs.io/ipfs/QmaA2YTtgFqoA26SbY2jq3KEHMmJNRDhfgDwFjaoCma4Ba/205.png",
+    "animation_url": null,
+    "animation_original_url": null,
+    "name": "Menacing Punk #205",
+    "description": null,
+    "external_link": null,
+    "asset_contract": {
+      "address": "0x84688a238a3b71cdebedcb2906084ad6785608cb",
+      "asset_contract_type": "non-fungible",
+      "created_date": "2021-09-20T00:41:27.813798",
+      "name": "Menacing Punk Society",
+      "nft_version": "3.0",
+      "opensea_version": null,
+      "owner": 50971618,
+      "schema_name": "ERC721",
+      "symbol": "MPS",
+      "total_supply": "0",
+      "description": "The years 2150 and 1,111 Menacing Punks didn't survive. This is them. \n\nMenacing Punk Society is a generative continuation project.\n\nThis project pays homage to the original CryptoPunks and is not affiliated with Larva Labs. ",
+      "external_link": null,
+      "image_url": "https://lh3.googleusercontent.com/OVQ2uXHHe-kdqW37izIvqOe0ihPdqTACdup9tJIz6kKp3U9LWiZwtE6k1TQxBPCZHQr2At6AEYdqueYOn_ye6AZsxd4xueX5ej45lg=s120",
+      "default_to_fiat": false,
+      "dev_buyer_fee_basis_points": 0,
+      "dev_seller_fee_basis_points": 500,
+      "only_proxied_transfers": false,
+      "opensea_buyer_fee_basis_points": 0,
+      "opensea_seller_fee_basis_points": 250,
+      "buyer_fee_basis_points": 0,
+      "seller_fee_basis_points": 750,
+      "payout_address": "0x5e1ddaef0823613c363bd359bdcd6fcc145b938d"
+    },
+    "permalink": "https://opensea.io/assets/0x84688a238a3b71cdebedcb2906084ad6785608cb/205",
+    "collection": {
+      "banner_image_url": "https://lh3.googleusercontent.com/E4NbJlgS3dwwppwGahfm1DQDDWvsbJZX3jD5yUMlaT9zLTbTY3BqojPy5iKLNA8HZ6aBD4uBQXDGu81kweCJqVSw66TbzHJzkiJE=s2500",
+      "chat_url": null,
+      "created_date": "2021-09-20T01:07:20.322983",
+      "default_to_fiat": false,
+      "description": "The years 2150 and 1,111 Menacing Punks didn't survive. This is them. \n\nMenacing Punk Society is a generative continuation project.\n\nThis project pays homage to the original CryptoPunks and is not affiliated with Larva Labs. ",
+      "dev_buyer_fee_basis_points": "0",
+      "dev_seller_fee_basis_points": "500",
+      "discord_url": null,
+      "display_data": {
+        "card_display_style": "contain"
+      },
+      "external_url": null,
+      "featured": false,
+      "featured_image_url": "https://lh3.googleusercontent.com/bBewqh0rvidjgroUah1hyCfWRavIu8xnjBEVO6vpJg1HsC-x5VJBPtqdNWDJ7O5UIF52EzFyUq8_BJ71ndj2ieCK6Nl6bmSdDAqhoQ=s300",
+      "hidden": false,
+      "safelist_request_status": "not_requested",
+      "image_url": "https://lh3.googleusercontent.com/OVQ2uXHHe-kdqW37izIvqOe0ihPdqTACdup9tJIz6kKp3U9LWiZwtE6k1TQxBPCZHQr2At6AEYdqueYOn_ye6AZsxd4xueX5ej45lg=s120",
+      "is_subject_to_whitelist": false,
+      "large_image_url": "https://lh3.googleusercontent.com/bBewqh0rvidjgroUah1hyCfWRavIu8xnjBEVO6vpJg1HsC-x5VJBPtqdNWDJ7O5UIF52EzFyUq8_BJ71ndj2ieCK6Nl6bmSdDAqhoQ=s300",
+      "medium_username": null,
+      "name": "Menacing Punk Society",
+      "only_proxied_transfers": false,
+      "opensea_buyer_fee_basis_points": "0",
+      "opensea_seller_fee_basis_points": "250",
+      "payout_address": "0x5e1ddaef0823613c363bd359bdcd6fcc145b938d",
+      "require_email": false,
+      "short_description": null,
+      "slug": "menacing-punk-society",
+      "telegram_url": null,
+      "twitter_username": "menacingpunks",
+      "instagram_username": null,
+      "wiki_url": null
+    },
+    "decimals": 0,
+    "token_metadata": "https://ipfs.io/ipfs/QmTWZxgtUNe7ob3VjqH7aWFo2kCBA89jm5vUCGGXW83j56/205",
+    "owner": {
+      "user": {
+        "username": "KVNFT"
+      },
+      "profile_img_url": "https://storage.googleapis.com/opensea-static/opensea-profile/25.png",
+      "address": "0x303181acf601b672347aec37dc6f4b6be884baa5",
+      "config": ""
+    },
+    "sell_orders": null,
+    "creator": {
+      "user": {
+        "username": "mmbit"
+      },
+      "profile_img_url": "https://storage.googleapis.com/opensea-static/opensea-profile/33.png",
+      "address": "0x7cb81178d26f31b23dc39feeef3d098be9b7f816",
+      "config": ""
+    },
+    "traits": [
+      {
+        "trait_type": "Hat",
+        "value": "Blue Headband",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 44,
+        "order": null
+      },
+      {
+        "trait_type": "Base",
+        "value": "Skeleton",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 1020,
+        "order": null
+      },
+      {
+        "trait_type": "Background",
+        "value": "Light Green",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 524,
+        "order": null
+      },
+      {
+        "trait_type": "Accessories",
+        "value": "None",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 857,
+        "order": null
+      },
+      {
+        "trait_type": "Eyes",
+        "value": "None",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 217,
+        "order": null
+      },
+      {
+        "trait_type": "Chin",
+        "value": "Full Beard",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 86,
+        "order": null
+      },
+      {
+        "trait_type": "Mouth",
+        "value": "None",
+        "display_type": null,
+        "max_value": null,
+        "trait_count": 858,
+        "order": null
+      }
+    ],
+    "last_sale": null,
+    "top_bid": null,
+    "listing_date": null,
+    "is_presale": false,
+    "transfer_fee_payment_token": null,
+    "transfer_fee": null
+  }
+]
